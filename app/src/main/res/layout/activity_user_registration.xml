@@ -7,7 +7,7 @@
     tools:context="com.dev.r19.eeragijn.UserRegistration">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/IdToAccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="97dp"
@@ -23,26 +23,26 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Email or Phone no"
-        android:layout_alignBaseline="@+id/editText"
-        android:layout_alignBottom="@+id/editText"
+        android:layout_alignBaseline="@+id/IdToAccess"
+        android:layout_alignBottom="@+id/IdToAccess"
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/Upass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText"
-        android:layout_below="@+id/editText"
+        android:layout_alignStart="@+id/IdToAccess"
+        android:layout_below="@+id/IdToAccess"
         android:layout_marginTop="37dp"
         android:ems="10"
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/UconPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_below="@+id/editText2"
+        android:layout_alignStart="@+id/Upass"
+        android:layout_below="@+id/Upass"
         android:layout_marginTop="41dp"
         android:ems="10"
         android:inputType="textPassword" />
@@ -52,8 +52,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
-        android:layout_alignBaseline="@+id/editText2"
-        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignBaseline="@+id/Upass"
+        android:layout_alignBottom="@+id/Upass"
         android:layout_alignStart="@+id/textView3" />
 
     <TextView
@@ -61,15 +61,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirm Password"
-        android:layout_alignBaseline="@+id/editText3"
-        android:layout_alignBottom="@+id/editText3"
+        android:layout_alignBaseline="@+id/UconPass"
+        android:layout_alignBottom="@+id/UconPass"
         android:layout_alignStart="@+id/textView5" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/EnterReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText3"
+        android:layout_below="@+id/UconPass"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp"
         android:text="Submit" />

@@ -8,12 +8,12 @@ import android.widget.Button;
 
 public class UserHome extends AppCompatActivity {
 
+    Button login, reg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
-        Button login, reg;
-
+        //initialization
         login = (Button)findViewById(R.id.UlogIn);
         reg = (Button)findViewById(R.id.Ureg);
 

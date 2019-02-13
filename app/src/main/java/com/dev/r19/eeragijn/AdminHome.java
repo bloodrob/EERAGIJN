@@ -8,11 +8,11 @@ import android.widget.Button;
 
 public class AdminHome extends AppCompatActivity {
 
+    Button login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
-        Button login;
 
         // initialization
         login = (Button) findViewById(R.id.AlogIn);

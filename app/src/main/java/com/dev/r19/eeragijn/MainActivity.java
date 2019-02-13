@@ -8,12 +8,12 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+        Button admin, emp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button admin, emp;
-
         admin = (Button)findViewById(R.id.AsAdmin);
         emp = (Button)findViewById(R.id.AsEmp);
 
