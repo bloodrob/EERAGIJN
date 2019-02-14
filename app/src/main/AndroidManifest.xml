@@ -21,7 +21,8 @@
         <activity android:name=".UserRegistration" />
         <activity android:name=".UserLogin" />
         <activity android:name=".AdminLogin" />
-        <activity android:name=".AfterAdminLogin"></activity>
+        <activity android:name=".AfterAdminLogin" />
+        <activity android:name=".DocumentUpload"></activity>
     </application>
 
 </manifest>
