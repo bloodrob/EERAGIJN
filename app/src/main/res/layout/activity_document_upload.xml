@@ -37,20 +37,18 @@
 
     <ImageView
         android:id="@+id/Self_imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/Browse_self_image"
-        android:layout_alignStart="@+id/Browse_self_image" />
+        android:layout_width="300dp"
+        android:layout_height="170dp"
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/Browse_self_image" />
 
     <Button
         android:id="@+id/Uploads_self_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Self_imageView"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginStart="20dp"
+        android:text="Upload Document"
+        android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/textView11"
-        android:text="Upload Document" />
+        android:layout_marginBottom="113dp" />
 </RelativeLayout>

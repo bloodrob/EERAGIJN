@@ -25,4 +25,8 @@
         <activity android:name=".DocumentUpload"></activity>
     </application>
 
+    <user-permission android:name = "anddroid.permission.READ_EXTERNAL_STROGARE/"></user-permission>
+    <user-permission android:name = "android.permission.READ_INTERNAL_STORAGE/"></user-permission>
+    <user-permission android:name = "android.permission.WRITE_INTERNAL_STORAGE/"></user-permission>
+    <user-permission android:name = "android.permission.WRITE_EXTERNAL_STORAGE/"></user-permission>
 </manifest>
