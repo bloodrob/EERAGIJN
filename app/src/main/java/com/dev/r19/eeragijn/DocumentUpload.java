@@ -204,6 +204,8 @@ public class DocumentUpload extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     pd.dismiss();
                     Toast.makeText(DocumentUpload.this, "Document Succesfully uploaded", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DocumentUpload.this, SuccessDocumentUpload.class);
+                    startActivity(intent);
                 }
             });
             ref3.putFile(hslcPathToFile).addOnFailureListener(new OnFailureListener() {

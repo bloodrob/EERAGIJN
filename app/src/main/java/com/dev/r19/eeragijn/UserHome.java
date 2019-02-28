@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class UserHome extends AppCompatActivity {
 
     Button login, reg;
+
+    private FirebaseUser auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +22,13 @@ public class UserHome extends AppCompatActivity {
 
         login = (Button)findViewById(R.id.toUserLogin);
         reg = (Button)findViewById(R.id.toUserReg);
+
+        // checking for session status
+        auth = FirebaseAuth.getInstance().getCurrentUser();
+        if (auth != null) {
+            Intent intent = new Intent(UserHome.this, UserMainActivity.class);
+            startActivity(intent);
+        }
 
         // start link page user login
       login.setOnClickListener(new View.OnClickListener() {
