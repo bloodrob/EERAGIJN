@@ -25,4 +25,63 @@
         android:layout_alignBaseline="@+id/UlogIn"
         android:layout_alignBottom="@+id/UlogIn"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="53dp"
+        android:layout_toEndOf="@+id/UlogIn"
+        android:text="Welcome User" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView14"
+        android:layout_marginTop="70dp"
+        android:layout_toStartOf="@+id/textView14"
+        android:text="User id" />
+
+    <EditText
+        android:id="@+id/empUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:layout_alignBaseline="@+id/textView15"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignEnd="@+id/Ureg"
+        android:layout_marginEnd="15dp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_below="@+id/empUserId"
+        android:layout_marginTop="64dp"
+        android:text="Password" />
+
+    <EditText
+        android:id="@+id/empUserPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/empUserId"
+        android:layout_below="@+id/empUserId"
+        android:layout_marginTop="47dp"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/empLogIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Ureg"
+        android:layout_below="@+id/empUserPass"
+        android:layout_marginTop="39dp"
+        android:text="Log in" />
 </RelativeLayout>

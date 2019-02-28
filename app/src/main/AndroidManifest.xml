@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dev.r19.eeragijn">
 
+    <user-permission android:name="anddroid.permission.READ_EXTERNAL_STROGARE/" />
+    <user-permission android:name="android.permission.READ_INTERNAL_STORAGE/" />
+    <user-permission android:name="android.permission.WRITE_INTERNAL_STORAGE/" />
+    <user-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE/" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,11 +27,8 @@
         <activity android:name=".UserLogin" />
         <activity android:name=".AdminLogin" />
         <activity android:name=".AfterAdminLogin" />
-        <activity android:name=".DocumentUpload"></activity>
+        <activity android:name=".DocumentUpload" />
+        <activity android:name=".UserMainActivity"></activity>
     </application>
 
-    <user-permission android:name = "anddroid.permission.READ_EXTERNAL_STROGARE/"></user-permission>
-    <user-permission android:name = "android.permission.READ_INTERNAL_STORAGE/"></user-permission>
-    <user-permission android:name = "android.permission.WRITE_INTERNAL_STORAGE/"></user-permission>
-    <user-permission android:name = "android.permission.WRITE_EXTERNAL_STORAGE/"></user-permission>
 </manifest>

@@ -34,6 +34,7 @@ public class UserRegistration extends AppCompatActivity {
         conPass = (EditText)findViewById(R.id.UconPass);
         Ureg = (Button)findViewById(R.id.EnterReg);
 
+        auth = FirebaseAuth.getInstance();
         // Set up onclick listener for Registration button
 
         Ureg.setOnClickListener(new View.OnClickListener() {
@@ -46,25 +47,27 @@ public class UserRegistration extends AppCompatActivity {
                     return;
                 }
                 String Password = pass.getText().toString().trim();
-                if (TextUtils.isEmpty(Password)&& Password.length()<7)  {
+                if (TextUtils.isEmpty(Password) && Password.length()<7)  {
                     Toast.makeText(UserRegistration.this, "Password Must required and lenght must be 7", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 String ConPassword = conPass.getText().toString().trim();
                 if (!ConPassword.equals(Password)) {
                     Toast.makeText(UserRegistration.this, "Password must be same", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                     // crate registration credential for the user
-                auth.createUserWithEmailAndPassword(UserId , Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                   if (task.isSuccessful()) {
-                       Toast.makeText(UserRegistration.this, "Successfully registered with the system", Toast.LENGTH_SHORT).show();
-                       Intent intent = new Intent(UserRegistration.this, AdminLogin.class);
-                       startActivity(intent);
-                   }
-                    } //end of registration
-                });
+               auth.createUserWithEmailAndPassword(UserId, Password)
+                       .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                           @Override
+                           public void onComplete(@NonNull Task<AuthResult> task) {
+                           if (task.isSuccessful()) {
+                               Toast.makeText(UserRegistration.this, "Successfully registerd to the sstem", Toast.LENGTH_SHORT).show();
+                               Intent intent = new Intent(UserRegistration.this, UserLogin.class);
+                               startActivity(intent);
+                           }
+                           }
+                       });
 
             }
         });

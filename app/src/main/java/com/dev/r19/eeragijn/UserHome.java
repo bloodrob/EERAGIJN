@@ -14,24 +14,28 @@ public class UserHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
         //initialization
-        login = (Button)findViewById(R.id.UlogIn);
-        reg = (Button)findViewById(R.id.Ureg);
+
+        login = (Button)findViewById(R.id.toUserLogin);
+        reg = (Button)findViewById(R.id.toUserReg);
 
         // start link page user login
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserHome.this, UserLogin.class);
-                startActivity(intent);
-            }
-        }); //end
+      login.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              Intent intent = new Intent(UserHome.this, UserLogin.class);
+              startActivity(intent);
+          }
+      });
+        ; //end
         //start link user reg page
-        reg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserHome.this, UserRegistration.class);
-                startActivity(intent);
-            }
-        });
+       reg.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(UserHome.this, UserRegistration.class);
+               startActivity(intent);
+           }
+       });
+
+
     }
 }

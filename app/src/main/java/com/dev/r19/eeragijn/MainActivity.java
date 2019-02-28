@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-        Button admin, emp, ToDoc;
+        Button admin, emp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         admin = (Button)findViewById(R.id.AsAdmin);
         emp = (Button)findViewById(R.id.AsEmp);
-        ToDoc = (Button)findViewById(R.id.Doc_upload);
 
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,13 +24,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        // link to document upload page
-        ToDoc.setOnClickListener(new View.OnClickListener() {
+        // link to user home
+        emp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DocumentUpload.class);
+                Intent intent = new Intent(MainActivity.this, UserHome.class);
                 startActivity(intent);
             }
         });
+
     }
 }
