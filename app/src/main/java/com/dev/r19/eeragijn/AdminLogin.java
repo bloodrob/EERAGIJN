@@ -13,9 +13,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminLogin extends AppCompatActivity {
 
-    EditText userid, pass;
-    Button login;
-    FirebaseAuth auth;
+    private EditText userid, pass;
+    private Button login;
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +42,16 @@ public class AdminLogin extends AppCompatActivity {
                     Toast.makeText(AdminLogin.this, "Password required", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (!(UserId.equals("Admin") && Password.equals("qwerty"))) {
+                String uId = "Admin";
+                String pass = "qwerty";
+                if ((!UserId.equals(uId) && Password.equals(pass))) {
                     Toast.makeText(AdminLogin.this, "User Id or Password not correct", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else
                 {
-                    Intent intent = new Intent(AdminLogin.this, AfterAdminLogin.class);
+                    Intent intent = new Intent(AdminLogin.this, AdminMainActivity.class);
+                    startActivity(intent);
                 }
             }
         });

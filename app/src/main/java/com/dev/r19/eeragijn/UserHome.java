@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class UserHome extends AppCompatActivity {
 
-    Button login, reg;
+    private Button login, reg;
 
     private FirebaseUser auth;
     @Override

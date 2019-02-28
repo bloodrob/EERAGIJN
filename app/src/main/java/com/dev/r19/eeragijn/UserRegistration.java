@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class UserRegistration extends AppCompatActivity {
 
@@ -61,8 +62,15 @@ public class UserRegistration extends AppCompatActivity {
                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                            @Override
                            public void onComplete(@NonNull Task<AuthResult> task) {
+                               // checking for exsiting email and set exception
+                               if (! task.isSuccessful()) {
+                                   if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                    Toast.makeText(UserRegistration.this, "This e-mail address is already registerd in the system, You need to try with your own original e-mail", Toast.LENGTH_SHORT).show();
+                                       return;
+                                   }
+                               }
                            if (task.isSuccessful()) {
-                               Toast.makeText(UserRegistration.this, "Successfully registerd to the sstem", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(UserRegistration.this, "Successfully registerd to the system", Toast.LENGTH_SHORT).show();
                                Intent intent = new Intent(UserRegistration.this, UserLogin.class);
                                startActivity(intent);
                            }

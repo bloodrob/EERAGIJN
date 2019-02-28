@@ -168,7 +168,7 @@ public class DocumentUpload extends AppCompatActivity {
             ref1.putFile(selfPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    pd.dismiss();
+                //    pd.dismiss();
                //     Toast.makeText(DocumentUpload.this, "Document Succesfully uploaded", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -186,7 +186,7 @@ public class DocumentUpload extends AppCompatActivity {
             ref2.putFile(signPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    pd.dismiss();
+                 //   pd.dismiss();
                 }
             });
             ref2.putFile(signPathToFile).addOnFailureListener(new OnFailureListener() {
