@@ -17,9 +17,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class UserRegistration extends AppCompatActivity {
 
-    EditText userId, pass, conPass;
-    Button Ureg;
-    FirebaseAuth auth;
+    private EditText userId, pass, conPass;
+    private Button Ureg;
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

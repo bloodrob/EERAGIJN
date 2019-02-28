@@ -30,16 +30,16 @@ import java.util.UUID;
 import static com.dev.r19.eeragijn.R.id.add;
 
 public class DocumentUpload extends AppCompatActivity {
-    Button toSelfImage, toSignImage, toHslcImage, uploadsImage;
-    ImageView viewSelfImage, viewSignImage, viewHslcImage;
+    private Button toSelfImage, toSignImage, toHslcImage, uploadsImage;
+    private ImageView viewSelfImage, viewSignImage, viewHslcImage;
     ProgressDialog pd;
     private Uri selfPathToFile, signPathToFile, hslcPathToFile; // The path to the uploads document
     private static int PICK_IMAGE_REQUEST = 1, PICK_IMAGE_REQUEST1 = 2, PICK_IMAGE_REQUEST2 = 3;  //Request code act as a instance variable. that should be equal to requested uploaded image code
     private String getCurrentId;
     //firebase
-    FirebaseStorage storage;
-    StorageReference ref;
-    FirebaseAuth auth;
+    private FirebaseStorage storage;
+    private StorageReference ref;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

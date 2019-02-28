@@ -17,10 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class UserLogin extends AppCompatActivity {
 
-    EditText userId, Pass;
-    Button login;
+    private EditText userId, Pass;
+    private Button login;
 
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class UserMainActivity extends AppCompatActivity {
 
-    Button toDoc;
+    private Button toDoc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
