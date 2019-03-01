@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dev.r19.eeragijn.AdminMainActivity">
+    tools:context="com.dev.r19.eeragijn.NewUserMainActivity">
 
     <Button
-        android:id="@+id/to_upload_file"
+        android:id="@+id/doc_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="48dp"
-        android:text="Load and Checked the uploaded file"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="89dp"
+        android:text="Upload Document" />
 </RelativeLayout>

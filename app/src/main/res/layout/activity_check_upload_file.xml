@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dev.r19.eeragijn.CheckUploadFile">
+
+    <Button
+        android:id="@+id/check_person_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="48dp"
+        android:text="Check the person image"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/view_person_image"
+        android:layout_width="310px"
+        android:layout_height="200px"
+        android:layout_marginStart="20dp"
+        app:srcCompat="@drawable/common_full_open_on_phone"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/check_person_image"
+        android:layout_marginTop="21dp" />
+
+    <Button
+        android:id="@+id/check_person_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/check_person_image"
+        android:layout_below="@+id/view_person_image"
+        android:layout_marginTop="66dp"
+        android:text="Check the person sign" />
+
+    <ImageView
+        android:id="@+id/view_person_sign"
+        android:layout_width="310px"
+        android:layout_height="200px"
+        app:srcCompat="@drawable/common_full_open_on_phone"
+        android:layout_below="@+id/view_person_image"
+        android:layout_alignStart="@+id/view_person_image"
+        android:layout_marginTop="43dp" />
+
+    <Button
+        android:id="@+id/check_person_hslc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/check_person_sign"
+        android:layout_below="@+id/view_person_sign"
+        android:layout_marginTop="68dp"
+        android:text="Check HSLC certificate" />
+
+    <ImageView
+        android:id="@+id/view_person_hslc"
+        android:layout_width="310px"
+        android:layout_height="200px"
+        app:srcCompat="@drawable/common_full_open_on_phone"
+        android:layout_below="@+id/view_person_sign"
+        android:layout_alignStart="@+id/view_person_sign"
+        android:layout_marginTop="42dp" />
+</RelativeLayout>

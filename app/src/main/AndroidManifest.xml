@@ -29,7 +29,11 @@
         <activity android:name=".AdminMainActivity" />
         <activity android:name=".DocumentUpload" />
         <activity android:name=".UserMainActivity" />
-        <activity android:name=".SuccessDocumentUpload"></activity>
+        <activity android:name=".SuccessDocumentUpload" />
+        <activity android:name=".CheckUploadFile" />
+        <activity android:name=".NewUserMainActivity" />
+        <activity android:name=".ExistingUserMainActivity" />
+        <activity android:name=".AuthExistingUserMainActivity"></activity>
     </application>
 
 </manifest>

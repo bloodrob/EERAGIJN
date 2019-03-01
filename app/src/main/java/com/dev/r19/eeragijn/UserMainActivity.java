@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class UserMainActivity extends AppCompatActivity {
 
-    private Button toDoc, UsignOut;
+    private Button UsignOut, toNewUser, toRegisterUser;
     private FirebaseAuth auth;
     private FirebaseUser user;
     @Override
@@ -19,14 +19,23 @@ public class UserMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
 
-        toDoc = (Button)findViewById(R.id.doc_upload);
+        toNewUser = (Button)findViewById(R.id.to_new_user);
+        toRegisterUser = (Button)findViewById(R.id.to_register_user);
         UsignOut = (Button)findViewById(R.id.SignOUt);
 
-        // link to document upload page
-        toDoc.setOnClickListener(new View.OnClickListener() {
+        //link to new user activity page
+        toNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserMainActivity.this, DocumentUpload.class);
+                Intent intent = new Intent(UserMainActivity.this, NewUserMainActivity.class);
+                startActivity(intent);
+            }
+        });
+        // link to Existing user activity page
+        toRegisterUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserMainActivity.this, AuthExistingUserMainActivity.class);
                 startActivity(intent);
             }
         });

@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.dev.r19.eeragijn.UserMainActivity">
 
-    <Button
-        android:id="@+id/doc_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="201dp"
-        android:text="Upload Document" />
 
     <Button
         android:id="@+id/SignOUt"
@@ -25,4 +16,20 @@
         android:layout_marginEnd="66dp"
         android:layout_marginTop="29dp"
         android:text="Sign Out" />
+
+    <Button
+        android:id="@+id/to_new_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:text="Enter as new user" />
+
+    <Button
+        android:id="@+id/to_register_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/to_new_user"
+        android:layout_below="@+id/to_new_user"
+        android:layout_marginTop="45dp"
+        android:text="Entered as a registered user" />
 </RelativeLayout>
