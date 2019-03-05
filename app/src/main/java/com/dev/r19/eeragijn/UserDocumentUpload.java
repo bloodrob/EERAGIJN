@@ -154,7 +154,7 @@ public class UserDocumentUpload extends AppCompatActivity {
         if (selfPathToFile != null) {
             // set up a progessbar to check the progress of uploading image
             pd = new ProgressDialog(this);
-            pd.setTitle("Uplaoding your document......");
+            pd.setTitle("Uplaoding your document so please dont touch the screen or dont try to go back. Once your job is done you will be successfully redirected to success page otherwise you will get an error message.");
             pd.show();
             // upload ref for self image
             StorageReference ref1 = ref.child("SelfImage/" + getCurrentId.toString());
