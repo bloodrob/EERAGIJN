@@ -12,24 +12,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.UUID;
 
-import static com.dev.r19.eeragijn.R.id.add;
-
-public class DocumentUpload extends AppCompatActivity {
+public class UserDocumentUpload extends AppCompatActivity {
     private Button toSelfImage, toSignImage, toHslcImage, uploadsImage;
     private ImageView viewSelfImage, viewSignImage, viewHslcImage;
     ProgressDialog pd;
@@ -44,7 +38,7 @@ public class DocumentUpload extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_document_upload);
+        setContentView(R.layout.activity_user_document_upload);
         //initialization
 
         toSelfImage = (Button)findViewById(R.id.Browse_self_image);
@@ -118,7 +112,7 @@ public class DocumentUpload extends AppCompatActivity {
         //for self image
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
             selfPathToFile = data.getData();
-            Toast.makeText(DocumentUpload.this, "Uploading...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UserDocumentUpload.this, "Uploading...", Toast.LENGTH_SHORT).show();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selfPathToFile);
                 viewSelfImage.setImageBitmap(bitmap);
@@ -131,7 +125,7 @@ public class DocumentUpload extends AppCompatActivity {
         // for sign image
         if (requestCode == PICK_IMAGE_REQUEST1 && resultCode == Activity.RESULT_OK) {
             signPathToFile = data.getData();
-            Toast.makeText(DocumentUpload.this, "Uploading...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UserDocumentUpload.this, "Uploading...", Toast.LENGTH_SHORT).show();
             try {
                 Bitmap bitmap1 = MediaStore.Images.Media.getBitmap(getContentResolver(), signPathToFile);
                 viewSignImage.setImageBitmap(bitmap1);
@@ -142,7 +136,7 @@ public class DocumentUpload extends AppCompatActivity {
         // for hslc image
         if (requestCode == PICK_IMAGE_REQUEST2 && resultCode == Activity.RESULT_OK) {
             hslcPathToFile = data.getData();
-            Toast.makeText(DocumentUpload.this, "Uploading...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UserDocumentUpload.this, "Uploading...", Toast.LENGTH_SHORT).show();
             try {
                 Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), hslcPathToFile);
                 viewHslcImage.setImageBitmap(bitmap2);
@@ -151,7 +145,7 @@ public class DocumentUpload extends AppCompatActivity {
             }
         }
         else {
-            Toast.makeText(DocumentUpload.this, "Unable to choose the image", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UserDocumentUpload.this, "Unable to choose the image", Toast.LENGTH_SHORT).show();
         }
     }
     // performing the uplaode operation
@@ -169,7 +163,7 @@ public class DocumentUpload extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 //    pd.dismiss();
-               //     Toast.makeText(DocumentUpload.this, "Document Succesfully uploaded", Toast.LENGTH_SHORT).show();
+               //     Toast.makeText(UserDocumentUpload.this, "Document Succesfully uploaded", Toast.LENGTH_SHORT).show();
                 }
             });
             // on failure of document upload
@@ -177,7 +171,7 @@ public class DocumentUpload extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                 pd.dismiss();
-                    Toast.makeText(DocumentUpload.this, "Failed to upload document" +e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserDocumentUpload.this, "Failed to upload document" +e.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
             });// end of upload self image
@@ -193,7 +187,7 @@ public class DocumentUpload extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     pd.dismiss();
-                    Toast.makeText(DocumentUpload.this, "Failed to upload document" +e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserDocumentUpload.this, "Failed to upload document" +e.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
             }); // end of upload sign image
@@ -203,8 +197,8 @@ public class DocumentUpload extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     pd.dismiss();
-                    Toast.makeText(DocumentUpload.this, "Document Succesfully uploaded", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(DocumentUpload.this, SuccessDocumentUpload.class);
+                    Toast.makeText(UserDocumentUpload.this, "Document Succesfully uploaded", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(UserDocumentUpload.this, SuccessDocumentUpload.class);
                     startActivity(intent);
                 }
             });
@@ -212,7 +206,7 @@ public class DocumentUpload extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     pd.dismiss();
-                    Toast.makeText(DocumentUpload.this, "Failed to upload document" +e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserDocumentUpload.this, "Failed to upload document" +e.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
             }); // end of upload hslc image

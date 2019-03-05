@@ -27,13 +27,15 @@
         <activity android:name=".UserLogin" />
         <activity android:name=".AdminLogin" />
         <activity android:name=".AdminMainActivity" />
-        <activity android:name=".DocumentUpload" />
+        <activity android:name=".UserDocumentUpload" />
         <activity android:name=".UserMainActivity" />
         <activity android:name=".SuccessDocumentUpload" />
         <activity android:name=".CheckUploadFile" />
         <activity android:name=".NewUserMainActivity" />
         <activity android:name=".ExistingUserMainActivity" />
-        <activity android:name=".AuthExistingUserMainActivity"></activity>
+        <activity android:name=".AuthExistingUserMainActivity" />
+        <activity android:name=".UserPersionalInfoInsert" />
+        <activity android:name=".UserEducationQualificationInsert"></activity>
     </application>
 
 </manifest>
