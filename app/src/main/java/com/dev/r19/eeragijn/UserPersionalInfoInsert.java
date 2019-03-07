@@ -33,7 +33,7 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
     private RadioButton radioMale, radioFemale;
     private Button submitInfo;
     static String Gender;
-    static Calendar myCalendar;
+    static Calendar myCalendar = Calendar.getInstance();
     static String DOB;
     //firebase variable
     private FirebaseDatabase database;
@@ -50,11 +50,11 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
         eMAIL = (EditText) findViewById(R.id.email);
         fatherName = (EditText)findViewById(R.id.father);
         dOB = (EditText) findViewById(R.id.dob);
-        // for calnedar
+        // for calnedar creating ref to object
         dOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(UserPersionalInfoInsert.this, Bdate, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(UserPersionalInfoInsert.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
         aDDRESS = (EditText) findViewById(R.id.address);
@@ -139,7 +139,7 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
         }
     } // end of radioButton
     // Method for datePickerDialog
-    DatePickerDialog.OnDateSetListener Bdate = new DatePickerDialog.OnDateSetListener() {
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             myCalendar.set(myCalendar.YEAR, year);
@@ -149,7 +149,7 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
         }
     };
     private void UpdateLabel() {
-        String myDateFormat = "MM/DD/YYYY";
+        String myDateFormat = "MM/dd/YY";
         SimpleDateFormat sdf = new SimpleDateFormat(myDateFormat, Locale.ENGLISH);
         dOB.setText(sdf.format(myCalendar.getTime()));
         DOB = dOB.getText().toString().trim();

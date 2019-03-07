@@ -5,8 +5,8 @@ package com.dev.r19.eeragijn;
  */
 
 public class UserPersionalInfoInsertModel {
-    String activeId;
-    String Name, Email, Father_name, Gender, DOB, Address, City, District, State, Mobile;
+    public String activeId;
+    public String Name, Email, Father_name, Gender, DOB, Address, City, District, State, Mobile;
 
     public UserPersionalInfoInsertModel() {
 
