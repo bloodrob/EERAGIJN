@@ -1,5 +1,6 @@
 package com.dev.r19.eeragijn;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,7 +27,9 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
     private Spinner hsBoard, hslcBoard, graduationBoard, postgraduationBoard;
     private Spinner hsYear, hslcYear, graduationYear, postgraduationYear;
     private Button submitEducationalInfo;
-
+    // static variable for the different method
+    static  String HS_pass_year, HSLC_pass_year, Graduation_pass_year, Postgraduation_pass_year, HS_board, HSLC_board, Graduation_board, Postgraduation_university;
+    static  String getId;
     //arraylist for spinner
     List<String> hsBoardList, hslcBoardList, graduationBoardList, postgraduationBoardList;
     List<String> YearList;
@@ -26,6 +37,10 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
     ArrayAdapter<String> getHsBoardList, getHslcBoardList, getGraduationBoardList, getPostgraduationBoardList;
     // arrayadaptor to get the arraylist of year of passing of board, college, university
     ArrayAdapter<String> getHsYearList, getHslcYearList, getGraduationYearList, getPostGraduationYearList;
+    // declaring the firebase varibale for database instance and ref
+    private FirebaseDatabase database;
+    private DatabaseReference ref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +96,7 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         hsBoard.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String HS_board = parent.getItemAtPosition(position).toString().trim();
+                HS_board = parent.getItemAtPosition(position).toString().trim();
             }
 
             @Override
@@ -97,7 +112,7 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         hslcBoard.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String HSLC_board = parent.getItemAtPosition(position).toString().trim();
+                HSLC_board = parent.getItemAtPosition(position).toString().trim();
             }
 
             @Override
@@ -113,7 +128,7 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         graduationBoard.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String Graduation_board = parent.getItemAtPosition(position).toString().trim();
+                Graduation_board = parent.getItemAtPosition(position).toString().trim();
             }
 
             @Override
@@ -129,7 +144,7 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         postgraduationBoard.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String PostGraduation_University = parent.getItemAtPosition(position).toString().trim();
+                Postgraduation_university = parent.getItemAtPosition(position).toString().trim();
             }
 
             @Override
@@ -145,7 +160,7 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         hslcYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String HSLC_pass_year = parent.getItemAtPosition(position).toString().trim();
+                HSLC_pass_year = parent.getItemAtPosition(position).toString().trim();
             }
 
             @Override
@@ -161,7 +176,7 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         hsYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String HS_pass_year = parent.getItemAtPosition(position).toString().trim();
+                HS_pass_year = parent.getItemAtPosition(position).toString().trim();
             }
 
             @Override
@@ -177,7 +192,7 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         graduationYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String Graduation_pass_year = parent.getItemAtPosition(position).toString().trim();
+                Graduation_pass_year = parent.getItemAtPosition(position).toString().trim();
             }
 
             @Override
@@ -193,7 +208,7 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         postgraduationYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String PostGraduation_pass_year = parent.getItemAtPosition(position).toString().trim();
+                Postgraduation_pass_year = parent.getItemAtPosition(position).toString().trim();
             }
 
             @Override
@@ -201,5 +216,53 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
 
             }
         });// end of postgraduation
+        //creating the database instance and ref to that instance
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference();
+        // Start of submission
+        submitEducationalInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String HSLC_percantage = percantageHslc.getText().toString().trim();
+                String HS_percantage = percantageHs.getText().toString().trim();
+                String Graduation_percantage = percantageGraduation.getText().toString().trim();
+                String Postgraduation_percantage = percantagePostgraduation.getText().toString().trim();
+
+                //Method declare to add the ref id to the data
+                CreateEduQualiinfoSubmit(HS_board, HSLC_board, Graduation_board, Postgraduation_university, HS_pass_year, HSLC_pass_year, Graduation_pass_year, Postgraduation_pass_year, HS_percantage, HSLC_percantage, Graduation_percantage, Postgraduation_percantage );
+            }
+        });
+    }
+    // method define to add the ref id to the data
+    private void CreateEduQualiinfoSubmit(String hs_board, String hslc_board, String graduation_board, String postgraduation_university, String hs_pass_year, String hslc_pass_year, String graduation_pass_year, String postgraduation_pass_year, String hs_percantage, String hslc_percantage, String graduation_percantage, String postgraduation_percantage) {
+        UserEducationQualificationInfoInsertModel edumod = new UserEducationQualificationInfoInsertModel(hs_board, hslc_board, graduation_board, postgraduation_university, hs_pass_year, hslc_pass_year, graduation_pass_year, postgraduation_pass_year, hs_percantage, hslc_percantage, graduation_percantage, postgraduation_percantage );
+        edumod.activeId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        getId = edumod.activeId;
+        ref.child(getId).setValue(edumod);
+        // method declare to add data
+        AddCreateEduQualiSubmit();
+
+    }
+    // define the add data method
+    private void AddCreateEduQualiSubmit() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserEducationQualificationInfoInsertModel edumod = dataSnapshot.getValue(UserEducationQualificationInfoInsertModel.class);
+                if (edumod == null) {
+                    Toast.makeText(UserEducationQualificationInsert.this, "Some Data is missing", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(UserEducationQualificationInsert.this, "Data is successfully inserted", Toast.LENGTH_SHORT);
+                Intent intent = new Intent(UserEducationQualificationInsert.this, UserDocumentUpload.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(UserEducationQualificationInsert.this, "Some error occured, submission failed", Toast.LENGTH_SHORT);
+                return;
+            }
+        });
     }
 }
