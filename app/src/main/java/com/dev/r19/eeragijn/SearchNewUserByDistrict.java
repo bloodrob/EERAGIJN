@@ -49,7 +49,7 @@ public class SearchNewUserByDistrict extends AppCompatActivity {
         viewSearchItem = (ListView)findViewById(R.id.view_search_item);
         //Firebase work start
         database = FirebaseDatabase.getInstance();
-        ref = database.getReference("NewUserPerSionalInfo");
+        ref = database.getReference("NewUserPersionalInfo");
         //end
         // list initialization and adding value
         districtList = new ArrayList<String>();
@@ -98,6 +98,8 @@ public class SearchNewUserByDistrict extends AppCompatActivity {
 
             }
         });// end of arrayAdaptor
+        //initializing the searchlist
+        searchDataList = new ArrayList<String>();
         // submit start
         submitSearchInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,21 +113,16 @@ public class SearchNewUserByDistrict extends AppCompatActivity {
                         getSearchDataList = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,searchDataList);
                         viewSearchItem.setAdapter(getSearchDataList);
                         // selected item to the string
-                        viewSearchItem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                sendName = parent.getItemAtPosition(position).toString().trim();
-                                //send the selected item to the correspondence page through intent
-                                Intent intent = new Intent(SearchNewUserByDistrict.this, SelectedNewUserByDistrict.class);
-                                intent.putExtra("sendName", sendName);
-                                startActivity(intent);
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
-                            }
-                        });
+                       viewSearchItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                           @Override
+                           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                               //send the selected item to the correspondence page
+                               Intent intent = new Intent(SearchNewUserByDistrict.this, SelectedNewUserByDistrict.class);
+                               SelectedNewUserByDistrict.selectedName = parent.getItemAtPosition(position).toString().trim();
+                               //  intent.putExtra("sendName", sendName);
+                               startActivity(intent);
+                           }
+                       });
                     }
                 }
 
