@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class AdminMainActivity extends AppCompatActivity {
 
-    private Button toUploadFile, toCheckNewUser;
+    private Button toUploadFile, toCheckNewUser, toGenEEId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +17,7 @@ public class AdminMainActivity extends AppCompatActivity {
         //initialization
         toUploadFile = (Button)findViewById(R.id.to_upload_file);
         toCheckNewUser = (Button)findViewById(R.id.to_check_new_user);
+        toGenEEId = (Button)findViewById(R.id.to_gen_eeid);
 
         //link to the page
         toUploadFile.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +32,14 @@ public class AdminMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMainActivity.this, SearchNewUserByDistrict.class);
+                startActivity(intent);
+            }
+        });
+        //link to generate new id page
+        toGenEEId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminMainActivity.this, AdminGenerateNewEEId.class);
                 startActivity(intent);
             }
         });

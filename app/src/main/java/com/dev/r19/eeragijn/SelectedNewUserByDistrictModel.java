@@ -5,12 +5,12 @@ package com.dev.r19.eeragijn;
  */
 
 public class SelectedNewUserByDistrictModel {
-    public String Name, Email, Gender, Address, City, District, Mobile;
+    public String Name, Email, Gender, Address, City, District, Mobile, activeId;
 
     public SelectedNewUserByDistrictModel(){
 
     }
-    public SelectedNewUserByDistrictModel(String Name, String Email, String Gender, String Address, String City, String District, String Mobile) {
+    public SelectedNewUserByDistrictModel(String Name, String Email, String Gender, String Address, String City, String District, String Mobile, String activeId) {
         this.Name = Name;
         this.Email = Email;
         this.Gender = Gender;
@@ -18,5 +18,6 @@ public class SelectedNewUserByDistrictModel {
         this.City = City;
         this.District = District;
         this.Mobile = Mobile;
+        this.activeId = activeId;
     }
 }

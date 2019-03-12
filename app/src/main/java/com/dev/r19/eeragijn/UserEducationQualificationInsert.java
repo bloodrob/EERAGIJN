@@ -218,7 +218,7 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         });// end of postgraduation
         //creating the database instance and ref to that instance
         database = FirebaseDatabase.getInstance();
-        ref = database.getReference();
+        ref = database.getReference("NewUserEducationQualification");
         // Start of submission
         submitEducationalInfo.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,20 +24,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
 import static android.telecom.DisconnectCause.LOCAL;
+import static com.dev.r19.eeragijn.SearchNewUserByDistrict.District;
 
 public class UserPersionalInfoInsert extends AppCompatActivity {
 
-    private EditText userName, eMAIL, fatherName, dOB, aDDRESS, cITY, sTATE, dISTRICT, mOBILE;
+    private EditText userName, eMAIL, fatherName, dOB, aDDRESS, cITY, sTATE, mOBILE;
+    private Spinner dISTRICT;
     private RadioButton radioMale, radioFemale;
     private Button submitInfo;
-    static String Gender;
+    static String Gender, District;
     static Calendar myCalendar = Calendar.getInstance();
     static String DOB;
+    //to store list of district
+    List<String> districtList;
+    //array adaptor for list
+    ArrayAdapter<String> getDistrictList1;
     //firebase variable
     private FirebaseDatabase database;
     private DatabaseReference ref;
@@ -60,7 +70,7 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
         aDDRESS = (EditText) findViewById(R.id.address);
         cITY = (EditText) findViewById(R.id.city);
         sTATE = (EditText) findViewById(R.id.state);
-        dISTRICT = (EditText) findViewById(R.id.district);
+        dISTRICT = (Spinner) findViewById(R.id.district);
         mOBILE = (EditText) findViewById(R.id.mobile);
         // initialization button
         submitInfo = (Button) findViewById(R.id.submit_persional_info);
@@ -81,9 +91,57 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
                 String Father_name = fatherName.getText().toString().trim();
                 String Address = aDDRESS.getText().toString().trim();
                 String City = cITY.getText().toString().trim();
-                String District = dISTRICT.getText().toString().trim();
                 String State = sTATE.getText().toString().trim();
                 String Mobile = mOBILE.getText().toString().trim();
+                //adding data into the list
+                districtList = new ArrayList<String>();
+                districtList.add("Sadia");
+                districtList.add("Tinsukia");
+                districtList.add("Dibrugarh");
+                districtList.add("Sibsagar");
+                districtList.add("Jorhat");
+                districtList.add("Golaghat");
+                districtList.add("Dhemaji");
+                districtList.add("LakhimPur");
+                districtList.add("Nogaon");
+                districtList.add("Sonitpur");
+                districtList.add("Udalguri");
+                districtList.add("Kamrup");
+                districtList.add("Baksha");
+                districtList.add("Barpeta");
+                districtList.add("Mongoldoi");
+                districtList.add("Dhubri");
+                districtList.add("Darang");
+                districtList.add("Karbi-Anglong");
+                districtList.add("Kokrajhar");
+                districtList.add("Hailakandi");
+                districtList.add("Goalpara");
+                districtList.add("Morigaon");
+                districtList.add("Karimganj");
+                districtList.add("Cachar");
+                districtList.add("BongaiGaon");
+                districtList.add("Chirang");
+                districtList.add("Majuli");
+                districtList.add("Nalbari");
+                districtList.add("Dima-Hasao");
+                //
+                //Use of arrayadaptor
+                getDistrictList1 = new ArrayAdapter<String>(UserPersionalInfoInsert.this, android.R.layout.simple_spinner_item, districtList);
+                getDistrictList1.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                dISTRICT.setAdapter(getDistrictList1);
+                //geting the selected value
+                dISTRICT.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        District = parent.getItemAtPosition(position).toString().trim();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
                 // method declare for submit info
                 UserPerInfoCreate(Name, Email, Father_name, Gender, DOB, Address, City, District, State, Mobile);
             }
@@ -129,7 +187,7 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
             case (R.id.maleRadio) :
                 if (Checked)
                     Gender = "Male";
-                Toast.makeText(UserPersionalInfoInsert.this, "You Have SElected Male", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserPersionalInfoInsert.this, "You Have Selected Male", Toast.LENGTH_SHORT).show();
                 break;
             case (R.id.femaleRadio) :
                 if (Checked)

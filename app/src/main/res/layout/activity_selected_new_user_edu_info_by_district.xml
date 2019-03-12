@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dev.r19.eeragijn.SelectedNewUserEduInfoByDistrict">
+
+    <Button
+        android:id="@+id/view_per_info"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="User Persional Infomation"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/view_edu_info"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="User Educational Qualifiaction"
+        android:layout_alignBaseline="@+id/view_per_info"
+        android:layout_alignBottom="@+id/view_per_info"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/view_upload_doc"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="User Document Upload"
+        android:layout_alignBaseline="@+id/view_edu_info"
+        android:layout_alignBottom="@+id/view_edu_info"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:text="HSLC"
+        android:layout_below="@+id/view_per_info"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hlsc Board"
+        android:layout_below="@+id/textView33"
+        android:layout_alignStart="@+id/textView33"
+        android:layout_marginTop="17dp" />
+
+    <TextView
+        android:id="@+id/view_hslc_board"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="42dp"
+        android:layout_alignBottom="@+id/textView34"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView34"
+        android:layout_below="@+id/textView34"
+        android:layout_marginTop="17dp"
+        android:text="Pass Year" />
+
+    <TextView
+        android:id="@+id/view_hslc_pass_year"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/textView38"
+        android:layout_alignStart="@+id/view_hslc_board" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="Percantage"
+        android:layout_below="@+id/textView38"
+        android:layout_alignStart="@+id/textView38" />
+
+    <TextView
+        android:id="@+id/view_hslc_percantage"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/textView41"
+        android:layout_alignBottom="@+id/textView41"
+        android:layout_alignStart="@+id/view_hslc_pass_year" />
+</RelativeLayout>

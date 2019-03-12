@@ -1,5 +1,6 @@
 package com.dev.r19.eeragijn;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,8 @@ public class SelectedNewUserByDistrict extends AppCompatActivity {
     DatabaseReference ref;
     //static variable to get a value from another java class
     static String selectedName;
+    //static string to get the activeid of user
+    static String takeActiveId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class SelectedNewUserByDistrict extends AppCompatActivity {
                         viewCity.setText(selmod.City);
                         viewDistrict.setText(selmod.District);
                         viewMobile.setText(selmod.Mobile);
+                        takeActiveId = selmod.activeId;
                     }
                 }
                 if (selmod == null) {
@@ -87,6 +91,10 @@ public class SelectedNewUserByDistrict extends AppCompatActivity {
         searchEduQuali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // sending active id to the selectednewusereduinfobydistrict page through intent
+                Intent intent = new Intent(SelectedNewUserByDistrict.this, SelectedNewUserEduInfoByDistrict.class);
+                SelectedNewUserEduInfoByDistrict.getActiveId = takeActiveId.toString().trim();
+                startActivity(intent);
 
             }
         });

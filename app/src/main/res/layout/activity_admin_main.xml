@@ -24,4 +24,13 @@
         android:layout_below="@+id/to_upload_file"
         android:layout_marginTop="33dp"
         android:text="Check new Applicant" />
+
+    <Button
+        android:id="@+id/to_gen_eeid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="Generate New Employment Id"
+        android:layout_below="@+id/to_check_new_user"
+        android:layout_alignStart="@+id/to_check_new_user" />
 </RelativeLayout>

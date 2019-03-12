@@ -5,13 +5,14 @@ package com.dev.r19.eeragijn;
  */
 
 public class SearchNewUserByDistrictModel {
-    public String District, Name;
+    public String District, Name, Email;
 
     public SearchNewUserByDistrictModel(){
 
     }
-    public SearchNewUserByDistrictModel(String District, String Name) {
+    public SearchNewUserByDistrictModel(String District, String Name, String Email) {
         this.District = District;
         this.Name = Name;
+        this.Email = Email;
     }
 }

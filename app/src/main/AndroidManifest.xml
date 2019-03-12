@@ -37,7 +37,9 @@
         <activity android:name=".UserPersionalInfoInsert" />
         <activity android:name=".UserEducationQualificationInsert" />
         <activity android:name=".SearchNewUserByDistrict" />
-        <activity android:name=".SelectedNewUserByDistrict"></activity>
+        <activity android:name=".SelectedNewUserByDistrict" />
+        <activity android:name=".AdminGenerateNewEEId" />
+        <activity android:name=".SelectedNewUserEduInfoByDistrict"></activity>
     </application>
 
 </manifest>
