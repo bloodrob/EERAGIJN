@@ -6,6 +6,7 @@
     <user-permission android:name="android.permission.READ_INTERNAL_STORAGE/" />
     <user-permission android:name="android.permission.WRITE_INTERNAL_STORAGE/" />
     <user-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE/" />
+    <user-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -39,7 +40,8 @@
         <activity android:name=".SearchNewUserByDistrict" />
         <activity android:name=".SelectedNewUserByDistrict" />
         <activity android:name=".AdminGenerateNewEEId" />
-        <activity android:name=".SelectedNewUserEduInfoByDistrict"></activity>
+        <activity android:name=".SelectedNewUserEduInfoByDistrict" />
+        <activity android:name=".SendGeneratedIdToUser"></activity>
     </application>
 
 </manifest>

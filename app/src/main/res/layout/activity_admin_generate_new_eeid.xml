@@ -41,4 +41,13 @@
         android:layout_alignBaseline="@+id/textView27"
         android:layout_alignBottom="@+id/textView27"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/send_id_to_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_new_gen_id"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:text="Send Id To The Desired User" />
 </RelativeLayout>

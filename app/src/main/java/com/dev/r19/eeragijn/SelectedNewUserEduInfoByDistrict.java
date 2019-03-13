@@ -20,6 +20,8 @@ public class SelectedNewUserEduInfoByDistrict extends AppCompatActivity {
     private Button viewPerInfo, viewUploadDoc;
     // static string for intent string value from selectednewuserbydistrict
     static String getActiveId;
+    //static string to get the email and useit in another java class
+    static String useEmailIdForAll;
     //Firebase variable
     private FirebaseDatabase database;
     private DatabaseReference ref;
@@ -41,6 +43,7 @@ public class SelectedNewUserEduInfoByDistrict extends AppCompatActivity {
         // search of data
                 ref.addChildEventListener(new ChildEventListener() {
                     @Override
+                    //On database search success
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         SelectedNewUserEduInfoByDistrictModel edumod = dataSnapshot.getValue(SelectedNewUserEduInfoByDistrictModel.class);
                         if (edumod.activeId.equals(getActiveId)) {
@@ -71,9 +74,12 @@ public class SelectedNewUserEduInfoByDistrict extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        // On database search Failure
+                        Toast.makeText(SelectedNewUserEduInfoByDistrict.this, "Database Error Occured, Please Place a query", Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 });
+        //link to selectednewuserbydistrict class
         viewPerInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,5 +87,15 @@ public class SelectedNewUserEduInfoByDistrict extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //link to selectednewusereduinfobydistrict class
+        viewUploadDoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SelectedNewUserEduInfoByDistrict.this, CheckUploadFile.class);
+                startActivity(intent);
+            }
+        });
+        // getting the email from selectedNewUserByDistrict class
+        useEmailIdForAll = SelectedNewUserByDistrict.takeEmailId.toString().trim();
     }
 }

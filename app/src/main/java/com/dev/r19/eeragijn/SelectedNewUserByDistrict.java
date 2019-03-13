@@ -22,8 +22,8 @@ public class SelectedNewUserByDistrict extends AppCompatActivity {
     DatabaseReference ref;
     //static variable to get a value from another java class
     static String selectedName;
-    //static string to get the activeid of user
-    static String takeActiveId;
+    //static string to get the activeid and email of user
+    static String takeActiveId , takeEmailId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,7 @@ public class SelectedNewUserByDistrict extends AppCompatActivity {
                         viewDistrict.setText(selmod.District);
                         viewMobile.setText(selmod.Mobile);
                         takeActiveId = selmod.activeId;
+                        takeEmailId = selmod.Email;
                     }
                 }
                 if (selmod == null) {
