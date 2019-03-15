@@ -102,7 +102,7 @@
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/genderView"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
                 android:textSize="15dp"
                 android:textColor="#000000"
@@ -140,10 +140,27 @@
                 android:textAlignment="center"
                 android:background="@drawable/text_1"/>
             <TextView
-                android:id="@+id/addressView"
+                android:id="@+id/castView"
                 android:layout_width="70dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/dobView"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:text="CAST"/>
+            <Spinner
+                android:id="@+id/SP_cast"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/dob"
+                android:layout_marginTop="10dp"
+                android:layout_alignStart="@+id/user_name"></Spinner>
+            <TextView
+                android:id="@+id/addressView"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:layout_below="@+id/castView"
                 android:layout_marginTop="35dp"
                 android:layout_marginLeft="20dp"
                 android:textSize="15dp"
@@ -155,7 +172,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="10dp"
                 android:layout_alignStart="@+id/user_name"
-                android:layout_below="@+id/dob"
+                android:layout_below="@+id/SP_cast"
                 android:textColor="#000000"
                 android:textAlignment="center"
                 android:background="@drawable/text_1"/>
