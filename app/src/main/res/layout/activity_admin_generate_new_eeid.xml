@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_2"
     tools:context="com.dev.r19.eeragijn.AdminGenerateNewEEId">
 
     <Button
@@ -20,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
+        android:textColor="#000000"
         android:text="You Can Here now Generate the EE id for the user, if You have completeed varification of required user's Infromation"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -29,6 +31,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
+        android:textColor="#000000"
         android:text="Here is the new generated id"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />

@@ -4,33 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back1"
     tools:context="com.dev.r19.eeragijn.NewUserMainActivity">
 
     <Button
         android:id="@+id/doc_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="141dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="89dp"
+        android:background="@drawable/btn_3"
         android:text="Upload Document" />
 
     <Button
         android:id="@+id/persional_info_insert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/doc_upload"
         android:layout_below="@+id/doc_upload"
-        android:layout_marginTop="43dp"
+        android:background="@drawable/btn_3"
+        android:layout_marginTop="74dp"
         android:text="Insert Your Periosnal Information" />
 
     <Button
         android:id="@+id/educational_info_insert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/persional_info_insert"
         android:layout_below="@+id/persional_info_insert"
+        android:background="@drawable/btn_3"
         android:layout_marginTop="74dp"
         android:text="Insert Your Educational Qualification" />
 </RelativeLayout>

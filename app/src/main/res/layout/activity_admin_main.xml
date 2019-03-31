@@ -4,33 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_2"
     tools:context="com.dev.r19.eeragijn.AdminMainActivity">
 
     <Button
         android:id="@+id/to_upload_file"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
         android:layout_marginStart="47dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/btn_2"
         android:text="Load and Checked the uploaded file"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/to_check_new_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/to_upload_file"
         android:layout_below="@+id/to_upload_file"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="83dp"
+        android:background="@drawable/btn_2"
         android:text="Check new Applicant" />
 
     <Button
         android:id="@+id/to_gen_eeid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="83dp"
         android:text="Generate New Employment Id"
+        android:background="@drawable/btn_2"
         android:layout_below="@+id/to_check_new_user"
         android:layout_alignStart="@+id/to_check_new_user" />
 </RelativeLayout>

@@ -4,14 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_2"
     tools:context="com.dev.r19.eeragijn.UserRegistration">
 
     <EditText
         android:id="@+id/IdToAccess"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="97dp"
         android:ems="10"
+        android:background="@drawable/text_1"
+        android:textAlignment="center"
+        android:textColor="#000000"
         android:inputType="textPersonName"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -23,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Email or Phone no"
+        android:textColor="#000000"
         android:layout_alignBaseline="@+id/IdToAccess"
         android:layout_alignBottom="@+id/IdToAccess"
         android:layout_alignParentStart="true" />
@@ -30,37 +35,46 @@
     <EditText
         android:id="@+id/Upass"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/IdToAccess"
         android:layout_below="@+id/IdToAccess"
         android:layout_marginTop="37dp"
         android:ems="10"
+        android:background="@drawable/text_1"
+        android:textAlignment="center"
+        android:textColor="#000000"
         android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/UconPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/Upass"
-        android:layout_below="@+id/Upass"
-        android:layout_marginTop="41dp"
-        android:ems="10"
-        android:inputType="textPassword" />
-
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
+        android:textColor="#000000"
         android:layout_alignBaseline="@+id/Upass"
         android:layout_alignBottom="@+id/Upass"
         android:layout_alignStart="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/UconPass"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/Upass"
+        android:layout_below="@+id/Upass"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/text_1"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textColor="#000000"/>
+
+
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirm Password"
+        android:textColor="#000000"
         android:layout_alignBaseline="@+id/UconPass"
         android:layout_alignBottom="@+id/UconPass"
         android:layout_alignStart="@+id/textView5" />

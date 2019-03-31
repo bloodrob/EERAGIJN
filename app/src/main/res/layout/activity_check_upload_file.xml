@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_2"
     tools:context="com.dev.r19.eeragijn.CheckUploadFile">
 
     <Button
@@ -64,11 +65,12 @@
 
     <Button
         android:id="@+id/to_generate_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:layout_alignEnd="@+id/check_person_sign"
         android:layout_below="@+id/view_person_hslc"
-        android:layout_marginEnd="46dp"
         android:layout_marginTop="24dp"
+        android:background="@drawable/btn_2"
+        android:textStyle="italic"
         android:text="Generate Id" />
 </RelativeLayout>

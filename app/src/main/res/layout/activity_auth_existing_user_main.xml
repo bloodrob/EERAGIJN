@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_2"
     tools:context="com.dev.r19.eeragijn.AuthExistingUserMainActivity">
 
     <TextView
@@ -14,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="27dp"
         android:layout_marginTop="126dp"
+        android:textColor="#000000"
         android:text="EE id" />
 
     <TextView
@@ -21,22 +23,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="42dp"
-        android:layout_toEndOf="@+id/textView18"
+        android:textColor="#000000"
         android:text="Please enter the following infromation to get access" />
 
     <EditText
         android:id="@+id/reg_ee_id"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView19"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@+id/textView18"
+        android:layout_marginLeft="70dp"
         android:layout_below="@+id/textView19"
-        android:layout_marginStart="14dp"
         android:layout_marginTop="52dp"
+        android:background="@drawable/btn_2"
+        android:textAlignment="center"
         android:ems="10"
         android:inputType="textPersonName"
-         />
+        />
 
     <TextView
         android:id="@+id/textView20"
@@ -44,16 +48,19 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView18"
         android:layout_below="@+id/reg_ee_id"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="64dp"
+        android:textColor="#000000"
         android:text="date of birth" />
 
     <EditText
         android:id="@+id/reg_date_of_birth"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/reg_ee_id"
         android:layout_below="@+id/reg_ee_id"
         android:layout_marginTop="55dp"
+        android:background="@drawable/btn_2"
+        android:textAlignment="center"
         android:ems="10"
         android:inputType="textPersonName"
         />
@@ -61,10 +68,12 @@
     <EditText
         android:id="@+id/reg_password"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignEnd="@+id/reg_date_of_birth"
         android:layout_below="@+id/reg_date_of_birth"
         android:layout_marginTop="53dp"
+        android:background="@drawable/btn_2"
+        android:textAlignment="center"
         android:ems="10"
         android:inputType="textPassword" />
 
@@ -75,6 +84,7 @@
         android:layout_alignBottom="@+id/reg_password"
         android:layout_alignEnd="@+id/textView20"
         android:layout_marginBottom="13dp"
+        android:textColor="#000000"
         android:text="Your system password" />
 
     <Button
@@ -85,4 +95,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="42dp"
         android:text="Submit" />
+
 </RelativeLayout>
