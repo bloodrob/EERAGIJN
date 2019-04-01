@@ -35,16 +35,16 @@ import static com.dev.r19.eeragijn.SearchNewUserByDistrict.District;
 public class UserPersionalInfoInsert extends AppCompatActivity {
 
     private EditText userName, eMAIL, fatherName, dOB, aDDRESS, cITY, sTATE, mOBILE;
-    private Spinner dISTRICT;
+    private Spinner dISTRICT, cAST;
     private RadioButton radioMale, radioFemale;
     private Button submitInfo;
-    static String Gender, District;
+    static String Gender, District, Cast;
     static Calendar myCalendar = Calendar.getInstance();
     static String DOB;
     //to store list of district
-    List<String> districtList;
+    List<String> districtList, castList;
     //array adaptor for list
-    ArrayAdapter<String> getDistrictList1;
+    ArrayAdapter<String> getDistrictList1, getCastList;
     //firebase variable
     private FirebaseDatabase database;
     private DatabaseReference ref;
@@ -59,6 +59,7 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.user_name);
         eMAIL = (EditText) findViewById(R.id.email);
         fatherName = (EditText)findViewById(R.id.father);
+        cAST = (Spinner)findViewById(R.id.cast);
         dOB = (EditText) findViewById(R.id.dob);
         // for calnedar creating ref to object
         dOB.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +94,7 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
                 String City = cITY.getText().toString().trim();
                 String State = sTATE.getText().toString().trim();
                 String Mobile = mOBILE.getText().toString().trim();
-                //adding data into the list
+                //adding data into the districtlist
                 districtList = new ArrayList<String>();
                 districtList.add("Sadia");
                 districtList.add("Tinsukia");
@@ -124,8 +125,16 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
                 districtList.add("Majuli");
                 districtList.add("Nalbari");
                 districtList.add("Dima-Hasao");
-                //
-                //Use of arrayadaptor
+                //adding data ino cast list
+                castList = new ArrayList<String>();
+                castList.add("General");
+                castList.add("OBC");
+                castList.add("OBC NCL");
+                castList.add("ST h");
+                castList.add("ST p");
+                castList.add("SC");
+                //end
+                //Use of arrayadaptor of district list
                 getDistrictList1 = new ArrayAdapter<String>(UserPersionalInfoInsert.this, android.R.layout.simple_spinner_item, districtList);
                 getDistrictList1.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                 dISTRICT.setAdapter(getDistrictList1);
@@ -138,18 +147,35 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
+                        Toast.makeText(UserPersionalInfoInsert.this, "Please Select a District", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                });// end
+                // use of arrayadaptor of cats list
+                getCastList = new ArrayAdapter<String>(UserPersionalInfoInsert.this, android.R.layout.simple_spinner_item, castList);
+                getCastList.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                cAST.setAdapter(getCastList);
+                // get the selecteed value
+                cAST.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        Cast = parent.getItemAtPosition(position).toString().trim();
+                    }
 
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        Toast.makeText(UserPersionalInfoInsert.this, "Please Select a Cast", Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 });
-
                 // method declare for submit info
-                UserPerInfoCreate(Name, Email, Father_name, Gender, DOB, Address, City, District, State, Mobile);
+                UserPerInfoCreate(Name, Email, Father_name,Cast, Gender, DOB, Address, City, District, State, Mobile);
             }
         });
     }
         // Crete and ref id set to the database
-    private void UserPerInfoCreate(String Name, String Email, String Father_name, String Gender, String DOB, String Address, String City, String District, String State, String Mobile) {
-                UserPersionalInfoInsertModel upInfo = new UserPersionalInfoInsertModel(Name,Email,Father_name, Gender, DOB, Address, City, District, State, Mobile);
+    private void UserPerInfoCreate(String Name, String Email, String Father_name,String Cast, String Gender, String DOB, String Address, String City, String District, String State, String Mobile) {
+                UserPersionalInfoInsertModel upInfo = new UserPersionalInfoInsertModel(Name,Email,Father_name,Cast, Gender, DOB, Address, City, District, State, Mobile);
                 upInfo.activeId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 getId = upInfo.activeId;
                 ref.child(getId).setValue(upInfo);

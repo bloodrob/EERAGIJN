@@ -32,7 +32,6 @@
                 android:layout_marginTop="16dp"
                 android:text="Browse"
                 android:layout_marginEnd="29dp"
-                android:layout_below="@+id/textView10"
                 android:layout_alignParentEnd="true" />
 
             <TextView
@@ -188,7 +187,7 @@
                 android:text="Browse POSGRADUATION" />
 
             <ImageView
-                android:id="@+id/posgraduation_ImageView"
+                android:id="@+id/postgraduation_ImageView"
                 android:layout_width="170px"
                 android:layout_height="100px"
                 android:layout_alignStart="@+id/Browse_sign_image"
@@ -201,7 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/textView11"
-                android:layout_below="@+id/posgraduation_ImageView"
+                android:layout_below="@+id/postgraduation_ImageView"
                 android:layout_marginTop="33dp"
                 android:textColor="#000000"
                 android:text="your cast" />
@@ -211,7 +210,7 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/Browse_sign_image"
-                android:layout_below="@+id/posgraduation_ImageView"
+                android:layout_below="@+id/postgraduation_ImageView"
                 android:layout_marginTop="21dp"
                 android:text="Browse CAST" />
 
