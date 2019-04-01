@@ -281,10 +281,11 @@ public class UserDocumentUpload extends AppCompatActivity {
         if (selfPathToFile != null) {
             // set up a progessbar to check the progress of uploading image
             pd = new ProgressDialog(this);
-            pd.setTitle("Uplaoding your document so please dont touch the screen or dont try to go back. Once your job is done you will be successfully redirected to success page otherwise you will get an error message.");
+            pd.setTitle("Uplaoding your document... please don't press back");
+            pd.setCanceledOnTouchOutside(false);
             pd.show();
             // upload ref for self image
-            StorageReference ref1 = ref.child("SelfImage/" + getCurrentId.toString());
+            StorageReference ref1 = ref.child("SelfImage" + getCurrentId.toString());
             //on succes of document upload
             ref1.putFile(selfPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -303,7 +304,7 @@ public class UserDocumentUpload extends AppCompatActivity {
                 }
             });// end of upload self image
             // upload ref for sign image
-            StorageReference ref2 = ref.child("SignImage/" + getCurrentId.toString());
+            StorageReference ref2 = ref.child("SignImage" + getCurrentId.toString());
             ref2.putFile(signPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -319,7 +320,7 @@ public class UserDocumentUpload extends AppCompatActivity {
                 }
             }); // end of upload sign image
             // upload ref for hslc image
-            StorageReference ref3 = ref.child("HslcImage/" + getCurrentId.toString());
+            StorageReference ref3 = ref.child("HslcImage" + getCurrentId.toString());
             ref3.putFile(hslcPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -334,7 +335,7 @@ public class UserDocumentUpload extends AppCompatActivity {
                 }
             }); // end of upload hslc image
             // upload ref for hs
-            StorageReference ref4 = ref.child("HsImage/"+getCurrentId.toString());
+            StorageReference ref4 = ref.child("HsImage"+getCurrentId.toString());
             ref4.putFile(hsPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -350,7 +351,7 @@ public class UserDocumentUpload extends AppCompatActivity {
                 }
             }); // end of hs
             // upload ref for graduation
-            StorageReference ref5 = ref.child("Graduation/"+getCurrentId.toString());
+            StorageReference ref5 = ref.child("Graduation"+getCurrentId.toString());
             ref5.putFile(graduationPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -366,7 +367,7 @@ public class UserDocumentUpload extends AppCompatActivity {
                 }
             }); //end of graduation
             //upload ref for Postgraduation
-            StorageReference ref6 = ref.child("PostGraduationImage/"+getCurrentId.toString());
+            StorageReference ref6 = ref.child("PostGraduationImage"+getCurrentId.toString());
             ref6.putFile(postgraduationPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -382,7 +383,7 @@ public class UserDocumentUpload extends AppCompatActivity {
                 }
             }); // end of postgraduation
             // upload ref for PRC
-            StorageReference ref7 = ref.child("PRC/"+getCurrentId.toString());
+            StorageReference ref7 = ref.child("PRC"+getCurrentId.toString());
             ref7.putFile(prcPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -398,7 +399,7 @@ public class UserDocumentUpload extends AppCompatActivity {
                 }
             }); // end of PRC
             //upload ref for CAST
-            StorageReference ref8 = ref.child("Cast/"+getCurrentId.toString());
+            StorageReference ref8 = ref.child("Cast"+getCurrentId.toString());
             ref8.putFile(castPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
