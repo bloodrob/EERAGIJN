@@ -23,7 +23,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class UserEducationQualificationInsert extends AppCompatActivity {
-    private EditText percantageHslc, percantageHs, percantageGraduation, percantagePostgraduation;
+    private EditText percantageHslc, percantageHs, percantageGraduation, percantagePostgraduation, schoolHslc, collegeHs, collegeGraduation, universityPostgraduation;
     private Spinner hsBoard, hslcBoard, graduationBoard, postgraduationBoard;
     private Spinner hsYear, hslcYear, graduationYear, postgraduationYear;
     private Button submitEducationalInfo;
@@ -47,9 +47,13 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         setContentView(R.layout.activity_user_education_qualification_insert);
         //initialization of editText
         percantageHslc = (EditText)findViewById(R.id.per_hslc);
+        schoolHslc = (EditText)findViewById(R.id.text_school);
         percantageHs = (EditText)findViewById(R.id.percentage_hs);
+        collegeHs = (EditText)findViewById(R.id.text_college);
         percantageGraduation = (EditText)findViewById(R.id.percentage_graduation);
+        collegeGraduation = (EditText)findViewById(R.id.text_degreecollege);
         percantagePostgraduation = (EditText)findViewById(R.id.percentage_postgraduation);
+        universityPostgraduation = (EditText)findViewById(R.id.text_university);
         //Initialization of spinner
         hsBoard = (Spinner)findViewById(R.id.SP_hs_board);
         hslcBoard = (Spinner)findViewById(R.id.SP_hslc_board);
@@ -224,18 +228,22 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String HSLC_percantage = percantageHslc.getText().toString().trim();
+                String HSLC_school = schoolHslc.getText().toString().trim();
                 String HS_percantage = percantageHs.getText().toString().trim();
+                String HS_college = collegeHs.getText().toString().trim();
                 String Graduation_percantage = percantageGraduation.getText().toString().trim();
+                String Graduation_college = collegeGraduation.getText().toString().trim();
                 String Postgraduation_percantage = percantagePostgraduation.getText().toString().trim();
+                String Postgraduation_university_name = universityPostgraduation.getText().toString().trim();
 
                 //Method declare to add the ref id to the data
-                CreateEduQualiinfoSubmit(HS_board, HSLC_board, Graduation_board, Postgraduation_university, HS_pass_year, HSLC_pass_year, Graduation_pass_year, Postgraduation_pass_year, HS_percantage, HSLC_percantage, Graduation_percantage, Postgraduation_percantage );
+                CreateEduQualiinfoSubmit(HS_board, HSLC_board, Graduation_board, Postgraduation_university, HS_pass_year, HSLC_pass_year, Graduation_pass_year, Postgraduation_pass_year,HSLC_school, HS_college, Graduation_college, Postgraduation_university_name, HS_percantage, HSLC_percantage, Graduation_percantage, Postgraduation_percantage );
             }
         });
     }
     // method define to add the ref id to the data
-    private void CreateEduQualiinfoSubmit(String hs_board, String hslc_board, String graduation_board, String postgraduation_university, String hs_pass_year, String hslc_pass_year, String graduation_pass_year, String postgraduation_pass_year, String hs_percantage, String hslc_percantage, String graduation_percantage, String postgraduation_percantage) {
-        UserEducationQualificationInfoInsertModel edumod = new UserEducationQualificationInfoInsertModel(hs_board, hslc_board, graduation_board, postgraduation_university, hs_pass_year, hslc_pass_year, graduation_pass_year, postgraduation_pass_year, hs_percantage, hslc_percantage, graduation_percantage, postgraduation_percantage );
+    private void CreateEduQualiinfoSubmit(String hs_board, String hslc_board, String graduation_board, String postgraduation_university, String hs_pass_year, String hslc_pass_year, String graduation_pass_year, String postgraduation_pass_year,String HSLC_shcool, String HS_college, String Graduation_college, String Postgraduation_university_name, String hs_percantage, String hslc_percantage, String graduation_percantage, String postgraduation_percantage) {
+        UserEducationQualificationInfoInsertModel edumod = new UserEducationQualificationInfoInsertModel(hs_board, hslc_board, graduation_board, postgraduation_university, hs_pass_year, hslc_pass_year, graduation_pass_year, postgraduation_pass_year,HSLC_shcool, HS_college, Graduation_college,Postgraduation_university_name , hs_percantage, hslc_percantage, graduation_percantage, postgraduation_percantage );
         edumod.activeId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getId = edumod.activeId;
         ref.child(getId).setValue(edumod);
