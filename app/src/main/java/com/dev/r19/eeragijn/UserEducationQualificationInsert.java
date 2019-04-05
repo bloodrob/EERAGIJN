@@ -78,7 +78,8 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         graduationBoardList = new ArrayList<String>();
         graduationBoardList.add("Dibrugarh University");
         graduationBoardList.add("Tezpur University");
-        graduationBoardList.add("Assam UNiversity");
+        graduationBoardList.add("Guwahati University");
+        graduationBoardList.add("Assam University");
         graduationBoardList.add("Kaziranga University");
         //adding item to spinner of postgarduation University
         postgraduationBoardList = new ArrayList<String >();
@@ -86,6 +87,7 @@ public class UserEducationQualificationInsert extends AppCompatActivity {
         postgraduationBoardList.add("Tezpur University");
         postgraduationBoardList.add("Assam University");
         postgraduationBoardList.add("Guwahati University");
+        postgraduationBoardList.add("Kaziranga University");
         //getting the years into arraylist
         YearList = new ArrayList<String>();
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);

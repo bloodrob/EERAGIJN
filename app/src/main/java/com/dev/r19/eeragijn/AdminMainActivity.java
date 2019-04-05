@@ -8,25 +8,15 @@ import android.widget.Button;
 
 public class AdminMainActivity extends AppCompatActivity {
 
-    private Button toUploadFile, toCheckNewUser, toGenEEId;
+    private Button toCheckNewUser, toSendNotification;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
 
         //initialization
-        toUploadFile = (Button)findViewById(R.id.to_upload_file);
         toCheckNewUser = (Button)findViewById(R.id.to_check_new_user);
-        toGenEEId = (Button)findViewById(R.id.to_gen_eeid);
-
-        //link to the page
-        toUploadFile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminMainActivity.this, CheckUploadFile.class);
-                startActivity(intent);
-            }
-        });
+        toSendNotification = (Button)findViewById(R.id.to_send_notification);
         //link to search new user page
         toCheckNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,11 +25,11 @@ public class AdminMainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //link to generate new id page
-        toGenEEId.setOnClickListener(new View.OnClickListener() {
+        //link to send notification
+        toSendNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminMainActivity.this, AdminGenerateNewEEId.class);
+                Intent intent = new Intent(AdminMainActivity.this, AdminSendJobNotification.class);
                 startActivity(intent);
             }
         });

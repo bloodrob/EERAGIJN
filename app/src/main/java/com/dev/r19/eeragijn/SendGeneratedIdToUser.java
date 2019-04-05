@@ -6,15 +6,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.provider.LiveFolders.INTENT;
 import static com.dev.r19.eeragijn.R.id.email;
+import static com.dev.r19.eeragijn.R.id.start;
 
 public class SendGeneratedIdToUser extends AppCompatActivity {
-    private Button backToHome, backToResend;
+    private Button backToHome, backToResend, tapToPush;
     private TextView viewSuccessMsg, viewFailureMsg;
     // string to get the value from another class
     static String getTheId;
@@ -32,8 +34,25 @@ public class SendGeneratedIdToUser extends AppCompatActivity {
         // initialization
         backToHome = (Button)findViewById(R.id.back_to_home);
         backToResend = (Button)findViewById(R.id.back_to_resend);
+        tapToPush = (Button)findViewById(R.id.push_user_data);
         viewSuccessMsg = (TextView)findViewById(R.id.view_success_msg);
         viewFailureMsg = (TextView)findViewById(R.id.view_failure_msg);
+        //ToHome
+        backToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SendGeneratedIdToUser.this, AdminMainActivity.class);
+                startActivity(intent);
+            }
+        });
+        //ToBack
+        backToResend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SendGeneratedIdToUser.this, AdminGenerateNewEEId.class);
+                startActivity(intent);
+            }
+        });
         //getting the id from AdminGeneratedNewEEid
         getTheId = AdminGenerateNewEEId.getIdAccessToAll.toString().trim();
         // getting the email of the derired user from SelectedNewUserByDistrict Class
@@ -53,6 +72,14 @@ public class SendGeneratedIdToUser extends AppCompatActivity {
       //  intent.setType("message/rcf822");
         startActivity(intent);
        // startActivity(Intent.createChooser(intent, "for thr e-mail client : "+getTheEmail));
+        //push data to the user
+        tapToPush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SendGeneratedIdToUser.this, AdminPushUserData.class);
+                startActivity(intent);
+            }
+        });
     }
    /* public Boolean isOnline() {
         // creating instance for get device connection service
