@@ -75,6 +75,80 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
         mOBILE = (EditText) findViewById(R.id.mobile);
         // initialization button
         submitInfo = (Button) findViewById(R.id.submit_persional_info);
+        //adding data into the districtlist
+        districtList = new ArrayList<String>();
+        districtList.add("Sadia");
+        districtList.add("Tinsukia");
+        districtList.add("Dibrugarh");
+        districtList.add("Sibsagar");
+        districtList.add("Jorhat");
+        districtList.add("Golaghat");
+        districtList.add("Dhemaji");
+        districtList.add("LakhimPur");
+        districtList.add("Nogaon");
+        districtList.add("Sonitpur");
+        districtList.add("Udalguri");
+        districtList.add("Kamrup");
+        districtList.add("Baksha");
+        districtList.add("Barpeta");
+        districtList.add("Mongoldoi");
+        districtList.add("Dhubri");
+        districtList.add("Darang");
+        districtList.add("Karbi-Anglong");
+        districtList.add("Kokrajhar");
+        districtList.add("Hailakandi");
+        districtList.add("Goalpara");
+        districtList.add("Morigaon");
+        districtList.add("Karimganj");
+        districtList.add("Cachar");
+        districtList.add("BongaiGaon");
+        districtList.add("Chirang");
+        districtList.add("Majuli");
+        districtList.add("Nalbari");
+        districtList.add("Dima-Hasao");
+        //adding data ino cast list
+        castList = new ArrayList<String>();
+        castList.add("General");
+        castList.add("OBC");
+        castList.add("OBC NCL");
+        castList.add("ST h");
+        castList.add("ST p");
+        castList.add("SC");
+        //end
+        //Use of arrayadaptor of district list
+        getDistrictList1 = new ArrayAdapter<String>(UserPersionalInfoInsert.this, android.R.layout.simple_spinner_item,districtList);
+        getDistrictList1.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        dISTRICT.setAdapter(getDistrictList1);
+        //geting the selected value
+        dISTRICT.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                District = parent.getItemAtPosition(position).toString().trim();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(UserPersionalInfoInsert.this, "Please Select a District", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });// end
+        // use of arrayadaptor of cats list
+        getCastList = new ArrayAdapter<String>(UserPersionalInfoInsert.this, android.R.layout.simple_spinner_item, castList);
+        getCastList.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        cAST.setAdapter(getCastList);
+        // get the selecteed value
+        cAST.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Cast = parent.getItemAtPosition(position).toString().trim();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(UserPersionalInfoInsert.this, "Please Select a Cast", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });
 
         //Firebase Connection
         database = FirebaseDatabase.getInstance();
@@ -94,80 +168,8 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
                 String City = cITY.getText().toString().trim();
                 String State = sTATE.getText().toString().trim();
                 String Mobile = mOBILE.getText().toString().trim();
-                //adding data into the districtlist
-                districtList = new ArrayList<String>();
-                districtList.add("Sadia");
-                districtList.add("Tinsukia");
-                districtList.add("Dibrugarh");
-                districtList.add("Sibsagar");
-                districtList.add("Jorhat");
-                districtList.add("Golaghat");
-                districtList.add("Dhemaji");
-                districtList.add("LakhimPur");
-                districtList.add("Nogaon");
-                districtList.add("Sonitpur");
-                districtList.add("Udalguri");
-                districtList.add("Kamrup");
-                districtList.add("Baksha");
-                districtList.add("Barpeta");
-                districtList.add("Mongoldoi");
-                districtList.add("Dhubri");
-                districtList.add("Darang");
-                districtList.add("Karbi-Anglong");
-                districtList.add("Kokrajhar");
-                districtList.add("Hailakandi");
-                districtList.add("Goalpara");
-                districtList.add("Morigaon");
-                districtList.add("Karimganj");
-                districtList.add("Cachar");
-                districtList.add("BongaiGaon");
-                districtList.add("Chirang");
-                districtList.add("Majuli");
-                districtList.add("Nalbari");
-                districtList.add("Dima-Hasao");
-                //adding data ino cast list
-                castList = new ArrayList<String>();
-                castList.add("General");
-                castList.add("OBC");
-                castList.add("OBC NCL");
-                castList.add("ST h");
-                castList.add("ST p");
-                castList.add("SC");
-                //end
-                //Use of arrayadaptor of district list
-                getDistrictList1 = new ArrayAdapter<String>(UserPersionalInfoInsert.this, android.R.layout.simple_spinner_item, districtList);
-                getDistrictList1.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-                dISTRICT.setAdapter(getDistrictList1);
-                //geting the selected value
-                dISTRICT.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        District = parent.getItemAtPosition(position).toString().trim();
-                    }
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        Toast.makeText(UserPersionalInfoInsert.this, "Please Select a District", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                });// end
-                // use of arrayadaptor of cats list
-                getCastList = new ArrayAdapter<String>(UserPersionalInfoInsert.this, android.R.layout.simple_spinner_item, castList);
-                getCastList.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-                cAST.setAdapter(getCastList);
-                // get the selecteed value
-                cAST.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        Cast = parent.getItemAtPosition(position).toString().trim();
-                    }
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        Toast.makeText(UserPersionalInfoInsert.this, "Please Select a Cast", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                });
                 // method declare for submit info
                 UserPerInfoCreate(Name, Email, Father_name,Cast, Gender, DOB, Address, City, District, State, Mobile);
             }

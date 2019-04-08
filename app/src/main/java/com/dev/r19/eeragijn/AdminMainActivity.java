@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class AdminMainActivity extends AppCompatActivity {
 
-    private Button toCheckNewUser, toSendNotification;
+    private Button toCheckNewUser, toSendNotification, toExistingUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +17,7 @@ public class AdminMainActivity extends AppCompatActivity {
         //initialization
         toCheckNewUser = (Button)findViewById(R.id.to_check_new_user);
         toSendNotification = (Button)findViewById(R.id.to_send_notification);
+        toExistingUser = (Button)findViewById(R.id.to_check_existing_user);
         //link to search new user page
         toCheckNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +31,14 @@ public class AdminMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMainActivity.this, AdminSendJobNotification.class);
+                startActivity(intent);
+            }
+        });
+        //link to check Existing user
+        toExistingUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminMainActivity.this, AdminSearchExistingUser.class);
                 startActivity(intent);
             }
         });

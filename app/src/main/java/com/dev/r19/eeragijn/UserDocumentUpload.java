@@ -281,7 +281,7 @@ public class UserDocumentUpload extends AppCompatActivity {
         if (selfPathToFile != null) {
             // set up a progessbar to check the progress of uploading image
             pd = new ProgressDialog(this);
-            pd.setTitle("Uplaoding your document... please don't press back");
+            pd.setMessage("Uplaoding your document... please don't press back");
             pd.setCanceledOnTouchOutside(false);
             pd.show();
             // upload ref for self image

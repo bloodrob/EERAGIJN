@@ -43,7 +43,8 @@
         <activity android:name=".SelectedNewUserEduInfoByDistrict" />
         <activity android:name=".SendGeneratedIdToUser" />
         <activity android:name=".AdminPushUserData" />
-        <activity android:name=".AdminSendJobNotification"></activity>
+        <activity android:name=".AdminSendJobNotification" />
+        <activity android:name=".AdminSearchExistingUser"></activity>
     </application>
 
 </manifest>
