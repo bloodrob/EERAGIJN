@@ -6,7 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/back_2"
     tools:context="com.dev.r19.eeragijn.CheckUploadFile">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <Button
         android:id="@+id/check_person_image"
         android:layout_width="wrap_content"
@@ -16,62 +21,86 @@
         android:text="Check the person image"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
-
-    <ImageView
-        android:id="@+id/view_person_image"
-        android:layout_width="310px"
-        android:layout_height="200px"
-        android:layout_marginStart="20dp"
-        app:srcCompat="@drawable/common_full_open_on_phone"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/check_person_image"
-        android:layout_marginTop="21dp" />
-
-    <Button
+            <Button
         android:id="@+id/check_person_sign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/check_person_image"
-        android:layout_below="@+id/view_person_image"
+        android:layout_below="@+id/check_person_image"
         android:layout_marginTop="66dp"
         android:text="Check the person sign" />
 
-    <ImageView
-        android:id="@+id/view_person_sign"
-        android:layout_width="310px"
-        android:layout_height="200px"
-        app:srcCompat="@drawable/common_full_open_on_phone"
-        android:layout_below="@+id/view_person_image"
-        android:layout_alignStart="@+id/view_person_image"
-        android:layout_marginTop="43dp" />
 
     <Button
         android:id="@+id/check_person_hslc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/check_person_sign"
-        android:layout_below="@+id/view_person_sign"
+        android:layout_below="@+id/check_person_sign"
         android:layout_marginTop="68dp"
         android:text="Check HSLC certificate" />
 
-    <ImageView
-        android:id="@+id/view_person_hslc"
-        android:layout_width="310px"
-        android:layout_height="200px"
-        app:srcCompat="@drawable/common_full_open_on_phone"
-        android:layout_below="@+id/view_person_sign"
-        android:layout_alignStart="@+id/view_person_sign"
-        android:layout_marginTop="42dp" />
 
-    <Button
+            <Button
+                android:id="@+id/check_person_hs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/check_person_hslc"
+                android:layout_below="@+id/check_person_hslc"
+                android:layout_marginTop="68dp"
+                android:text="Check HS certificate" />
+
+
+            <Button
+                android:id="@+id/check_person_graduation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/check_person_hs"
+                android:layout_below="@+id/check_person_hs"
+                android:layout_marginTop="68dp"
+                android:text="Check Graduation" />
+
+
+            <Button
+                android:id="@+id/check_person_postgraduation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/check_person_graduation"
+                android:layout_below="@+id/check_person_graduation"
+                android:layout_marginTop="68dp"
+                android:text="Check Post-Graduation" />
+
+
+            <Button
+                android:id="@+id/check_person_cast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/check_person_postgraduation"
+                android:layout_below="@+id/check_person_postgraduation"
+                android:layout_marginTop="68dp"
+                android:text="Check Cast Cerificate" />
+
+
+            <Button
+                android:id="@+id/check_person_prc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/check_person_cast"
+                android:layout_below="@+id/check_person_cast"
+                android:layout_marginTop="68dp"
+                android:text="Check PRC Cerificate" />
+
+
+            <Button
         android:id="@+id/to_generate_id"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_alignEnd="@+id/view_person_hslc"
-        android:layout_marginRight="120dp"
-        android:layout_below="@+id/view_person_hslc"
+        android:layout_marginLeft="120dp"
+        android:layout_below="@+id/check_person_prc"
         android:layout_marginTop="24dp"
         android:background="@drawable/btn_2"
         android:textStyle="italic"
         android:text="Generate Id" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
