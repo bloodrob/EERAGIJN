@@ -13,7 +13,6 @@ import com.google.firebase.storage.StorageReference;
 public class CheckUploadFile extends AppCompatActivity {
 
     private Button checkPersonImage, checkPersonSign, checkPersonHslc;
-    private ImageView viewPersonImage, viewPersonSign, viewPersonHslc;
     private Button generateId;
 
     // firebase storage ref variable
@@ -27,9 +26,6 @@ public class CheckUploadFile extends AppCompatActivity {
         checkPersonImage = (Button)findViewById(R.id.check_person_image);
         checkPersonSign = (Button)findViewById(R.id.check_person_sign);
         checkPersonHslc = (Button)findViewById(R.id.check_person_hslc);
-        viewPersonImage = (ImageView)findViewById(R.id.view_person_image);
-        viewPersonSign = (ImageView)findViewById(R.id.view_person_sign);
-        viewPersonHslc = (ImageView)findViewById(R.id.view_person_hslc);
         generateId = (Button)findViewById(R.id.to_generate_id);
 
         // ref to firebase
@@ -38,8 +34,10 @@ public class CheckUploadFile extends AppCompatActivity {
         checkPersonImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                storageref = ref.getReference().child("SelfImage");
+               // storageref = ref.getReference().child("SelfImage");
                 //load image using glide
+                Intent intent = new Intent(CheckUploadFile.this, AdminViewDocument.class);
+                startActivity(intent);
 
             }
         });

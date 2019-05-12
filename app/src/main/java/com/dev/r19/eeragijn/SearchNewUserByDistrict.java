@@ -125,7 +125,7 @@ public class SearchNewUserByDistrict extends AppCompatActivity {
         pd1 = new ProgressDialog(this);
         pd1.setMessage("searching....  Please wait");
         pd1.setCanceledOnTouchOutside(false);
-      //  pd1.show();
+        pd1.show();
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
