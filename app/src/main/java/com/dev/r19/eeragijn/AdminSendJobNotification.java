@@ -25,6 +25,8 @@ public class AdminSendJobNotification extends AppCompatActivity {
     private Button sendJodNoti;
     // To intensiate object for use in notification class;
     private Notification Notfi;
+    //notification builder for format the notification
+    Notification.Builder notiBuild;
     //to intensiate object in perpose to push notification
     private NotificationManager NotiMan;
     //set a id for the channle;
@@ -37,6 +39,8 @@ public class AdminSendJobNotification extends AppCompatActivity {
     CharSequence nameOfChannel;
     // set up a notification id so it can be updated
     int notifyID = 1;
+    //use to get system times
+    int requesttime;
     //set up a annotaion for comtable with adnroid version. here it is for Oreo. Api level 26
     @TargetApi(Build.VERSION_CODES.O)
     @Override
@@ -55,6 +59,8 @@ public class AdminSendJobNotification extends AppCompatActivity {
                 String JobName = nameOfJob.getText().toString().trim();
                 String JobSubject = subjectOfJod.getText().toString().trim();
                 String JobDetails = detailsOfJod.getText().toString().trim();
+                //Context for use in setLatestEventInfo
+                Context context = getApplicationContext();
                 //set up notification priority
                 important = NotificationManager.IMPORTANCE_HIGH;
                 //set up channel name
@@ -66,18 +72,23 @@ public class AdminSendJobNotification extends AppCompatActivity {
                 //NotificationCompat.Builder notiBuilder = new NotificationCompat.Builder(AdminSendJobNotification.this).setSmallIcon(R.drawable.notilogoweb).setContentTitle(JobName).setContentText(JobSubject).setContentTitle(JobDetails);
                 //object intentiate of notificationManager class by requasting the android system through getSystemService Method
                 NotiMan = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                //implicit intent
+                Intent notIntent = new Intent(AdminSendJobNotification.this, AdminHome.class);
+                notIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                requesttime = (int) System.currentTimeMillis();
+                //creating PendinIntent to grant the right to perform operation that we specified i.e give permision to open the app through notification
+                PendingIntent penIntent = PendingIntent.getActivity(AdminSendJobNotification.this, requesttime, notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 //crating notification through notification class with its attributes;
-                Notfi = new Notification.Builder(getApplicationContext()).setContentTitle(JobName).setContentText(JobSubject).setContentTitle(JobDetails).setSmallIcon(R.drawable.notilogoweb).build();
-                //creating PendinIntent to grant the right to perform operation that we specified
-                PendingIntent penIntent = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(), 0);
+                notiBuild = new Notification.Builder(getApplicationContext()).setContentTitle(JobName).setContentText(JobSubject).setContentTitle(JobDetails).setSmallIcon(R.drawable.notilogoweb).setChannelId(Channel_id).setContentIntent(penIntent);
+                Notfi = notiBuild.build();
                 //call setLatestEvent method of noticication class and pass the pendingIntent along with notification subject and body
-              //  NotiMan.setLatestEventInfo(getApplicationContext(), JobSubject, JobDetails, penIntent);
+               // Notfi.setLatestEventInfo(context, JobSubject, JobDetails, penIntent);
                // NotiMan.set
                 //checking the android version compatability here it is for oreo
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+              /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     NotiMan.createNotificationChannel(mChannel);
-                }
-                Notfi.flags |= Notification.FLAG_AUTO_CANCEL;
+                }*/
+              //  Notfi.flags |= Notification.FLAG_AUTO_CANCEL;
                 // now push the information by the method notify
                 NotiMan.notify(notifyID, Notfi);
                 Intent intent = new Intent(AdminSendJobNotification.this, AdminMainActivity.class);
