@@ -44,7 +44,9 @@
         <activity android:name=".SendGeneratedIdToUser" />
         <activity android:name=".AdminPushUserData" />
         <activity android:name=".AdminSendJobNotification" />
-        <activity android:name=".AdminSearchExistingUser"></activity>
+        <activity android:name=".AdminSearchExistingUser" />
+        <activity android:name=".AdminViewDocument"/>
+        <activity android:name=".AdminEnteredJodDetails"></activity>
     </application>
 
 </manifest>
