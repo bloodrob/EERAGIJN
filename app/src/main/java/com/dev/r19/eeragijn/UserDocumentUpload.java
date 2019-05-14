@@ -351,7 +351,7 @@ public class UserDocumentUpload extends AppCompatActivity {
                 }
             }); // end of hs
             // upload ref for graduation
-            StorageReference ref5 = ref.child("Graduation"+getCurrentId.toString());
+            StorageReference ref5 = ref.child("GraduationImage"+getCurrentId.toString());
             ref5.putFile(graduationPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -383,7 +383,7 @@ public class UserDocumentUpload extends AppCompatActivity {
                 }
             }); // end of postgraduation
             // upload ref for PRC
-            StorageReference ref7 = ref.child("PRC"+getCurrentId.toString());
+            StorageReference ref7 = ref.child("PRCImage"+getCurrentId.toString());
             ref7.putFile(prcPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -399,7 +399,7 @@ public class UserDocumentUpload extends AppCompatActivity {
                 }
             }); // end of PRC
             //upload ref for CAST
-            StorageReference ref8 = ref.child("Cast"+getCurrentId.toString());
+            StorageReference ref8 = ref.child("CastImage"+getCurrentId.toString());
             ref8.putFile(castPathToFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
