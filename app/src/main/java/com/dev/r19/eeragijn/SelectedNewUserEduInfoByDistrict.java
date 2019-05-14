@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SelectedNewUserEduInfoByDistrict extends AppCompatActivity {
     private TextView viewEduInfo;
-    private TextView viewHslcBoard, viewHslcPassYear, viewHslcPercantage;
+    private TextView viewHslcBoard, viewHslcPassYear, viewHslcPercantage, viewHsBoard, viewHsPassYear, viewHsPercantage, viewGraduate, viewGraduatePassYear, viewGraduatePercantage, viewPostGraduate, viewPostGraduatePassYear, viewPostGraduatePercantage;
     private Button viewPerInfo, viewUploadDoc;
     // static string for intent string value from selectednewuserbydistrict
     static String getActiveId;
@@ -36,6 +36,15 @@ public class SelectedNewUserEduInfoByDistrict extends AppCompatActivity {
         viewHslcBoard = (TextView)findViewById(R.id.view_hslc_board);
         viewHslcPassYear = (TextView)findViewById(R.id.view_hslc_pass_year);
         viewHslcPercantage = (TextView)findViewById(R.id.view_hslc_percantage);
+        viewHsBoard = (TextView)findViewById(R.id.view_hs_board);
+        viewHsPassYear = (TextView)findViewById(R.id.view_hs_pass_year);
+        viewHsPercantage = (TextView)findViewById(R.id.view_hs_percantage);
+        viewGraduate = (TextView)findViewById(R.id.view_graduate);
+        viewGraduatePassYear = (TextView)findViewById(R.id.view_graduate_pass_year);
+        viewGraduatePercantage = (TextView)findViewById(R.id.view_graduate_percantage);
+        viewPostGraduate = (TextView)findViewById(R.id.view_postgraduate);
+        viewPostGraduatePassYear = (TextView)findViewById(R.id.view_postgraduate_pass_year);
+        viewPostGraduatePercantage = (TextView)findViewById(R.id.view_postgraduate_percantage);
 
         // Creating instance and getting ref to the instance of firebase database
         database = FirebaseDatabase.getInstance();
@@ -45,11 +54,20 @@ public class SelectedNewUserEduInfoByDistrict extends AppCompatActivity {
                     @Override
                     //On database search success
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        SelectedNewUserEduInfoByDistrictModel edumod = dataSnapshot.getValue(SelectedNewUserEduInfoByDistrictModel.class);
+                        UserEducationQualificationInfoInsertModel edumod = dataSnapshot.getValue(UserEducationQualificationInfoInsertModel.class);
                         if (edumod.activeId.equals(getActiveId)) {
                             viewHslcBoard.setText(edumod.HSLC_board);
                             viewHslcPassYear.setText(edumod.HSLC_pass_year);
                             viewHslcPercantage.setText(edumod.HSLC_percantage +"%");
+                            viewHsBoard.setText(edumod.HS_board);
+                            viewHsPassYear.setText(edumod.HS_pass_year);
+                            viewHsPercantage.setText(edumod.HS_percantage +"%");
+                            viewGraduate.setText(edumod.Graduation_college);
+                            viewGraduatePassYear.setText(edumod.Graduation_pass_year);
+                            viewGraduatePercantage.setText(edumod.Graduation_percantage +"%");
+                            viewPostGraduate.setText(edumod.Postgraduation_university_name);
+                            viewPostGraduatePassYear.setText(edumod.Postgraduation_pass_year);
+                            viewPostGraduatePercantage.setText(edumod.Postgradution_percantage +"%");
                         }
                         if (! edumod.activeId.equals(getActiveId)) {
                             Toast.makeText(SelectedNewUserEduInfoByDistrict.this, "No data is Found", Toast.LENGTH_SHORT).show();
