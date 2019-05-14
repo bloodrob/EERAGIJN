@@ -99,7 +99,7 @@ public class CheckUploadFile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CheckUploadFile.this, AdminViewDocument.class);
-                intent.putExtra("personPostgrauation", pPg);
+                intent.putExtra("personPostgraduation", pPg);
                 startActivity(intent);
             }
         });
