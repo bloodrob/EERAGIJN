@@ -8,21 +8,27 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.system.Os;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.widget.Toast;
 
-import java.lang.annotation.Target;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AdminSendJobNotification extends AppCompatActivity {
 
     //variable for edittext and button
     private EditText nameOfJob, subjectOfJod, detailsOfJod;
     private Button sendJodNoti;
+    //static string for input value
+    static String JobName, JobSubject, JobDetails;
     // To intensiate object for use in notification class;
     private Notification Notfi;
     //notification builder for format the notification
@@ -41,6 +47,9 @@ public class AdminSendJobNotification extends AppCompatActivity {
     int notifyID = 1;
     //use to get system times
     int requesttime;
+    // firebase to store job details
+    FirebaseDatabase database;
+    DatabaseReference ref;
     //set up a annotaion for comtable with adnroid version. here it is for Oreo. Api level 26
     @TargetApi(Build.VERSION_CODES.O)
     @Override
@@ -56,9 +65,9 @@ public class AdminSendJobNotification extends AppCompatActivity {
         sendJodNoti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String JobName = nameOfJob.getText().toString().trim();
-                String JobSubject = subjectOfJod.getText().toString().trim();
-                String JobDetails = detailsOfJod.getText().toString().trim();
+                 JobName = nameOfJob.getText().toString().trim();
+                 JobSubject = subjectOfJod.getText().toString().trim();
+                 JobDetails = detailsOfJod.getText().toString().trim();
                 //Context for use in setLatestEventInfo
                 Context context = getApplicationContext();
                 //set up notification priority
@@ -73,7 +82,7 @@ public class AdminSendJobNotification extends AppCompatActivity {
                 //object intentiate of notificationManager class by requasting the android system through getSystemService Method
                 NotiMan = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
                 //implicit intent
-                Intent notIntent = new Intent(AdminSendJobNotification.this, AdminHome.class);
+                Intent notIntent = new Intent(AdminSendJobNotification.this, ViewAdminUploadedJobDetails.class);
                 notIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 requesttime = (int) System.currentTimeMillis();
                 //creating PendinIntent to grant the right to perform operation that we specified i.e give permision to open the app through notification
@@ -91,9 +100,40 @@ public class AdminSendJobNotification extends AppCompatActivity {
               //  Notfi.flags |= Notification.FLAG_AUTO_CANCEL;
                 // now push the information by the method notify
                 NotiMan.notify(notifyID, Notfi);
-                Intent intent = new Intent(AdminSendJobNotification.this, AdminMainActivity.class);
-                startActivity(intent);
 
+                // firebase work to save the data
+                database = FirebaseDatabase.getInstance();
+                ref = database.getReference("UploadedJobDetails");
+                // mthod to assign key value
+                SaveJobDetails(JobName, JobSubject, JobDetails);
+                Intent intent = new Intent(AdminSendJobNotification.this, AdminUploadJobDetailsPdf.class);
+                startActivity(intent);
+            }
+        });
+    }
+    // method for save data
+    private void SaveJobDetails(String JobName, String JobSubject, String JObDetails) {
+        JobUploadDetailsModel jobUp = new JobUploadDetailsModel(JobName, JobSubject, JobDetails);
+        JobName = jobUp.Jobname;
+        ref.child(JobName).setValue(jobUp);
+        // method to save data
+        CreateToSaveData();
+    }
+    private void CreateToSaveData(){
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                JobUploadDetailsModel JobUp = dataSnapshot.getValue(JobUploadDetailsModel.class);
+                if (JobUp == null) {
+                    Toast.makeText(AdminSendJobNotification.this, "No Dta Entered", Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(AdminSendJobNotification.this, "Data is suceessfully save to the database", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(AdminSendJobNotification.this, "Something Wrong, Contact To Database Administrator", Toast.LENGTH_SHORT).show();
+                return;
             }
         });
     }
