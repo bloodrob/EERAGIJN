@@ -45,8 +45,9 @@
         <activity android:name=".AdminPushUserData" />
         <activity android:name=".AdminSendJobNotification" />
         <activity android:name=".AdminSearchExistingUser" />
-        <activity android:name=".AdminViewDocument"/>
-        <activity android:name=".AdminEnteredJodDetails"></activity>
+        <activity android:name=".AdminViewDocument" />
+        <activity android:name=".AdminEnteredJodDetails" />
+        <activity android:name=".HomeToSelect"></activity>
     </application>
 
 </manifest>

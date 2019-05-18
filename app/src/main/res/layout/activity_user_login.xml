@@ -4,84 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back1"
     tools:context="com.dev.r19.eeragijn.UserLogin">
 
-    <Button
-        android:id="@+id/UlogIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="39dp"
-        android:layout_marginStart="26dp"
-        android:text="Log In" />
-
-    <Button
-        android:id="@+id/Ureg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="18dp"
-        android:text="Not yet registered, Sign up now"
-        android:layout_alignBaseline="@+id/UlogIn"
-        android:layout_alignBottom="@+id/UlogIn"
-        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/welUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="53dp"
-        android:layout_toEndOf="@+id/UlogIn"
-        android:text="Welcome User" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView14"
-        android:layout_marginTop="70dp"
-        android:layout_toStartOf="@+id/textView14"
-        android:text="User id" />
+        android:layout_marginTop="30dp"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:text="Welcome User"/>
+     <ImageView
+         android:layout_width="80dp"
+         android:layout_height="80dp"
+         android:background="@drawable/ic_group"
+         android:layout_below="@+id/welUser"
+         android:layout_centerHorizontal="true"/>
 
     <EditText
         android:id="@+id/empUserId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:background="@drawable/text_1"
         android:inputType="textPersonName"
-        android:text="Name"
-        android:layout_alignBaseline="@+id/textView15"
-        android:layout_alignBottom="@+id/textView15"
-        android:layout_alignEnd="@+id/Ureg"
-        android:layout_marginEnd="15dp" />
+        android:layout_below="@+id/welUser"
+        android:drawableLeft="@drawable/ic_person"
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="50dp"
+        android:textAlignment="center"
+        android:hint="User ID"/>
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView15"
-        android:layout_below="@+id/empUserId"
-        android:layout_marginTop="64dp"
-        android:text="Password" />
 
     <EditText
         android:id="@+id/empUserPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_alignEnd="@+id/empUserId"
         android:layout_below="@+id/empUserId"
-        android:layout_marginTop="47dp"
-        android:ems="10"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/text_1"
+        android:drawableLeft="@drawable/ic_menu_login"
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:textAlignment="center"
+        android:hint="Password"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/empLogIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/Ureg"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_4"
+        android:layout_alignStart="@+id/empUserPass"
         android:layout_below="@+id/empUserPass"
         android:layout_marginTop="39dp"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
         android:text="Log in" />
+    <Button
+        android:id="@+id/UlogIn"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_4"
+       android:layout_below="@+id/empLogIn"
+        android:layout_alignStart="@+id/empLogIn"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:text="User Log In" />
+    <TextView
+        android:id="@+id/textNotReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/UlogIn"
+        android:layout_marginTop="20dp"
+        android:layout_alignStart="@+id/UlogIn"
+        android:layout_marginLeft="20dp"
+        android:textColor="#000000"
+        android:text="Not Yet Registered"
+        />
+    <Button
+        android:id="@+id/Ureg"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/UlogIn"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_4"
+        android:layout_below="@+id/textNotReg"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:text="Sign up now"/>
+
+
 </RelativeLayout>
