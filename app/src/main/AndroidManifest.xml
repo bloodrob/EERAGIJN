@@ -46,6 +46,9 @@
         <activity android:name=".AdminSendJobNotification" />
         <activity android:name=".AdminSearchExistingUser" />
         <activity android:name=".AdminViewDocument"/>
+        <activity android:name=".HomeToSelect"/>
+        <activity android:name=".AdminUploadJobDetailsPdf"/>
+        <activity android:name=".ViewAdminUploadedJobDetails"/>
         <activity android:name=".AdminEnteredJodDetails"></activity>
     </application>
 

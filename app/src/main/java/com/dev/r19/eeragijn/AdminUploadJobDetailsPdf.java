@@ -1,7 +1,9 @@
 package com.dev.r19.eeragijn;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -20,6 +22,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.net.URISyntaxException;
+
 public class AdminUploadJobDetailsPdf extends AppCompatActivity {
 
     // string to get the value from other class
@@ -36,6 +41,9 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
     StorageReference stref;
     // for set up progressbar
     ProgressDialog pdD;
+    // Context and Uri to use in get the file path from uri
+    Context context1;
+    Uri uri1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +91,7 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
             if (data.getData()!= null) {
                 // uploading the file
                 pathToPdf = data.getData();
-                getThePdfName.setText(data.getDataString());
+                getThePdfName.setText("Here your file to be uploaded, if it is correct then you can upload it" +data.getData());
                 Toast.makeText(AdminUploadJobDetailsPdf.this, "File Selected", Toast.LENGTH_SHORT).show();
             }
             if (data.getData() == null){

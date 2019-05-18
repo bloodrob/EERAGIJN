@@ -112,7 +112,7 @@ public class AdminSendJobNotification extends AppCompatActivity {
         });
     }
     // method for save data
-    private void SaveJobDetails(String JobName, String JobSubject, String JObDetails) {
+    private void SaveJobDetails(String JobName, String JobSubject, String JobDetails) {
         JobUploadDetailsModel jobUp = new JobUploadDetailsModel(JobName, JobSubject, JobDetails);
         JobName = jobUp.Jobname;
         ref.child(JobName).setValue(jobUp);
@@ -125,7 +125,7 @@ public class AdminSendJobNotification extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 JobUploadDetailsModel JobUp = dataSnapshot.getValue(JobUploadDetailsModel.class);
                 if (JobUp == null) {
-                    Toast.makeText(AdminSendJobNotification.this, "No Dta Entered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminSendJobNotification.this, "No Data Entered", Toast.LENGTH_SHORT).show();
                 }
                 Toast.makeText(AdminSendJobNotification.this, "Data is suceessfully save to the database", Toast.LENGTH_SHORT).show();
             }
