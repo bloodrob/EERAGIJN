@@ -203,7 +203,7 @@
                 android:id="@+id/textView_graduateU"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GRADUATE"
+                android:text="Graduate"
                 android:textColor="#000000"
                 android:layout_below="@+id/textView_graduate"
                 android:layout_alignStart="@+id/textView_graduate"
@@ -301,7 +301,7 @@
                 android:layout_height="30dp"
                 android:layout_alignBaseline="@+id/textView_postgraduatepass"
                 android:layout_alignBottom="@+id/textView_postgraduatepass"
-                android:layout_alignStart="@+id/view_postgraduateU" />
+                android:layout_alignStart="@+id/view_postgraduate" />
 
             <TextView
                 android:id="@+id/textView_postgraduateparcentage"
@@ -317,6 +317,7 @@
                 android:id="@+id/view_postgraduate_percantage"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
+                android:layout_below="@+id/textView_postgraduatepass"
                 android:layout_alignBaseline="@+id/textView_graduateparcentage"
                 android:layout_alignBottom="@+id/textView_postgraduateparcentage"
                 android:layout_alignStart="@+id/view_hs_pass_year" />

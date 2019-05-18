@@ -42,11 +42,11 @@ public class CheckUploadFile extends AppCompatActivity {
         pHs = "personHs";
         pG = "personGraduation";
         pPg ="personPostgraduation";
-        pC = "personcast";
+        pC = "personCast";
         pPr = "personPrc";
         // ref to firebase
         ref = FirebaseStorage.getInstance();
-
+        //check person image
         checkPersonImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,11 +58,66 @@ public class CheckUploadFile extends AppCompatActivity {
 
             }
         });
+        //check person sign
         checkPersonSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CheckUploadFile.this, AdminViewDocument.class);
                 intent.putExtra("personSign", pS);
+                startActivity(intent);
+            }
+        });
+        //check person Hslc
+        checkPersonHslc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CheckUploadFile.this, AdminViewDocument.class);
+                intent.putExtra("personHslc",pHl);
+                startActivity(intent);
+            }
+        });
+        //check person HS
+        checkPersonHS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CheckUploadFile.this, AdminViewDocument.class);
+                intent.putExtra("personHs", pHs);
+                startActivity(intent);
+            }
+        });
+        //check person graduation
+        checkPersonGraduation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CheckUploadFile.this, AdminViewDocument.class);
+                intent.putExtra("personGraduation", pG);
+                startActivity(intent);
+            }
+        });
+        //check person postgraduation
+        checkPersonPostGraduation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CheckUploadFile.this, AdminViewDocument.class);
+                intent.putExtra("personPostgraduation", pPg);
+                startActivity(intent);
+            }
+        });
+        //check person cast
+        checkPersonCast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CheckUploadFile.this, AdminViewDocument.class);
+                intent.putExtra("personCast", pC);
+                startActivity(intent);
+            }
+        });
+        //check person Prc
+        checkPersonPrc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CheckUploadFile.this, AdminViewDocument.class);
+                intent.putExtra("personPrc", pPr);
                 startActivity(intent);
             }
         });
