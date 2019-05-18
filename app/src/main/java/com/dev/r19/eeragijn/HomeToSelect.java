@@ -15,7 +15,7 @@ public class HomeToSelect extends AppCompatActivity {
         setContentView(R.layout.activity_home_to_select);
         admin = (Button)findViewById(R.id.AsAdmin);
         emp = (Button)findViewById(R.id.AsEmp);
-
+        // on click listener for admin
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
