@@ -27,10 +27,12 @@
         <activity android:name=".UserRegistration" />
         <activity android:name=".UserLogin" />
         <activity android:name=".AdminLogin" />
+        <activity android:name=".AdminMainActivity" />
         <activity android:name=".UserDocumentUpload" />
         <activity android:name=".UserMainActivity" />
         <activity android:name=".SuccessDocumentUpload" />
         <activity android:name=".CheckUploadFile" />
+        <activity android:name=".NewUserMainActivity" />
         <activity android:name=".ExistingUserMainActivity" />
         <activity android:name=".AuthExistingUserMainActivity" />
         <activity android:name=".UserPersionalInfoInsert" />
@@ -48,14 +50,8 @@
         <activity android:name=".AdminUploadJobDetailsPdf" />
         <activity android:name=".ViewAdminUploadedJobDetails" />
         <activity android:name=".AdminEnteredJodDetails" />
-        <activity
-            android:name=".AdminMainActivity"
-            android:label="@string/title_activity_admin_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".NewUserMainActivity"
-            android:label="@string/title_activity_new_user_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".SearchAllExistingUserByDistrict" />
+        <activity android:name=".ResetPassword"></activity>
     </application>
 
 </manifest>

@@ -18,7 +18,7 @@ public class AdminPushUserData extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference ref, ref1;
     static String getActiveIdToImportUserData;
-    String Ex_name, Ex_email, Ex_fatherName, Ex_cast, Ex_dob, Ex_gender, Ex_address, Ex_district, Ex_city, Ex_state, Ex_mobile;
+    String Ex_EmpId, Ex_name, Ex_email, Ex_fatherName, Ex_cast, Ex_dob, Ex_gender, Ex_address, Ex_district, Ex_city, Ex_state, Ex_mobile;
     //To use ref activeId of the node
     String getId;
     @Override
@@ -51,9 +51,10 @@ public class AdminPushUserData extends AppCompatActivity {
                     Ex_city = selModNewUSer.City;
                     Ex_state = selModNewUSer.State;
                     Ex_mobile = selModNewUSer.Mobile;
+                    Ex_EmpId = SendGeneratedIdToUser.getTheId.toString().trim();
 
                     //method declare to add data
-                    AddDataToExisting(Ex_name, Ex_email, Ex_fatherName, Ex_cast, Ex_dob, Ex_gender, Ex_address, Ex_district, Ex_city, Ex_state, Ex_mobile);
+                    AddDataToExisting(Ex_name, Ex_email, Ex_fatherName, Ex_cast, Ex_dob, Ex_gender, Ex_address, Ex_district, Ex_city, Ex_state, Ex_mobile, Ex_EmpId);
                 }
             }
 
@@ -80,8 +81,8 @@ public class AdminPushUserData extends AppCompatActivity {
     }
     //firebase work to submit data from new to exist node
     // add ref activeId to the coressponding node
-    private void AddDataToExisting(String Ex_name, String Ex_email, String Ex_fatherName, String Ex_caste, String Ex_gender, String Ex_dob, String Ex_address, String Ex_district, String Ex_city, String Ex_state, String Ex_mobile) {
-        AdminPushDataModel adMod = new AdminPushDataModel(Ex_name, Ex_email, Ex_fatherName, Ex_caste, Ex_gender, Ex_dob, Ex_address, Ex_district, Ex_city, Ex_state, Ex_mobile);
+    private void AddDataToExisting(String Ex_name, String Ex_email, String Ex_fatherName, String Ex_caste, String Ex_gender, String Ex_dob, String Ex_address, String Ex_district, String Ex_city, String Ex_state, String Ex_mobile, String ex_mobile) {
+        AdminPushDataModel adMod = new AdminPushDataModel(Ex_name,Ex_EmpId, Ex_email, Ex_fatherName, Ex_caste, Ex_gender, Ex_dob, Ex_address, Ex_district, Ex_city, Ex_state, Ex_mobile);
         adMod.activeId = getActiveIdToImportUserData.toString().trim();
         getId = adMod.activeId;
         ref1.child(getId).setValue(adMod);

@@ -2,6 +2,8 @@ package com.dev.r19.eeragijn;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ViewAdminUploadedJobDetails extends AppCompatActivity {
 
     private TextView takeJobString, jobTitle, subjectOfJob, detailsOfjob;
+    private Button downloadJobPdf;
     // FireBase to use in search
     FirebaseDatabase database;
     DatabaseReference ref;
@@ -26,6 +29,7 @@ public class ViewAdminUploadedJobDetails extends AppCompatActivity {
         jobTitle = (TextView)findViewById(R.id.job_title);
         subjectOfJob = (TextView)findViewById(R.id.job_subject);
         detailsOfjob = (TextView)findViewById(R.id.job_details);
+        downloadJobPdf = (Button)findViewById(R.id.download_job_pdf);
         // displaying the string
         takeJobString.setText(AdminSendJobNotification.JobName +"\n" +AdminSendJobNotification.JobSubject +"\n"+ AdminSendJobNotification.JobDetails);
 
@@ -65,6 +69,17 @@ public class ViewAdminUploadedJobDetails extends AppCompatActivity {
                 Toast.makeText(ViewAdminUploadedJobDetails.this, "Something wrong, Contact to the database administrators", Toast.LENGTH_LONG).show();
             }
         });
+        // end of firebase database
+        //set onclick listener for pdf download
+        downloadJobPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // method to download pdf file
+                downloadWork();
+            }
+        });
+    }
+    private void downloadWork() {
 
     }
 }

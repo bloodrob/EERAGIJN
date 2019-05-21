@@ -44,7 +44,7 @@ public class AdminSendJobNotification extends AppCompatActivity {
     //Character sequence for the channel name to use in notification channel
     CharSequence nameOfChannel;
     // set up a notification id so it can be updated
-    int notifyID = 1;
+    int notifyID = 2;
     //use to get system times
     int requesttime;
     // firebase to store job details
@@ -73,10 +73,9 @@ public class AdminSendJobNotification extends AppCompatActivity {
                 //set up notification priority
                 important = NotificationManager.IMPORTANCE_HIGH;
                 //set up channel name
-                nameOfChannel = "my_channel";
+                nameOfChannel = "rob_channel";
                 //create a notification and set the notification channel
                 mChannel = new NotificationChannel(Channel_id, nameOfChannel, important);
-
                 //Notification compact bulider to support android version 8 or higher than 8
                 //NotificationCompat.Builder notiBuilder = new NotificationCompat.Builder(AdminSendJobNotification.this).setSmallIcon(R.drawable.notilogoweb).setContentTitle(JobName).setContentText(JobSubject).setContentTitle(JobDetails);
                 //object intentiate of notificationManager class by requasting the android system through getSystemService Method
@@ -87,16 +86,17 @@ public class AdminSendJobNotification extends AppCompatActivity {
                 requesttime = (int) System.currentTimeMillis();
                 //creating PendinIntent to grant the right to perform operation that we specified i.e give permision to open the app through notification
                 PendingIntent penIntent = PendingIntent.getActivity(AdminSendJobNotification.this, requesttime, notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                //crating notification through notification class with its attributes;
+                //creating notification through notification class with its attributes;
                 notiBuild = new Notification.Builder(getApplicationContext()).setContentTitle(JobName).setContentText(JobSubject).setContentTitle(JobDetails).setSmallIcon(R.drawable.notilogoweb).setChannelId(Channel_id).setContentIntent(penIntent);
                 Notfi = notiBuild.build();
                 //call setLatestEvent method of noticication class and pass the pendingIntent along with notification subject and body
                // Notfi.setLatestEventInfo(context, JobSubject, JobDetails, penIntent);
                // NotiMan.set
                 //checking the android version compatability here it is for oreo
-              /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     NotiMan.createNotificationChannel(mChannel);
-                }*/
+                    NotiMan.notify(notifyID, Notfi);
+                }
               //  Notfi.flags |= Notification.FLAG_AUTO_CANCEL;
                 // now push the information by the method notify
                 NotiMan.notify(notifyID, Notfi);

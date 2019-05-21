@@ -62,9 +62,9 @@ public class SearchNewUserByDistrict extends AppCompatActivity {
         //end
         // list initialization and adding value
         districtList = new ArrayList<String>();
-        districtList.add("Sadia");
         districtList.add("Tinsukia");
         districtList.add("Dibrugarh");
+        districtList.add("Choraideo");
         districtList.add("Sibsagar");
         districtList.add("Jorhat");
         districtList.add("Golaghat");
