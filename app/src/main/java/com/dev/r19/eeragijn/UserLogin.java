@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class UserLogin extends AppCompatActivity {
 
     private EditText userId, Pass;
-    private Button login;
+    private Button login, resetPassword;
 
     private FirebaseAuth auth;
     @Override
@@ -29,6 +29,7 @@ public class UserLogin extends AppCompatActivity {
         userId = (EditText)findViewById(R.id.empUserId);
         Pass = (EditText)findViewById(R.id.empUserPass);
         login = (Button)findViewById(R.id.empLogIn);
+        resetPassword = (Button)findViewById(R.id.UlogIn);
 
         auth = FirebaseAuth.getInstance();
         //log in listener
@@ -55,6 +56,14 @@ public class UserLogin extends AppCompatActivity {
                    }
                     }
                 });
+            }
+        });
+        // to reset password
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserLogin.this, ResetPassword.class);
+                startActivity(intent);
             }
         });
     }

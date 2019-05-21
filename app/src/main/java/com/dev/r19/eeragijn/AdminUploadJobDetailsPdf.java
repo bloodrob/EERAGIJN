@@ -1,10 +1,14 @@
 package com.dev.r19.eeragijn;
 
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.net.Uri.*;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,9 +46,15 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
     StorageReference stref;
     // for set up progressbar
     ProgressDialog pdD;
+    // static string
+    static String getTheFileName;
     // Context and Uri to use in get the file path from uri
     Context context1;
     Uri uri1;
+    //static string to passed the data from afunction
+    static String myResult;
+    //set up a annotaion for comtable with adnroid version. here it is for Oreo. Api level 26
+    @TargetApi(Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,9 +100,17 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
         if (requestCode == PICK_PDF_CODE && resultCode == RESULT_OK && data != null && data.getData()!=null) {
             //if file is selected
             if (data.getData()!= null) {
+                // method define to get the name
+                try {
+                    getTheFileName(context1, uri1);
+                    File fileName = new File(myResult);
+                    getTheFileName = fileName.getName();
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
                 // uploading the file
                 pathToPdf = data.getData();
-                getThePdfName.setText("Here your file to be uploaded, if it is correct then you can upload it" +data.getData());
+                getThePdfName.setText("Here your file to be uploaded, if it is correct then you can upload it" + getTheFileName);
                 Toast.makeText(AdminUploadJobDetailsPdf.this, "File Selected", Toast.LENGTH_SHORT).show();
             }
             if (data.getData() == null){
@@ -99,6 +118,7 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
             }
         }
     }
+    // method to upload the pdf file to firebase
     private void PdfUploader() {
         pdD.show();
         database = FirebaseStorage.getInstance();
@@ -117,5 +137,26 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
                 Toast.makeText(AdminUploadJobDetailsPdf.this, "Uploaded Failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    // method declare for getting the file name
+    private String getTheFileName(Context context1, Uri uri1) throws URISyntaxException {
+        if ("content".equalsIgnoreCase(uri1.getScheme())) {
+            String[] proj = {MediaStore.Files.FileColumns.DATA};
+            Cursor cursor;
+            try {
+                cursor = context1.getContentResolver().query(uri1, proj, null, null, null);
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA);
+                if (cursor.moveToFirst()) {
+                     myResult = cursor.getString(column_index);
+                    return myResult;
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else if ("file".equalsIgnoreCase(uri1.getScheme())) {
+            myResult =  uri1.getPath();
+            return myResult;
+        }
+        return null;
     }
 }

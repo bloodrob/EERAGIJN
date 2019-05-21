@@ -7,17 +7,25 @@
             android:icon="@drawable/ic_menu_home"
             android:title="Home" />
         <item
-            android:id="@+id/nav_register"
+            android:id="@+id/nav_check_new_appli"
             android:icon="@drawable/ic_menu_register"
-            android:title="Register" />
+            android:title="Check New Applicant" />
         <item
-            android:id="@+id/nav_login"
+            android:id="@+id/nav_send_job_noti"
             android:icon="@drawable/ic_menu_login"
-            android:title="Login" />
+            android:title="Send Job Notification" />
+        <item
+            android:id="@+id/nav_check_exist_appli"
+            android:icon="@drawable/ic_menu_aboutus"
+            android:title="Check Exsiting Apllicant" />
         <item
             android:id="@+id/nav_aboutus"
             android:icon="@drawable/ic_menu_aboutus"
-            android:title="Aboutus" />
+            android:title="About Us" />
+        <item
+            android:id="@+id/nav_logOut"
+            android:icon="@drawable/ic_menu_aboutus"
+            android:title="Log Out" />
     </group>
 
     <item android:title="Communicate">

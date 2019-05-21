@@ -5,13 +5,14 @@ package com.dev.r19.eeragijn;
  */
 
 public class AdminPushDataModel {
-    public String activeId,Ex_name,Ex_email,Ex_fatherName,Ex_caste,Ex_gender,Ex_dob,Ex_address, Ex_district,Ex_city,Ex_state,Ex_mobile;
+    public String activeId,Ex_EmpId, Ex_name,Ex_email,Ex_fatherName,Ex_caste,Ex_gender,Ex_dob,Ex_address, Ex_district,Ex_city,Ex_state,Ex_mobile;
 
     public AdminPushDataModel(){
     }
 
-    public AdminPushDataModel(String ex_name, String ex_email, String ex_fatherName, String ex_caste, String ex_gender, String ex_dob, String ex_address, String ex_district, String ex_city, String ex_state, String ex_mobile) {
+    public AdminPushDataModel(String ex_name, String ex_EmpId, String ex_email, String ex_fatherName, String ex_caste, String ex_gender, String ex_dob, String ex_address, String ex_district, String ex_city, String ex_state, String ex_mobile) {
         Ex_name = ex_name;
+        Ex_EmpId = ex_EmpId;
         Ex_email = ex_email;
         Ex_fatherName = ex_fatherName;
         Ex_caste = ex_caste;
