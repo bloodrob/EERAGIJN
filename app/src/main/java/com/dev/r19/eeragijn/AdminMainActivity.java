@@ -105,7 +105,7 @@ public class AdminMainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            // Handle camera action
         } else if (id == R.id.nav_sendJobNotification) {
             Intent intent = new Intent(AdminMainActivity.this, AdminSendJobNotification.class);
             startActivity(intent);
