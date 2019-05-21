@@ -2,51 +2,24 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back_2"
-    tools:context="com.dev.r19.eeragijn.AdminMainActivity">
-    <RelativeLayout
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <include
+        layout="@layout/app_bar_admin_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/to_check_new_user"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:background="@drawable/btn_2"
-        android:text="Check new Applicant"
-        android:layout_alignBottom="@+id/to_send_notification"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="82dp" />
-
-    <Button
-        android:id="@+id/to_send_notification"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:text="Tap To Send Job Notification"
-        android:background="@drawable/btn_2"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/to_check_new_user" />
-
-    <Button
-        android:id="@+id/to_check_existing_user"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:background="@drawable/btn_2"
-        android:layout_marginTop="39dp"
-        android:text="Check Existing Applicant"
-        android:layout_below="@+id/to_check_new_user"
-        android:layout_alignStart="@+id/to_send_notification" />
-    </RelativeLayout>
     <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_home"
-        app:menu="@menu/activity_home_drawer">
-    </android.support.design.widget.NavigationView>
+        app:headerLayout="@layout/nav_header_admin_main"
+        app:menu="@menu/activity_admin_main_drawer" />
+
 </android.support.v4.widget.DrawerLayout>

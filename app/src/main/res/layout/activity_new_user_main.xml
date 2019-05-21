@@ -1,40 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back1"
-    tools:context="com.dev.r19.eeragijn.NewUserMainActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <Button
-        android:id="@+id/doc_upload"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="89dp"
-        android:background="@drawable/btn_3"
-        android:text="Upload Document" />
+    <include
+        layout="@layout/app_bar_new_user_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/persional_info_insert"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:layout_alignStart="@+id/doc_upload"
-        android:layout_below="@+id/doc_upload"
-        android:background="@drawable/btn_3"
-        android:layout_marginTop="74dp"
-        android:text="Insert Your Periosnal Information" />
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_new_user_main"
+        app:menu="@menu/activity_new_user_main_drawer" />
 
-    <Button
-        android:id="@+id/educational_info_insert"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:layout_alignStart="@+id/persional_info_insert"
-        android:layout_below="@+id/persional_info_insert"
-        android:background="@drawable/btn_3"
-        android:layout_marginTop="74dp"
-        android:text="Insert Your Educational Qualification" />
-</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>
