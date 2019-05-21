@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ViewAdminUploadedJobDetails extends AppCompatActivity {
 
-    private TextView takeJobString, jobTitle, subjectOfJob, detailsOfjob;
+    private TextView jobTitle, subjectOfJob, detailsOfjob;
     private Button downloadJobPdf;
     // FireBase to use in search
     FirebaseDatabase database;
@@ -25,14 +25,10 @@ public class ViewAdminUploadedJobDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_admin_uploaded_job_details);
         //initialization
-        takeJobString = (TextView)findViewById(R.id.take_job_string);
         jobTitle = (TextView)findViewById(R.id.job_title);
         subjectOfJob = (TextView)findViewById(R.id.job_subject);
         detailsOfjob = (TextView)findViewById(R.id.job_details);
         downloadJobPdf = (Button)findViewById(R.id.download_job_pdf);
-        // displaying the string
-        takeJobString.setText(AdminSendJobNotification.JobName +"\n" +AdminSendJobNotification.JobSubject +"\n"+ AdminSendJobNotification.JobDetails);
-
         // getting the string
         final String nameOfJob = AdminSendJobNotification.JobName.toString().trim();
         // firebase Initialization

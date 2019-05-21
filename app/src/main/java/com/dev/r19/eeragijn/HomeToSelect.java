@@ -19,7 +19,7 @@ public class HomeToSelect extends AppCompatActivity {
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeToSelect.this, AdminHome.class);
+                Intent intent = new Intent(HomeToSelect.this, AdminLogin.class);
                 startActivity(intent);
             }
         });
