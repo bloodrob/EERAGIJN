@@ -145,7 +145,7 @@ public class SearchAllExistingUserByDistrict extends AppCompatActivity {
                     // adding searched data to arraylist
                     takeDistrictList.add("Employee Id : " +adMod1.Ex_EmpId +"\n" +"Name  :  "+adMod1.Ex_name +"\n"+"\n"+"\n");
                     //initializating and getting the list of item
-                    takeTheListOfSearchedDistrict = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item, takeDistrictList);
+                    takeTheListOfSearchedDistrict = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, takeDistrictList);
                     existUserSearchedList.setAdapter(takeTheListOfSearchedDistrict);
                 }
             }

@@ -6,4 +6,22 @@
     android:layout_height="match_parent"
     tools:context="com.dev.r19.eeragijn.UserCheckStatus">
 
+    <TextView
+        android:id="@+id/show_error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="57dp"
+         />
+
+    <ListView
+        android:id="@+id/show_exist_user_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/show_error_text"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="96dp" />
 </RelativeLayout>
