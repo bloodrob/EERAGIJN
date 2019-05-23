@@ -28,11 +28,9 @@
         <activity android:name=".AdminLogin" />
         <activity android:name=".AdminMainActivity" />
         <activity android:name=".UserDocumentUpload" />
-        <activity android:name=".UserMainActivity" />
         <activity android:name=".SuccessDocumentUpload" />
         <activity android:name=".CheckUploadFile" />
         <activity android:name=".NewUserMainActivity" />
-        <activity android:name=".ExistingUserMainActivity" />
         <activity android:name=".AuthExistingUserMainActivity" />
         <activity android:name=".UserPersionalInfoInsert" />
         <activity android:name=".UserEducationQualificationInsert" />
@@ -43,14 +41,18 @@
         <activity android:name=".SendGeneratedIdToUser" />
         <activity android:name=".AdminPushUserData" />
         <activity android:name=".AdminSendJobNotification" />
-        <activity android:name=".AdminSearchExistingUser" />
         <activity android:name=".AdminViewDocument" />
         <activity android:name=".HomeToSelect" />
         <activity android:name=".AdminUploadJobDetailsPdf" />
         <activity android:name=".ViewAdminUploadedJobDetails" />
         <activity android:name=".AdminEnteredJodDetails" />
         <activity android:name=".SearchAllExistingUserByDistrict" />
-        <activity android:name=".ResetPassword"></activity>
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".UserSignOut" />
+        <activity android:name=".UserSearchAllJob" />
+        <activity android:name=".UserCheckStatus" />
+        <activity android:name=".AboutUs" />
+        <activity android:name=".ContactUs"></activity>
     </application>
 
 </manifest>

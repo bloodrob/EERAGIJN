@@ -111,7 +111,7 @@ public class AdminMainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_searchExistingUser) {
-            Intent intent = new Intent(AdminMainActivity.this, AdminSearchExistingUser.class);
+            Intent intent = new Intent(AdminMainActivity.this, SearchAllExistingUserByDistrict.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_searchNewUser) {

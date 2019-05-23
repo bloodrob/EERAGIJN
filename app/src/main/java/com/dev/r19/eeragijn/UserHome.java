@@ -26,7 +26,7 @@ public class UserHome extends AppCompatActivity {
         // checking for session status
         auth = FirebaseAuth.getInstance().getCurrentUser();
         if (auth != null) {
-            Intent intent = new Intent(UserHome.this, UserMainActivity.class);
+            Intent intent = new Intent(UserHome.this, NewUserMainActivity.class);
             startActivity(intent);
         }
 

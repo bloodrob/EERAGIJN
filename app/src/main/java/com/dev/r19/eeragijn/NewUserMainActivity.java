@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class NewUserMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -83,19 +84,30 @@ public class NewUserMainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_uploadDocument) {
-            Intent intent = new Intent(NewUserMainActivity.this, UserDocumentUpload.class);
-            startActivity(intent);
-
-
-        } else if (id == R.id.nav_personalInformation) {
+        } else if (id == R.id.nav_updateProfile) {
             Intent intent = new Intent(NewUserMainActivity.this, UserPersionalInfoInsert.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_educationInformation) {
-            Intent intent = new Intent(NewUserMainActivity.this, UserEducationQualificationInsert.class);
+
+        } else if (id == R.id.nav_checkStatus) {
+            Intent intent = new Intent(NewUserMainActivity.this, UserCheckStatus.class);
             startActivity(intent);
 
+        } else if (id == R.id.nav_searchJob) {
+            Intent intent = new Intent(NewUserMainActivity.this, UserSearchAllJob.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_chat) {
+            Toast.makeText(NewUserMainActivity.this, "This Feature Will be Comming Soon", Toast.LENGTH_LONG).show();
+        }
+        else if (id == R.id.nav_aboutUs) {
+            Intent intent = new Intent(NewUserMainActivity.this, AboutUs.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_contactUs) {
+            Intent intent = new Intent(NewUserMainActivity.this, ContactUs.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_signOut) {
+            Intent intent = new Intent(NewUserMainActivity.this, UserSignOut.class);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

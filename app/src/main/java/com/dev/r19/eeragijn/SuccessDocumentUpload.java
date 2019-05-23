@@ -19,7 +19,7 @@ public class SuccessDocumentUpload extends AppCompatActivity {
         toMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SuccessDocumentUpload.this, UserMainActivity.class);
+                Intent intent = new Intent(SuccessDocumentUpload.this, NewUserMainActivity.class);
                 startActivity(intent);
             }
         });

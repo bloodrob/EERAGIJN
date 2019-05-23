@@ -7,17 +7,21 @@
             android:icon="@drawable/ic_menu_home"
             android:title="Home" />
         <item
-            android:id="@+id/nav_uploadDocument"
+            android:id="@+id/nav_updateProfile"
             android:icon="@drawable/ic_file_upload"
-            android:title="Upload Documents" />
+            android:title="Update Profile" />
         <item
-            android:id="@+id/nav_personalInformation"
+            android:id="@+id/nav_checkStatus"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Personal Information" />
+            android:title="Check Status" />
         <item
-            android:id="@+id/nav_educationInformation"
+            android:id="@+id/nav_searchJob"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Education Information" />
+            android:title="Search Job" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Chatting" />
         <item
             android:id="@+id/nav_aboutUs"
             android:icon="@drawable/ic_menu_manage"
@@ -26,6 +30,10 @@
             android:id="@+id/nav_contactUs"
             android:icon="@drawable/ic_contactus"
             android:title="Contact Us" />
+        <item
+            android:id="@+id/nav_signOut"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Sign Out" />
     </group>
 
     <item android:title="Communicate">
