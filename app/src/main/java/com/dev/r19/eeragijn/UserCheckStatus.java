@@ -1,9 +1,11 @@
 package com.dev.r19.eeragijn;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,8 @@ public class UserCheckStatus extends AppCompatActivity {
     private List<String> addExistUserData;
     //arraydaptor to get the list item
     private ArrayAdapter<String> getAddExistUserdata;
+    // Progress dialod to show the process
+    private ProgressDialog pb1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,10 @@ public class UserCheckStatus extends AppCompatActivity {
         showExistUserData = (ListView)findViewById(R.id.show_exist_user_data);
         //initialization of list;
         addExistUserData = new ArrayList<>();
+        //Initlization of progressbar
+        pb1 = new ProgressDialog(this);
+        pb1.setTitle("Searching, Please Wait.....");
+        pb1.setCanceledOnTouchOutside(false);
         //firebase work for auth
         auth1 = FirebaseAuth.getInstance();
         user1 = auth1.getCurrentUser();
@@ -59,6 +67,8 @@ public class UserCheckStatus extends AppCompatActivity {
 
     }
     private void getTheDataOfUser() {
+        //showing the progress bar
+        pb1.show();
         dbRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -66,12 +76,14 @@ public class UserCheckStatus extends AppCompatActivity {
                AdminPushDataModel exData = dataSnapshot.getValue(AdminPushDataModel.class);
                 //if data is exist
                 if (getCurActId.equals(exData.activeId)) {
+                    pb1.dismiss();
                     addExistUserData.add("Your Active Id  : "+exData.activeId +"\n\n Your Name  : "+exData.Ex_name +"\n\n Your Emp exchange id  :"+exData.Ex_EmpId +"\n\n Your DOB  : "+exData.Ex_dob +"\n\n Your Cast  : "+exData.Ex_caste);
                     getAddExistUserdata = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, addExistUserData);
                     showExistUserData.setAdapter(getAddExistUserdata);
                 }
+                pb1.dismiss();
                 //if data does not exist
-                else if (!addExistUserData.equals(exData.activeId) && addExistUserData.isEmpty()){
+                if (!addExistUserData.equals(exData.activeId) && addExistUserData.isEmpty()){
                     showErrorData.setText("You are not yet varified to get an Emp Exchange Id, Your application is under Process, Please wait for few more days." +"\n" +"Thank you...");
                 }
             }
