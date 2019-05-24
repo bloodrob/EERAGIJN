@@ -73,9 +73,8 @@ public class UserSearchAllJob extends AppCompatActivity {
                         String[] splitString = myString.split("\n");
                         nameOfJob = splitString[0];
                         Toast.makeText(UserSearchAllJob.this, "You select :"+nameOfJob, Toast.LENGTH_LONG).show();
-                        //get the pushed id
-                        String myPushId = refDataB.child(nameOfJob).push().getKey();
-                        Toast.makeText(UserSearchAllJob.this, "Value is : "+myPushId, Toast.LENGTH_LONG).show();
+                        // method to get the url
+                        getTheSelectFileUrl();
                     }
                 });
             }
@@ -101,5 +100,39 @@ public class UserSearchAllJob extends AppCompatActivity {
                 return;
             }
         });
+    }
+    // function to get the url
+    private void getTheSelectFileUrl() {
+        DatabaseReference ref11 = FirebaseDatabase.getInstance().getReference("UploadedJobDetails");
+        ref11.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+             JobUploadDetailsModel findUrl2 = dataSnapshot.getValue(JobUploadDetailsModel.class);
+                if (nameOfJob.equals(findUrl2.Jobname)) {
+                    Toast.makeText(UserSearchAllJob.this, "Url is :"+findUrl2.MyFileUrl, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

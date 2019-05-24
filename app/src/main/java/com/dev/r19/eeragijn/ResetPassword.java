@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -52,9 +53,9 @@ public class ResetPassword extends AppCompatActivity {
             }
         });
         // firebase work for database failure
-        auth.sendPasswordResetEmail(OfMyEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+        auth.sendPasswordResetEmail(OfMyEmail).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
+            public void onFailure(@NonNull Exception e) {
                 Toast.makeText(ResetPassword.this, "Database Failure, Please Contact to the Database Administrators", Toast.LENGTH_LONG).show();
                 return;
             }

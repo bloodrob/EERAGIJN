@@ -59,6 +59,8 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
     static String myResult;
     // stroring the download url;
     static String MyFileUrl;
+    // static string to use the get key value in another page
+    static String getPushedIdForUse;
     //set up a annotaion for comtable with adnroid version. here it is for Oreo. Api level 26
     @TargetApi(Build.VERSION_CODES.O)
     @Override
@@ -154,7 +156,7 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
         JobUploadDetailsModel jobUpMod = new JobUploadDetailsModel(JobName, JobSubject, JobDetails, MyFileUrl);
         refToDatbaseToUrl = databaseToUrl.getReference("UploadedJobDetails");
         // pushing the value
-        refToDatbaseToUrl.child(JobName).push().setValue(MyFileUrl.toString());
+        refToDatbaseToUrl.child(JobName+"/MyFileUrl").setValue(MyFileUrl.toString());
         // intent to AdminSendjobNotificatio
         Intent intent = new Intent(AdminUploadJobDetailsPdf.this, AdminSendJobNotification.class);
         startActivity(intent);
