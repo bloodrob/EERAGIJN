@@ -10,20 +10,28 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserSearchAllJob extends AppCompatActivity {
 
-    //firebase variable;
+    //firebase database variable;
     private FirebaseDatabase dataB;
     private DatabaseReference refDataB;
+    //firebase storage
+    private FirebaseStorage strMyFile;
+    private StorageReference refTostrMyFile;
     //button
     private ListView listOfAllSearchJob;
     //list to add the data
@@ -34,6 +42,8 @@ public class UserSearchAllJob extends AppCompatActivity {
     private ProgressDialog pd11;
     //static string to take the selected item list
     static String nameOfJob;
+    // string to take the url
+    private String takeMyUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +119,10 @@ public class UserSearchAllJob extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
              JobUploadDetailsModel findUrl2 = dataSnapshot.getValue(JobUploadDetailsModel.class);
                 if (nameOfJob.equals(findUrl2.Jobname)) {
+                    takeMyUrl = findUrl2.MyFileUrl.toString().trim();
                     Toast.makeText(UserSearchAllJob.this, "Url is :"+findUrl2.MyFileUrl, Toast.LENGTH_LONG).show();
+                    // method to retrive the pdf file
+                    getMyPdfFile();
                 }
             }
 
@@ -134,5 +147,25 @@ public class UserSearchAllJob extends AppCompatActivity {
             }
         });
 
+    }
+    // retrive the pdf file function
+    private void getMyPdfFile() {
+        strMyFile = FirebaseStorage.getInstance();
+        refTostrMyFile = strMyFile.getReference(takeMyUrl);
+        // handling the i/o file exception
+        try {
+            //file object to create temp file with the filename
+            File locFile = File.createTempFile(nameOfJob,".pdf");
+            refTostrMyFile.getFile(locFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+
+                }
+            });
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
