@@ -51,7 +51,7 @@ public class UserCheckStatus extends AppCompatActivity {
         addExistUserData = new ArrayList<>();
         //Initlization of progressbar
         pb1 = new ProgressDialog(this);
-        pb1.setTitle("Searching, Please Wait.....");
+        pb1.setMessage("Searching, Please Wait.....");
         pb1.setCanceledOnTouchOutside(false);
         //firebase work for auth
         auth1 = FirebaseAuth.getInstance();

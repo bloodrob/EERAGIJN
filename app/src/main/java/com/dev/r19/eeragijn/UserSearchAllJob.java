@@ -3,6 +3,8 @@ package com.dev.r19.eeragijn;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -30,6 +32,8 @@ public class UserSearchAllJob extends AppCompatActivity {
     private ArrayAdapter<String> getAddListOfAllJob;
     // Progress Dialog to show the progress
     private ProgressDialog pd11;
+    //static string to take the selected item list
+    static String nameOfJob;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +45,7 @@ public class UserSearchAllJob extends AppCompatActivity {
         refDataB = dataB.getReference("UploadedJobDetails");
         //initialize and set up progressdialog
         pd11 = new ProgressDialog(this);
-        pd11.setTitle("Searching...., Please wait.");
+        pd11.setMessage("Searching...., Please wait.");
         pd11.setCanceledOnTouchOutside(false);
         //initializing arraylist
         addListOfAllJob = new ArrayList<>();
@@ -56,9 +60,18 @@ public class UserSearchAllJob extends AppCompatActivity {
                 JobUploadDetailsModel JobMod = dataSnapshot.getValue(JobUploadDetailsModel.class);
                 // dissmissing the progress dialog
                 pd11.dismiss();
-                addListOfAllJob.add("Job Title  : "+JobMod.Jobname +"\n \n Job Subject  : "+JobMod.JobSubject +"\n\n Job Details  : "+JobMod.JobDetails +"\n\n\n\n");
+                addListOfAllJob.add("Job Title  : "+JobMod.Jobname +"\n\n Job Subject  : "+JobMod.JobSubject +"\n\n Job Details  : "+JobMod.JobDetails +"\n\n Click the Job Title to download the advertisedment."+"\n\n\n\n");
                 getAddListOfAllJob = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, addListOfAllJob);
                 listOfAllSearchJob.setAdapter(getAddListOfAllJob);
+                //action after choosing a list item
+                listOfAllSearchJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                      String myString = parent.getItemAtPosition(position).toString().trim();
+                        nameOfJob = (String) myString.substring(13, 14);
+                        Toast.makeText(UserSearchAllJob.this, "You select :"+nameOfJob, Toast.LENGTH_LONG).show();
+                    }
+                });
             }
 
             @Override
