@@ -60,15 +60,18 @@ public class UserSearchAllJob extends AppCompatActivity {
                 JobUploadDetailsModel JobMod = dataSnapshot.getValue(JobUploadDetailsModel.class);
                 // dissmissing the progress dialog
                 pd11.dismiss();
-                addListOfAllJob.add("Job Title  : "+JobMod.Jobname +"\n\n Job Subject  : "+JobMod.JobSubject +"\n\n Job Details  : "+JobMod.JobDetails +"\n\n Click the Job Title to download the advertisedment."+"\n\n\n\n");
+                addListOfAllJob.add(JobMod.Jobname +"\n"+"\nJob Subject  : "+JobMod.JobSubject +"\n\nJob Details  : "+JobMod.JobDetails +"\n\n Click the Job Title to download the advertisedment."+"\n\n\n\n");
                 getAddListOfAllJob = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, addListOfAllJob);
                 listOfAllSearchJob.setAdapter(getAddListOfAllJob);
                 //action after choosing a list item
                 listOfAllSearchJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                      String myString = parent.getItemAtPosition(position).toString().trim();
-                        nameOfJob = (String) myString.substring(13, 14);
+                        //take the selected string
+                        String myString = parent.getItemAtPosition(position).toString().trim();
+                        //spli the string to get the required substring and strore in a string variable
+                        String[] splitString = myString.split("\n");
+                        nameOfJob = splitString[0];
                         Toast.makeText(UserSearchAllJob.this, "You select :"+nameOfJob, Toast.LENGTH_LONG).show();
                     }
                 });
