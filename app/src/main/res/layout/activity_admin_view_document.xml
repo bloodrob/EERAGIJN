@@ -15,11 +15,10 @@
         android:maxHeight="1000dp"
         android:maxWidth="100dp"
         android:scaleType="center"
-        android:layout_marginLeft="3dp"
+        android:layout_marginLeft="30dp"
         app:srcCompat="@drawable/common_full_open_on_phone"
         android:layout_marginTop="125dp"
-        android:layout_below="@+id/textView43"
-        android:layout_toStartOf="@+id/textView43" />
+        android:layout_below="@+id/textView43" />
 
     <TextView
         android:id="@+id/textView43"
