@@ -7,4 +7,41 @@
     android:background="@drawable/back_3"
     tools:context="com.dev.r19.eeragijn.ContactUs">
 
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="The application is developed by Tinsukia NIC as a major projectof the Developer"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="138dp" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView47"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:text="Robin Sonowal" />
+
+    <TextView
+        android:id="@+id/textView51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView49"
+        android:layout_below="@+id/textView49"
+        android:layout_marginTop="13dp"
+        android:text="Akashjoti Bora" />
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView51"
+        android:layout_below="@+id/textView51"
+        android:layout_marginTop="19dp"
+        android:text="Contact Info
+        binrobwal@gmail.com
+        akashbora122@gmail.com" />
 </RelativeLayout>

@@ -121,21 +121,17 @@ public class SearchNewUserByDistrict extends AppCompatActivity {
     }
     // defining the method
     private void submitSearch(){
-        //pd work
+        //initialization of progress dialog
         pd1 = new ProgressDialog(this);
-        pd1.setMessage("searching....  Please wait");
+        //  pd1.setMessage("searching....  Please wait");
         pd1.setCanceledOnTouchOutside(false);
+        pd1 = ProgressDialog.show(this, "Searching....", "Please wait.");
         pd1.show();
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 SearchNewUserByDistrictModel res = dataSnapshot.getValue(SearchNewUserByDistrictModel.class);
-                if (!res.District.equals((District))){
-                    //dismissing pd
-                    pd1.dismiss();
-                    Toast.makeText(SearchNewUserByDistrict.this, "No New Apllicant Available Right Now", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                // if condition satisfy
                 if (res.District.equals(District)) {
                     // dismissing pd
                     pd1.dismiss();
@@ -153,6 +149,13 @@ public class SearchNewUserByDistrict extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
+                }
+                //dismissing pd
+                pd1.dismiss();
+                // if condition not satisfy
+                if (!res.District.equals((District))){
+                    Toast.makeText(SearchNewUserByDistrict.this, "No New Apllicant Available Right Now", Toast.LENGTH_SHORT).show();
+                    return;
                 }
             }
 

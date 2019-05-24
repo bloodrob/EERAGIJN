@@ -131,22 +131,21 @@ public class SearchAllExistingUserByDistrict extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 AdminPushDataModel adMod1 = dataSnapshot.getValue(AdminPushDataModel.class);
-                //condition if not equals
-                if (!District.equals(adMod1.Ex_district)) {
-                    if (ProDai == null & ProDai.isShowing()){
-                        ProDai.dismiss();
-                        Toast.makeText(SearchAllExistingUserByDistrict.this, "No Existing User In This District", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
                 // condition if equals
                 if (District.equals(adMod1.Ex_district)){
                     ProDai.dismiss();
                     // adding searched data to arraylist
                     takeDistrictList.add("Employee Id : " +adMod1.Ex_EmpId +"\n" +"Name  :  "+adMod1.Ex_name +"\n"+"\n"+"\n");
                     //initializating and getting the list of item
-                    takeTheListOfSearchedDistrict = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item, takeDistrictList);
+                    takeTheListOfSearchedDistrict = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, takeDistrictList);
                     existUserSearchedList.setAdapter(takeTheListOfSearchedDistrict);
+                }
+                //dissmissing the pd
+                ProDai.dismiss();
+                //condition if not equals
+                if (!District.equals(adMod1.Ex_district)) {
+                    Toast.makeText(SearchAllExistingUserByDistrict.this, "No Existing User In This District", Toast.LENGTH_SHORT).show();
+                    return;
                 }
             }
 
