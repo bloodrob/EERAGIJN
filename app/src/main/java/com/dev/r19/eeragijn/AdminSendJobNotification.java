@@ -28,7 +28,7 @@ public class AdminSendJobNotification extends AppCompatActivity {
     private EditText nameOfJob, subjectOfJod, detailsOfJod;
     private Button sendJodNoti;
     //static string for input value
-    static String JobName, JobSubject, JobDetails;
+    static String JobName, JobSubject, JobDetails, MyFileUrl;
     // To intensiate object for use in notification class;
     private Notification Notfi;
     //notification builder for format the notification
@@ -105,15 +105,15 @@ public class AdminSendJobNotification extends AppCompatActivity {
                 database = FirebaseDatabase.getInstance();
                 ref = database.getReference("UploadedJobDetails");
                 // mthod to assign key value
-                SaveJobDetails(JobName, JobSubject, JobDetails);
+                SaveJobDetails(JobName, JobSubject, JobDetails, MyFileUrl);
                 Intent intent = new Intent(AdminSendJobNotification.this, AdminUploadJobDetailsPdf.class);
                 startActivity(intent);
             }
         });
     }
     // method for save data
-    private void SaveJobDetails(String JobName, String JobSubject, String JobDetails) {
-        JobUploadDetailsModel jobUp = new JobUploadDetailsModel(JobName, JobSubject, JobDetails);
+    private void SaveJobDetails(String JobName, String JobSubject, String JobDetails, String MyFileUrl) {
+        JobUploadDetailsModel jobUp = new JobUploadDetailsModel(JobName, JobSubject, JobDetails, MyFileUrl);
         JobName = jobUp.Jobname;
         ref.child(JobName).setValue(jobUp);
         // method to save data

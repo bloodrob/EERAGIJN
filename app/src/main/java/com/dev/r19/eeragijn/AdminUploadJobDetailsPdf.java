@@ -22,6 +22,7 @@ import android.net.Uri.*;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -41,18 +42,23 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
     private Uri pathToPdf;
     // use in the file chooser as a passed code
     final static int PICK_PDF_CODE = 2342;
-    //Firebase variable
+    //Firebase strorage variable
     FirebaseStorage database;
     StorageReference stref;
+    // Firebase Database Variable
+    private FirebaseDatabase databaseToUrl;
+    private DatabaseReference refToDatbaseToUrl;
+
+    //static String for firebase
+    static String JobName, JobSubject, JobDetails;
     // for set up progressbar
     ProgressDialog pdD;
     // static string
     static String getTheFileName;
-    // Context and Uri to use in get the file path from uri
-    Context context1;
-    Uri uri1;
     //static string to passed the data from afunction
     static String myResult;
+    // stroring the download url;
+    static String MyFileUrl;
     //set up a annotaion for comtable with adnroid version. here it is for Oreo. Api level 26
     @TargetApi(Build.VERSION_CODES.O)
     @Override
@@ -100,17 +106,9 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
         if (requestCode == PICK_PDF_CODE && resultCode == RESULT_OK && data != null && data.getData()!=null) {
             //if file is selected
             if (data.getData()!= null) {
-                // method define to get the name
-                try {
-                    getTheFileName(context1, uri1);
-                    File fileName = new File(myResult);
-                    getTheFileName = fileName.getName();
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                }
                 // uploading the file
                 pathToPdf = data.getData();
-                getThePdfName.setText("Here your file to be uploaded, if it is correct then you can upload it" + getTheFileName);
+                getThePdfName.setText("Here your file to be uploaded, if it is correct then you can upload it" + pathToPdf);
                 Toast.makeText(AdminUploadJobDetailsPdf.this, "File Selected", Toast.LENGTH_SHORT).show();
             }
             if (data.getData() == null){
@@ -129,6 +127,19 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
                 pdD.dismiss();
                 Toast.makeText(AdminUploadJobDetailsPdf.this, "Uploaded SuccessFully", Toast.LENGTH_SHORT).show();
                 showSuccessPdfUpload.setText("Successfuly uploaded, You can Choose other file to upload or go back to previous page.");
+                // getting the uploaded url
+                stref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                      Uri downloadUri1 = uri;
+                        MyFileUrl = downloadUri1.toString().trim();
+                        Toast.makeText(AdminUploadJobDetailsPdf.this, "Url Is : "+MyFileUrl, Toast.LENGTH_LONG).show();
+                        // method to get the node and add a new data on the child node
+                        JobName = getTheName.toString().trim();
+                        databaseToUrl = FirebaseDatabase.getInstance();
+                        addUrlInNewNode(JobName, JobSubject, JobDetails,MyFileUrl);
+                    }
+                });
             }
         });
         stref.putFile(pathToPdf).addOnFailureListener(new OnFailureListener() {
@@ -138,25 +149,14 @@ public class AdminUploadJobDetailsPdf extends AppCompatActivity {
             }
         });
     }
-    // method declare for getting the file name
-    private String getTheFileName(Context context1, Uri uri1) throws URISyntaxException {
-        if ("content".equalsIgnoreCase(uri1.getScheme())) {
-            String[] proj = {MediaStore.Files.FileColumns.DATA};
-            Cursor cursor;
-            try {
-                cursor = context1.getContentResolver().query(uri1, proj, null, null, null);
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA);
-                if (cursor.moveToFirst()) {
-                     myResult = cursor.getString(column_index);
-                    return myResult;
-                }
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
-        }else if ("file".equalsIgnoreCase(uri1.getScheme())) {
-            myResult =  uri1.getPath();
-            return myResult;
-        }
-        return null;
+    // function of add the data in a new node of existing data
+    private void addUrlInNewNode(String JobName, String JobSubject,String JobDetails, String MyFileUrl) {
+        JobUploadDetailsModel jobUpMod = new JobUploadDetailsModel(JobName, JobSubject, JobDetails, MyFileUrl);
+        refToDatbaseToUrl = databaseToUrl.getReference("UploadedJobDetails");
+        // pushing the value
+        refToDatbaseToUrl.child(JobName).push().setValue(MyFileUrl.toString());
+        // intent to AdminSendjobNotificatio
+        Intent intent = new Intent(AdminUploadJobDetailsPdf.this, AdminSendJobNotification.class);
+        startActivity(intent);
     }
 }

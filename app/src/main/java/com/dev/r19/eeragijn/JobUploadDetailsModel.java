@@ -5,13 +5,14 @@ package com.dev.r19.eeragijn;
  */
 
 public class JobUploadDetailsModel {
-    public String Jobname, JobSubject, JobDetails;
+    public String Jobname, JobSubject, JobDetails, MyFileUrl;
     public JobUploadDetailsModel() {
 
     }
-    public JobUploadDetailsModel(String JobName, String JobSubject, String JobDetails) {
+    public JobUploadDetailsModel(String JobName, String JobSubject, String JobDetails, String MyFileUrl) {
         this.Jobname = JobName;
         this.JobSubject = JobSubject;
         this.JobDetails = JobDetails;
+        this.MyFileUrl = MyFileUrl;
     }
 }
