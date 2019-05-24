@@ -76,14 +76,9 @@
         android:layout_marginTop="37dp"
         android:background="@drawable/btn_1"
         android:textCursorDrawable="@drawable/color_cursor"
-
         android:inputType="textPassword"
         android:textAlignment="center"
         android:textColor="#000000"/>
-
-
-
-
 
     <Button
         android:id="@+id/EnterReg"

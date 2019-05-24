@@ -16,15 +16,15 @@
             android:title="Check Status" />
         <item
             android:id="@+id/nav_searchJob"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_search"
             android:title="Search Job" />
         <item
             android:id="@+id/nav_chat"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_chat"
             android:title="Chatting" />
         <item
             android:id="@+id/nav_aboutUs"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_aboutus"
             android:title="About Us" />
         <item
             android:id="@+id/nav_contactUs"
@@ -32,7 +32,7 @@
             android:title="Contact Us" />
         <item
             android:id="@+id/nav_signOut"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_lock"
             android:title="Sign Out" />
     </group>
 

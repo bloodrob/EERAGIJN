@@ -16,11 +16,11 @@
             android:title="Search Existing User" />
         <item
             android:id="@+id/nav_searchNewUser"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_search"
             android:title="Search New User" />
         <item
             android:id="@+id/nav_aboutUs"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_aboutus"
             android:title="About Us" />
         <item
             android:id="@+id/nav_contactUs"

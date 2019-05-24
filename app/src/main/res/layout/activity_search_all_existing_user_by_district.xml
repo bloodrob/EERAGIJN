@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_3"
     tools:context="com.dev.r19.eeragijn.SearchAllExistingUserByDistrict">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Name The District of the users to be Searched"
+        android:textColor="#000000"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -19,34 +21,37 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="District Name"
         android:layout_below="@+id/textView4"
-        android:layout_alignStart="@+id/textView4" />
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="60dp"
+        android:textColor="#000000"
+        android:text="District Name"/>
 
     <Spinner
         android:id="@+id/spinner_district_list"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_alignBaseline="@+id/textView8"
-        android:layout_alignBottom="@+id/textView8"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="37dp" />
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="180dp"/>
 
     <Button
         android:id="@+id/submit_district"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:text="Submit The Search"
+        android:layout_height="40dp"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/btn_5"
         android:layout_below="@+id/spinner_district_list"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="Submit The Search"/>
 
     <ListView
         android:id="@+id/exist_user_searched_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignEnd="@+id/submit_district"
+        android:layout_alignEnd="@+id/textView4"
         android:layout_below="@+id/submit_district"
-        android:layout_marginTop="49dp" />
+        android:layout_marginTop="49dp"
+        android:layout_marginLeft="30dp"/>
+
 </RelativeLayout>
