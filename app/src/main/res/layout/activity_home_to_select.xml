@@ -7,6 +7,7 @@
     android:background="@drawable/back1"
     tools:context="com.dev.r19.eeragijn.HomeToSelect">
     <TextView
+        android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

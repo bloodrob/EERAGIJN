@@ -1,6 +1,7 @@
 package com.dev.r19.eeragijn;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,10 +14,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NewUserMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TextView setMarqueeContent;
+
+    private  TextView text;
+    private ImageView adminLogo;
+    private Animation rotate , blink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +35,25 @@ public class NewUserMainActivity extends AppCompatActivity
         setContentView(R.layout.activity_new_user_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Typeface mmedium = Typeface.createFromAsset(getAssets(), "fonts/MontserratMedium.ttf");//font style
+
+
+
+        rotate = AnimationUtils.loadAnimation(this , R.anim.rotate);
+        adminLogo = (ImageView) findViewById (R.id.image);
+        adminLogo.startAnimation(rotate);
+
+        blink = AnimationUtils.loadAnimation(this , R.anim.blink_anim);
+        text = (TextView) findViewById (R.id.Text_1);
+        text.startAnimation(blink);
+
+        text.setTypeface(mmedium);//text style
+
+        setMarqueeContent = (TextView)findViewById(R.id.set_moving_content_textview);
+        setMarqueeContent.setSelected(true);
+        //  setMarqueeContent.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        // end of BUtton
 
 
 

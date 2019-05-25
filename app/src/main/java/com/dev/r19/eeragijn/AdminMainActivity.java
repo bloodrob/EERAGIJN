@@ -1,6 +1,7 @@
 package com.dev.r19.eeragijn;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +26,10 @@ public class AdminMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private TextView setMarqueeContent;
 
+    private  TextView text;
+    private ImageView adminLogo;
+    private Animation rotate , blink;
+
     // varible for custom function of image changing
     private ImageView rotateImg;
     private int[] imageArray;
@@ -39,6 +44,20 @@ public class AdminMainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         // Button Initilization
 
+        Typeface mmedium = Typeface.createFromAsset(getAssets(), "fonts/MontserratMedium.ttf");//font style
+
+
+
+        rotate = AnimationUtils.loadAnimation(this , R.anim.rotate);
+        adminLogo = (ImageView) findViewById (R.id.image);
+        adminLogo.startAnimation(rotate);
+
+        blink = AnimationUtils.loadAnimation(this , R.anim.blink_anim);
+        text = (TextView) findViewById (R.id.Text_1);
+        text.startAnimation(blink);
+
+        text.setTypeface(mmedium);//text style
+
         setMarqueeContent = (TextView)findViewById(R.id.set_moving_content_textview);
         setMarqueeContent.setSelected(true);
         //  setMarqueeContent.setEllipsize(TextUtils.TruncateAt.MARQUEE);
@@ -46,11 +65,13 @@ public class AdminMainActivity extends AppCompatActivity
         rotateImg = (ImageView) findViewById(R.id.rotate_img);
         //end
         //initization array and assign value
-        imageArray = new int[2];
-        imageArray[0] = R.drawable.loginlogo;
-        imageArray[1] = R.drawable.logo1;
+        imageArray = new int[4];
+        imageArray[0] = R.drawable.img_1;
+        imageArray[1] = R.drawable.img_2;
+        imageArray[2] = R.drawable.img_3;
+        imageArray[3] = R.drawable.img_4;
         startImgIndex = 0;
-        endImgIndex = 1;
+        endImgIndex = 3;
         //end
         //method of swapping image within time interval
         sweepNextImage();

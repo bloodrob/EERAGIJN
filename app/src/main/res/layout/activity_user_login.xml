@@ -37,6 +37,7 @@
         android:layout_marginTop="130dp"
         android:layout_marginLeft="50dp"
         android:textAlignment="center"
+        android:textColor="#ffffff"
         android:hint="User ID"/>
 
 
@@ -51,6 +52,7 @@
         android:drawableLeft="@drawable/ic_menu_login"
         android:textCursorDrawable="@drawable/color_cursor"
         android:textAlignment="center"
+        android:textColor="#ffffff"
         android:hint="Password"
         android:inputType="textPassword" />
 
