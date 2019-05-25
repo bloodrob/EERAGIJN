@@ -11,4 +11,19 @@
     <string name="title_activity_admin_main">AdminMainActivity</string>
     <string name="title_activity_new_user_main">NewUserMainActivity</string>
     <string name="admin_marquee_text">Hi this is robin. I live in dibruggarh, Now i studied in Tezpur central University</string>
+    <string name="terms_ref"><b><u>Read Terms and Condition Carefully</u></b></string>
+    <string name="terms_string"><b><u>TERMS AND CONDITIONS</u></b></string>
+    <string name="terms_condition">
+        1. As you Know this app Displays your Contact Information and Address and your documents to its Administrators, \n\n
+		the person who will varify all your information.
+        2. We only view your documnets and contact information by the purpose of varification.\n\n
+		so that we will check and help you to generate an employee exchange no and get the \n\n
+		instant job(Govt, Private) notification.
+        3. Any Misuse of your phone number and Email address may occur from the hacker side. \n\n
+		but we can assure that no missleading or misuse of your persional , educational \n\
+		information or your document can occur or happen from our administrators side.
+        4. By Accepting Terms and Condition, You are giving your consent to show your Information to app users.\n\n
+        5. Developer of this app are not responsible for any misuse and spam on your mobile number and Email.
+    </string>
+
 </resources>

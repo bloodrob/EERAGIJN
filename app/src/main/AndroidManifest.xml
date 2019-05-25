@@ -52,7 +52,8 @@
         <activity android:name=".UserSearchAllJob" />
         <activity android:name=".UserCheckStatus" />
         <activity android:name=".AboutUs" />
-        <activity android:name=".ContactUs"></activity>
+        <activity android:name=".ContactUs" />
+        <activity android:name=".PopUpTermsAndCondition"></activity>
     </application>
 
 </manifest>
