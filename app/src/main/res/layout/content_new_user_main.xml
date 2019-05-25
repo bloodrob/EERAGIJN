@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/set_moving_content_textview"
-            android:text="@string/admin_marquee_text"
+            android:text="@string/user_marquee_text"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
@@ -49,7 +49,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp">
         <ImageView
-            android:id="@+id/rotate_img"
+            android:id="@+id/rotate_img12"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_centerHorizontal="true"

@@ -3,6 +3,7 @@ package com.dev.r19.eeragijn;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -28,6 +29,10 @@ public class NewUserMainActivity extends AppCompatActivity
     private  TextView text;
     private ImageView adminLogo;
     private Animation rotate , blink;
+    //for rotate image
+    private ImageView rotateImage12;
+    private int[] imageArray12;
+    private int curIndex12, startIndex12, endIndex12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,18 @@ public class NewUserMainActivity extends AppCompatActivity
         blink = AnimationUtils.loadAnimation(this , R.anim.blink_anim);
         text = (TextView) findViewById (R.id.Text_1);
         text.startAnimation(blink);
+        //for rotate image
+        rotateImage12 = (ImageView)findViewById(R.id.rotate_img12);
+        imageArray12 = new int[4];
+        imageArray12[0] = R.drawable.img_1;
+        imageArray12[1] = R.drawable.img_2;
+        imageArray12[2] = R.drawable.img_3;
+        imageArray12[3] = R.drawable.img_4;
+        startIndex12 = 0;
+        endIndex12 = 3;
+        //end
+        //method of swapping image within time interval
+        sweepNextImage12();
 
         text.setTypeface(mmedium);//text style
 
@@ -140,5 +157,46 @@ public class NewUserMainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    // fnction for the method sweepNextImage
+    public void sweepNextImage12() {
+        rotateImage12.setImageResource(imageArray12[curIndex12]);
+        Animation animRote = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
+        rotateImage12.startAnimation(animRote);
+        curIndex12 ++;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // checking condition for if the current index is greater than end Index
+                if (curIndex12>endIndex12) {
+                    curIndex12 --;
+                    // method for sweep prvious image
+                    sweepPreviousImage12();
+                }
+                else {
+                    sweepNextImage12(); // here we give 4 second interval to previous from current
+                }
+            }
+        }, 4000);
+    }
+    public void sweepPreviousImage12() {
+        rotateImage12.setImageResource(imageArray12[curIndex12]);
+        Animation animRote = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
+        rotateImage12.startAnimation(animRote);
+        curIndex12 --;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // checking condition for if the start index is greater than current Index
+                if (curIndex12<startIndex12) {
+                    curIndex12 ++;
+                    // method for sweep next image
+                    sweepNextImage12();
+                }
+                else {
+                    sweepPreviousImage12();// here we give 4 second interval to current from previous
+                }
+            }
+        }, 4000);
     }
 }

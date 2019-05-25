@@ -10,7 +10,16 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_admin_main">AdminMainActivity</string>
     <string name="title_activity_new_user_main">NewUserMainActivity</string>
-    <string name="admin_marquee_text">Hi this is robin. I live in dibruggarh, Now i studied in Tezpur central University</string>
+    <string name="admin_marquee_text">Dear Administraors of the app, You need to update all the job Update as soon as possible. \n\n
+        Make sure that you checked for the new applicant so that you can go throgh the varification process and and further process. \n\n
+        Also check weather the app is working efficintly or not, if found any error then contact to the database administrators.
+    </string>
+    <string name="user_marquee_text">Regularly check the app to get updated job deatils. \n\n
+        If you are new to this app , then update your profile by today. \n\n
+        If you are an existing user then you can search for job. \n\n
+        We provide you all updated job details as much as we can. \n\n
+
+    </string>
     <string name="terms_ref"><b><u>Read Terms and Condition Carefully</u></b></string>
     <string name="terms_string"><b><u>TERMS AND CONDITIONS</u></b></string>
     <string name="terms_condition">
@@ -20,7 +29,7 @@
 		so that we will check and help you to generate an employee exchange no and get the \n\n
 		instant job(Govt, Private) notification.
         3. Any Misuse of your phone number and Email address may occur from the hacker side. \n\n
-		but we can assure that no missleading or misuse of your persional , educational \n\
+		but we can assure that no missleading or misuse of your persional , educational \n\n
 		information or your document can occur or happen from our administrators side.
         4. By Accepting Terms and Condition, You are giving your consent to show your Information to app users.\n\n
         5. Developer of this app are not responsible for any misuse and spam on your mobile number and Email.

@@ -165,7 +165,7 @@ public class AdminMainActivity extends AppCompatActivity
                     sweepNextImage();
                 }
             }
-        }, 3000);
+        }, 4000);
     }
     public void sweepPreviousImage() {
         rotateImg.setImageResource(imageArray[curImgIndex]);
@@ -185,6 +185,6 @@ public class AdminMainActivity extends AppCompatActivity
                     sweepPreviousImage();// here we give 3 second interval to current from previous
                 }
             }
-        }, 3000);
+        }, 4000);
     }
 }
