@@ -18,14 +18,15 @@ import com.google.firebase.auth.FirebaseAuth;
 public class UserLogin extends AppCompatActivity {
 
     private EditText userId, Pass;
-    private Button login, resetPassword;
+    private Button login, resetPassword, toUserReg;
 
     private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-
+        // initialization
+        toUserReg = (Button)findViewById(R.id.to_uReg);
         userId = (EditText)findViewById(R.id.empUserId);
         Pass = (EditText)findViewById(R.id.empUserPass);
         login = (Button)findViewById(R.id.empLogIn);
@@ -63,6 +64,14 @@ public class UserLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserLogin.this, ResetPassword.class);
+                startActivity(intent);
+            }
+        });
+        // to user registration
+        toUserReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserLogin.this, UserRegistration.class);
                 startActivity(intent);
             }
         });
