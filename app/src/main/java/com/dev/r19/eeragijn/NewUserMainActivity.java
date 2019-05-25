@@ -78,7 +78,7 @@ public class NewUserMainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_updateProfile) {
-            Intent intent = new Intent(NewUserMainActivity.this, UserPersionalInfoInsert.class);
+            Intent intent = new Intent(NewUserMainActivity.this, PopUpTermsAndCondition.class);
             startActivity(intent);
 
 

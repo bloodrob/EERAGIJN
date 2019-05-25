@@ -27,10 +27,8 @@ public class PopUpTermsAndCondition extends AppCompatActivity {
         submitAccept = (Button)findViewById(R.id.accept_terms);
         submitCancel = (Button)findViewById(R.id.cancel_terms);
 
-        // initialization and set up for pop out layout
-        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        PopupWindow popW = new PopupWindow(inflater.inflate(R.layout.activity_pop_up_terms_and_condition, null, false),100, 100, true);
-        popW.showAtLocation(this.findViewById(R.id.read_term), Gravity.CENTER, 0 , 0);
+        // submit button
+
         submitAccept.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -46,5 +44,13 @@ public class PopUpTermsAndCondition extends AppCompatActivity {
                     }
                 }
             });
+        // cancel Button
+        submitCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PopUpTermsAndCondition.this, NewUserMainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
