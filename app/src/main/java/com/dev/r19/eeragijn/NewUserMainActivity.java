@@ -25,7 +25,7 @@ public class NewUserMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView setMarqueeContent;
-
+    private TextView userText_1;
     private  TextView text;
     private ImageView adminLogo;
     private Animation rotate , blink;
@@ -40,6 +40,12 @@ public class NewUserMainActivity extends AppCompatActivity
         setContentView(R.layout.activity_new_user_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        userText_1 = (TextView) findViewById(R.id.userText_1);
+
+        userText_1.setTranslationX(800);
+
+        userText_1.animate().translationX(0).setDuration(1500).setStartDelay(900).start();
 
         Typeface mmedium = Typeface.createFromAsset(getAssets(), "fonts/MontserratMedium.ttf");//font style
 
