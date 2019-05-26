@@ -1,6 +1,8 @@
 package com.dev.r19.eeragijn;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,7 +45,7 @@ public class UserSearchAllJob extends AppCompatActivity {
     //static string to take the selected item list
     static String nameOfJob;
     // string to take the url
-    private String takeMyUrl;
+    private String takeMyUrl12, takeMyUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,8 +121,13 @@ public class UserSearchAllJob extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
              JobUploadDetailsModel findUrl2 = dataSnapshot.getValue(JobUploadDetailsModel.class);
                 if (nameOfJob.equals(findUrl2.Jobname)) {
-                    takeMyUrl = findUrl2.MyFileUrl.toString().trim();
-                    Toast.makeText(UserSearchAllJob.this, "Url is :"+findUrl2.MyFileUrl, Toast.LENGTH_LONG).show();
+                    // url string to open pdf file in any pdf reader
+                    takeMyUrl12 = findUrl2.MyFileUrl.toString().trim();
+                    // split the url string and take the required url string to downoad the file
+                    String[] takeMyUrl123 = takeMyUrl12.split("\\?");
+                    takeMyUrl = takeMyUrl123[0];
+                   // Toast.makeText(UserSearchAllJob.this, "Downloading......", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UserSearchAllJob.this, "Url is :"+takeMyUrl, Toast.LENGTH_LONG).show();
                     // method to retrive the pdf file
                     getMyPdfFile();
                 }
@@ -151,7 +158,7 @@ public class UserSearchAllJob extends AppCompatActivity {
     // retrive the pdf file function
     private void getMyPdfFile() {
         strMyFile = FirebaseStorage.getInstance();
-        refTostrMyFile = strMyFile.getReference(takeMyUrl);
+        refTostrMyFile = strMyFile.getReference("Uploaded Job Pdf/" +nameOfJob +".pdf");
         // handling the i/o file exception
         try {
             //file object to create temp file with the filename
@@ -159,13 +166,25 @@ public class UserSearchAllJob extends AppCompatActivity {
             refTostrMyFile.getFile(locFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
+                    Toast.makeText(UserSearchAllJob.this, "Downloading.....", Toast.LENGTH_LONG).show();
                 }
             });
-
+        }catch (Exception e) {
+            Toast.makeText(UserSearchAllJob.this, "Downloading failed.....", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+        // work for download the pdf file by url and open it on a pdf reader
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.parse(takeMyUrl12), "application/pdf");
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        // intent for ceate chooser
+        Intent myIntent = Intent.createChooser(intent, "Open File");
+        try {
+            startActivity(myIntent);
         }
         catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(UserSearchAllJob.this, "You need to install a pdf reader", Toast.LENGTH_LONG).show();
         }
     }
 }
