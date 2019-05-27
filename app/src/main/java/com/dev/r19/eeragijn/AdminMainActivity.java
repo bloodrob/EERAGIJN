@@ -26,6 +26,7 @@ import android.widget.ViewFlipper;
 
 public class AdminMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    // button
     private TextView setMarqueeContent;
 
     private  TextView text , text_1;
