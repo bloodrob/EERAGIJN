@@ -59,7 +59,7 @@ public class SearchAllExistingUserByDistrict extends AppCompatActivity {
         existUserSearchedList = (ListView)findViewById(R.id.exist_user_searched_list);
         // initialization of progress dialog
         ProDai = new ProgressDialog(this);
-        ProDai.setTitle("Please Wait, Searching for data");
+        ProDai.setMessage("Please Wait, Searching for data");
         ProDai.setCanceledOnTouchOutside(false);
 
         // Initialization and assigning data to arraylist
@@ -140,11 +140,19 @@ public class SearchAllExistingUserByDistrict extends AppCompatActivity {
                     takeTheListOfSearchedDistrict = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, takeDistrictList);
                     existUserSearchedList.setAdapter(takeTheListOfSearchedDistrict);
                 }
-                //dissmissing the pd
-                ProDai.dismiss();
                 //condition if not equals
-                if (!District.equals(adMod1.Ex_district)) {
+                else if (!equals(adMod1.Ex_district)) {
+                    //dissmissing the pd
+                    ProDai.setCanceledOnTouchOutside(true);
+                    ProDai.cancel();
+                    if (ProDai == null && ProDai.isShowing()) {
+                        ProDai.dismiss();
+                    }
                     Toast.makeText(SearchAllExistingUserByDistrict.this, "No Existing User In This District", Toast.LENGTH_SHORT).show();
+                    // empty ing the list view
+                   // ArrayAdapter adoptor = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1);
+                   // existUserSearchedList.setEmptyView(findViewById(R.id.exist_user_searched_list));
+                   // existUserSearchedList.setAdapter(adoptor);
                     return;
                 }
             }

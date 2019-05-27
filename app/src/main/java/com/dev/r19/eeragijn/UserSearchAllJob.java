@@ -3,6 +3,7 @@ package com.dev.r19.eeragijn;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -158,19 +160,24 @@ public class UserSearchAllJob extends AppCompatActivity {
     // retrive the pdf file function
     private void getMyPdfFile() {
         strMyFile = FirebaseStorage.getInstance();
-        refTostrMyFile = strMyFile.getReference("Uploaded Job Pdf/" +nameOfJob +".pdf");
+        refTostrMyFile = strMyFile.getReference().child("Uploaded Job Pdf").child(nameOfJob);
         // handling the i/o file exception
         try {
             //file object to create temp file with the filename
-            File locFile = File.createTempFile(nameOfJob,".pdf");
+            File locFile = File.createTempFile("documents","pdf");
             refTostrMyFile.getFile(locFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(UserSearchAllJob.this, "Downloading.....", Toast.LENGTH_LONG).show();
                 }
             });
+            refTostrMyFile.getFile(locFile).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(UserSearchAllJob.this, "Downloading failed.....", Toast.LENGTH_LONG).show();
+                }
+            });
         }catch (Exception e) {
-            Toast.makeText(UserSearchAllJob.this, "Downloading failed.....", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
         // work for download the pdf file by url and open it on a pdf reader

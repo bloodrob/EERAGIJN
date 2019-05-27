@@ -150,10 +150,14 @@ public class SearchNewUserByDistrict extends AppCompatActivity {
                         }
                     });
                 }
-                //dismissing pd
-                pd1.dismiss();
                 // if condition not satisfy
                 if (!res.District.equals((District))){
+                    //dissmissing the pd
+                   // pd1.setCanceledOnTouchOutside(true);
+                    pd1.cancel();
+                    if (pd1 == null && pd1.isShowing()) {
+                        pd1.dismiss();
+                    }
                     Toast.makeText(SearchNewUserByDistrict.this, "No New Apllicant Available Right Now", Toast.LENGTH_SHORT).show();
                     return;
                 }

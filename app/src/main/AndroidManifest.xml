@@ -31,7 +31,6 @@
         <activity android:name=".SuccessDocumentUpload" />
         <activity android:name=".CheckUploadFile" />
         <activity android:name=".NewUserMainActivity" />
-        <activity android:name=".AuthExistingUserMainActivity" />
         <activity android:name=".UserPersionalInfoInsert" />
         <activity android:name=".UserEducationQualificationInsert" />
         <activity android:name=".SearchNewUserByDistrict" />

@@ -98,15 +98,15 @@ public class ViewAdminUploadedJobDetails extends AppCompatActivity {
         // initilization of firebase storagne and get ref
         // work to download the pdf file
         storF = FirebaseStorage.getInstance();
-        refToStorF = storF.getReference("Uploaded Job Details/"+MyFileName +".pdf");
+        refToStorF = storF.getReference().child("Uploaded Job Pdf").child(MyFileName +".pdf");
         // handling the i/o file exception
         try {
             //file object to create temp file with the filename
-            File locFile = File.createTempFile(MyFileName, ".pdf");
+            File locFile = File.createTempFile("documents", "pdf");
             refToStorF.getFile(locFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
+                    Toast.makeText(ViewAdminUploadedJobDetails.this, "Downloading....", Toast.LENGTH_LONG).show();
                 }
             });
             refToStorF.getFile(locFile).addOnFailureListener(new OnFailureListener() {

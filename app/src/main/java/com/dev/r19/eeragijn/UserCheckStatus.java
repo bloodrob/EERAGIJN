@@ -81,9 +81,14 @@ public class UserCheckStatus extends AppCompatActivity {
                     getAddExistUserdata = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, addExistUserData);
                     showExistUserData.setAdapter(getAddExistUserdata);
                 }
-                pb1.dismiss();
                 //if data does not exist
                 if (!addExistUserData.equals(exData.activeId) && addExistUserData.isEmpty()){
+                    // dismissing the pb
+                   // pb1.setCanceledOnTouchOutside(true);
+                    pb1.cancel();
+                    if (pb1 == null && pb1.isShowing()) {
+                        pb1.dismiss();
+                    }
                     showErrorData.setText("You are not yet varified to get an Emp Exchange Id, Your application is under Process, Please wait for few more days." +"\n" +"Thank you...");
                 }
             }
