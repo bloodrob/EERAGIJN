@@ -1,5 +1,7 @@
 package com.dev.r19.eeragijn;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -94,8 +96,9 @@ public class ViewAdminUploadedJobDetails extends AppCompatActivity {
     }
     private void downloadWork() {
         // initilization of firebase storagne and get ref
+        // work to download the pdf file
         storF = FirebaseStorage.getInstance();
-        refToStorF = storF.getReference(myUrlToFile);
+        refToStorF = storF.getReference("Uploaded Job Details/"+MyFileName +".pdf");
         // handling the i/o file exception
         try {
             //file object to create temp file with the filename
@@ -116,6 +119,19 @@ public class ViewAdminUploadedJobDetails extends AppCompatActivity {
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
+        } // end of download
+        //Work for view the pdf document
+        //using download url get the file and open it with any pdf reader thrgough intent
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.parse(myUrlToFile), "application/pdf");
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //this intent used for the create chooser of open the file in the default application
+        Intent myIntent1 = Intent.createChooser(intent, "Open File");
+        // handling the I/o exception
+        try {
+            startActivity(myIntent1);
+        }catch(Exception e) {
+            e.printStackTrace();
+        } // end of view
     }
 }

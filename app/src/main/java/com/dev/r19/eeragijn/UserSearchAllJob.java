@@ -72,7 +72,7 @@ public class UserSearchAllJob extends AppCompatActivity {
                 JobUploadDetailsModel JobMod = dataSnapshot.getValue(JobUploadDetailsModel.class);
                 // dissmissing the progress dialog
                 pd11.dismiss();
-                addListOfAllJob.add(JobMod.Jobname+"\n"+"\nJob Subject  : "+JobMod.JobSubject +"\n\nJob Details  : "+JobMod.JobDetails +"\n\n Click the Job Title to download the advertisedment."+"\n\n\n\n");
+                addListOfAllJob.add(JobMod.Jobname+"\n"+"\nJob Subject  : "+JobMod.JobSubject +"\n\nJob Details  : "+JobMod.JobDetails +"\n\n Click here to check the full job details advertisedment."+"\n\n\n\n");
                 getAddListOfAllJob = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, addListOfAllJob);
                 listOfAllSearchJob.setAdapter(getAddListOfAllJob);
                 //action after choosing a list item
