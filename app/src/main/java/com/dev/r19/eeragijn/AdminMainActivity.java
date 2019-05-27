@@ -20,6 +20,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 
 public class AdminMainActivity extends AppCompatActivity
@@ -27,15 +28,16 @@ public class AdminMainActivity extends AppCompatActivity
     private TextView setMarqueeContent;
 
     private  TextView text;
-    private ImageView adminLogo;
-    private Animation rotate , blink;
+   // private ImageView adminLogo;
+   ViewFlipper v_flipper;
+    private Animation blink;
 
-    // varible for custom function of image changing
+   /* // varible for custom function of image changing
     private ImageView rotateImg;
     private int[] imageArray;
     private int curImgIndex;
     private int startImgIndex;
-    private int endImgIndex;
+    private int endImgIndex;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,14 +48,23 @@ public class AdminMainActivity extends AppCompatActivity
 
         Typeface mmedium = Typeface.createFromAsset(getAssets(), "fonts/MontserratMedium.ttf");//font style
 
+        int images[] = {R.drawable.img_1 , R.drawable.img_2 , R.drawable.img_3 };
 
+        v_flipper = findViewById(R.id.v_flipper);
 
-        rotate = AnimationUtils.loadAnimation(this , R.anim.rotate);
+       /* for(int i=0; i<images.length; i++){
+            flipperImages(images[i]);
+        }*/
+        for(int image: images){
+            flipperImages(image);
+        }
+
+      /*  rotate = AnimationUtils.loadAnimation(this , R.anim.rotate);
         adminLogo = (ImageView) findViewById (R.id.image);
-        adminLogo.startAnimation(rotate);
+        adminLogo.startAnimation(rotate);*/
 
         blink = AnimationUtils.loadAnimation(this , R.anim.blink_anim);
-        text = (TextView) findViewById (R.id.Text_1);
+        text = (TextView) findViewById (R.id.text);
         text.startAnimation(blink);
 
         text.setTypeface(mmedium);//text style
@@ -62,7 +73,7 @@ public class AdminMainActivity extends AppCompatActivity
         setMarqueeContent.setSelected(true);
         //  setMarqueeContent.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         // end of BUtton
-        rotateImg = (ImageView) findViewById(R.id.rotate_img);
+      /*  rotateImg = (ImageView) findViewById(R.id.rotate_img);
         //end
         //initization array and assign value
         imageArray = new int[4];
@@ -74,7 +85,7 @@ public class AdminMainActivity extends AppCompatActivity
         endImgIndex = 3;
         //end
         //method of swapping image within time interval
-        sweepNextImage();
+        sweepNextImage();  */
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -147,7 +158,7 @@ public class AdminMainActivity extends AppCompatActivity
         return true;
     }
     // fnction for the method sweepNextImage
-    public void sweepNextImage() {
+   /* public void sweepNextImage() {
         rotateImg.setImageResource(imageArray[curImgIndex]);
         Animation animRote = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
         rotateImg.startAnimation(animRote);
@@ -186,5 +197,17 @@ public class AdminMainActivity extends AppCompatActivity
                 }
             }
         }, 4000);
+    }*/
+    public void flipperImages(int image){
+        ImageView imageView = new ImageView(this);
+        imageView.setBackgroundResource(image);
+        v_flipper.addView(imageView);
+        v_flipper.setFlipInterval(3000);
+        v_flipper.setAutoStart(true);
+
+        //animation
+        v_flipper.setInAnimation(this , R.anim.lefttoright);
+        v_flipper.setOutAnimation(this , R.anim.lefttoright);
+
     }
 }
