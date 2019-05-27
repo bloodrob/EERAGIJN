@@ -27,7 +27,7 @@ public class AdminMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private TextView setMarqueeContent;
 
-    private  TextView text;
+    private  TextView text , text_1;
    // private ImageView adminLogo;
 
     private Animation blink;
@@ -66,6 +66,14 @@ public class AdminMainActivity extends AppCompatActivity
         blink = AnimationUtils.loadAnimation(this , R.anim.blink_anim);
         text = (TextView) findViewById (R.id.Text_1);
         text.startAnimation(blink);
+
+        text_1 = (TextView) findViewById (R.id.adminText_1);
+
+        text_1.setTypeface(mmedium);
+
+        text_1.setTranslationX(800);
+
+        text_1.animate().translationX(0).setDuration(1500).setStartDelay(900).start();
 
         text.setTypeface(mmedium);//text style
 
