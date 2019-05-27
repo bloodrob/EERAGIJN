@@ -15,13 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".AppOpener">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".UserHome" />
         <activity android:name=".UserRegistration" />
         <activity android:name=".UserLogin" />
@@ -52,7 +53,8 @@
         <activity android:name=".UserCheckStatus" />
         <activity android:name=".AboutUs" />
         <activity android:name=".ContactUs" />
-        <activity android:name=".PopUpTermsAndCondition"></activity>
+        <activity android:name=".PopUpTermsAndCondition" />
+
     </application>
 
 </manifest>
