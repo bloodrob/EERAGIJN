@@ -28,7 +28,7 @@ public class NewUserMainActivity extends AppCompatActivity
     private TextView userText_1;
     private  TextView text;
     private ImageView adminLogo;
-    private Animation rotate , blink;
+    private Animation blink;
     //for rotate image
     private ImageView rotateImage12;
     private int[] imageArray12;
@@ -43,17 +43,17 @@ public class NewUserMainActivity extends AppCompatActivity
 
         userText_1 = (TextView) findViewById(R.id.userText_1);
 
+
+
         userText_1.setTranslationX(800);
 
         userText_1.animate().translationX(0).setDuration(1500).setStartDelay(900).start();
 
         Typeface mmedium = Typeface.createFromAsset(getAssets(), "fonts/MontserratMedium.ttf");//font style
 
+        userText_1.setTypeface(mmedium);
 
 
-        rotate = AnimationUtils.loadAnimation(this , R.anim.rotate);
-        adminLogo = (ImageView) findViewById (R.id.image);
-        adminLogo.startAnimation(rotate);
 
         blink = AnimationUtils.loadAnimation(this , R.anim.blink_anim);
         text = (TextView) findViewById (R.id.Text_1);
