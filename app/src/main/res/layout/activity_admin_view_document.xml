@@ -9,16 +9,12 @@
 
     <ImageView
         android:id="@+id/admin_view_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:maxHeight="1000dp"
-        android:maxWidth="100dp"
         android:scaleType="center"
-        android:layout_marginLeft="30dp"
         app:srcCompat="@drawable/common_full_open_on_phone"
-        android:layout_marginTop="125dp"
-        android:layout_below="@+id/textView43" />
+         />
 
     <TextView
         android:id="@+id/textView43"

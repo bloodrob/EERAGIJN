@@ -44,14 +44,14 @@ public class AdminLogin extends AppCompatActivity {
                 }
                 String uId = "Admin";
                 String pass = "qwerty";
-                if ((!UserId.equals(uId) && Password.equals(pass))) {
-                    Toast.makeText(AdminLogin.this, "User Id or Password not correct", Toast.LENGTH_SHORT).show();
-                    return;
+                if ((UserId.equals(uId) && Password.equals(pass))) {
+                    Intent intent = new Intent(AdminLogin.this, AdminMainActivity.class);
+                    startActivity(intent);
                 }
                 else
                 {
-                    Intent intent = new Intent(AdminLogin.this, AdminMainActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(AdminLogin.this, "User Id or Password not correct", Toast.LENGTH_SHORT).show();
+                    return;
                 }
             }
         });

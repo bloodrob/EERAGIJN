@@ -21,6 +21,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,56 +129,44 @@ public class SearchAllExistingUserByDistrict extends AppCompatActivity {
         ProDai.show();
         //Initialization of arrayList
         takeDistrictList = new ArrayList<>();
-        ref.addChildEventListener(new ChildEventListener() {
+        // querying the data
+        final Query query12 = ref.orderByChild("Ex_district").equalTo(District);
+        query12.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                AdminPushDataModel adMod1 = dataSnapshot.getValue(AdminPushDataModel.class);
-                // condition if equals
-                if (District.equals(adMod1.Ex_district)){
-                    ProDai.dismiss();
-                    // adding searched data to arraylist
-                    takeDistrictList.add("Employee Id : " +adMod1.Ex_EmpId +"\n" +"Name  :  "+adMod1.Ex_name +"\n"+"\n"+"\n");
-                    //initializating and getting the list of item
-                    takeTheListOfSearchedDistrict = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, takeDistrictList);
-                    existUserSearchedList.setAdapter(takeTheListOfSearchedDistrict);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //checking the condition
+                if (dataSnapshot.hasChildren()) {
+                    for (DataSnapshot child1 : dataSnapshot.getChildren()) {
+                        AdminPushDataModel adMod1 = child1.getValue(AdminPushDataModel.class);
+                        ProDai.dismiss();
+                        // adding searched data to arraylist
+                        takeDistrictList.add("Employee Id : " +adMod1.Ex_EmpId +"\n" +"Name  :  "+adMod1.Ex_name +"\n"+"\n"+"\n");
+                        //initializating and getting the list of item
+                        takeTheListOfSearchedDistrict = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, takeDistrictList);
+                        existUserSearchedList.setAdapter(takeTheListOfSearchedDistrict);
+                    }
                 }
-                //condition if not equals
-                else if (!equals(adMod1.Ex_district)) {
+                else {
                     //dissmissing the pd
-                    ProDai.setCanceledOnTouchOutside(true);
                     ProDai.cancel();
                     if (ProDai == null && ProDai.isShowing()) {
                         ProDai.dismiss();
                     }
                     Toast.makeText(SearchAllExistingUserByDistrict.this, "No Existing User In This District", Toast.LENGTH_SHORT).show();
                     // empty ing the list view
-                   // ArrayAdapter adoptor = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1);
-                   // existUserSearchedList.setEmptyView(findViewById(R.id.exist_user_searched_list));
-                   // existUserSearchedList.setAdapter(adoptor);
+                    List<String> myList1 = new ArrayList<String>();
+                    myList1.add("No Existing applicant in this district, My be no one apply for this");
+                    existUserSearchedList.setEmptyView(findViewById(R.id.exist_user_searched_list));
+                     ArrayAdapter adoptor = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, myList1);
+                     existUserSearchedList.setAdapter(adoptor);
                     return;
                 }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(SearchAllExistingUserByDistrict.this, "Database Error, Please Contact To DataBase Administrators", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchAllExistingUserByDistrict.this, "Something wrong, please contact to the database administrators", Toast.LENGTH_LONG).show();
                 return;
-
             }
         });
     }

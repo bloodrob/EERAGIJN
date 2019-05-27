@@ -168,13 +168,13 @@ public class UserSearchAllJob extends AppCompatActivity {
             refTostrMyFile.getFile(locFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(UserSearchAllJob.this, "Downloading.....", Toast.LENGTH_LONG).show();
+                //    Toast.makeText(UserSearchAllJob.this, "Downloading.....", Toast.LENGTH_LONG).show();
                 }
             });
             refTostrMyFile.getFile(locFile).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(UserSearchAllJob.this, "Downloading failed.....", Toast.LENGTH_LONG).show();
+               //     Toast.makeText(UserSearchAllJob.this, "Downloading failed.....", Toast.LENGTH_LONG).show();
                 }
             });
         }catch (Exception e) {

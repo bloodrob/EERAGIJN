@@ -21,6 +21,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,60 +129,55 @@ public class SearchNewUserByDistrict extends AppCompatActivity {
         pd1.setCanceledOnTouchOutside(false);
         pd1 = ProgressDialog.show(this, "Searching....", "Please wait.");
         pd1.show();
-        ref.addChildEventListener(new ChildEventListener() {
+        // querying the data to match condition
+        final Query query1 = ref.orderByChild("District").equalTo(District);
+        query1.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                SearchNewUserByDistrictModel res = dataSnapshot.getValue(SearchNewUserByDistrictModel.class);
-                // if condition satisfy
-                if (res.District.equals(District)) {
-                    // dismissing pd
-                    pd1.dismiss();
-                    searchDataList.add(res.Name);
-                    getSearchDataList = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,searchDataList);
-                    viewSearchItem.setAdapter(getSearchDataList);
-                    // selected item to the string
-                    viewSearchItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            //send the selected item to the correspondence page
-                            Intent intent = new Intent(SearchNewUserByDistrict.this, SelectedNewUserByDistrict.class);
-                            SelectedNewUserByDistrict.selectedName = parent.getItemAtPosition(position).toString().trim();
-                            //  intent.putExtra("sendName", sendName);
-                            startActivity(intent);
-                        }
-                    });
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChildren()) {
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        SearchNewUserByDistrictModel res = child.getValue(SearchNewUserByDistrictModel.class);
+                        // dismissing pd
+                        pd1.dismiss();
+                        searchDataList.add(res.Name);
+                        getSearchDataList = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,searchDataList);
+                        viewSearchItem.setAdapter(getSearchDataList);
+                        // selected item to the string
+                        viewSearchItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                //send the selected item to the correspondence page
+                                Intent intent = new Intent(SearchNewUserByDistrict.this, SelectedNewUserByDistrict.class);
+                                SelectedNewUserByDistrict.selectedName = parent.getItemAtPosition(position).toString().trim();
+                                //  intent.putExtra("sendName", sendName);
+                                startActivity(intent);
+                            }
+                        });
+                    }
                 }
-                // if condition not satisfy
-                if (!res.District.equals((District))){
+                else
+                {
                     //dissmissing the pd
-                   // pd1.setCanceledOnTouchOutside(true);
+                    // pd1.setCanceledOnTouchOutside(true);
                     pd1.cancel();
                     if (pd1 == null && pd1.isShowing()) {
                         pd1.dismiss();
                     }
+                    List<String> mylist = new ArrayList<String>();
+                    mylist.add("No new applicant avaiable right now in this location, Kindly try after the day");
+                    viewSearchItem.setEmptyView(findViewById(R.id.view_search_item));
+                    ArrayAdapter<String> adpt = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, mylist);
+                    viewSearchItem.setAdapter(adpt);
                     Toast.makeText(SearchNewUserByDistrict.this, "No New Apllicant Available Right Now", Toast.LENGTH_SHORT).show();
                     return;
                 }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Toast.makeText(SearchNewUserByDistrict.this, "Something wrong, please contact to the database administrators", Toast.LENGTH_LONG).show();
+                return;
             }
         });
     }

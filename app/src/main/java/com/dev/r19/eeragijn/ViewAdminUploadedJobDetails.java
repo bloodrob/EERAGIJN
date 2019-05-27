@@ -106,13 +106,13 @@ public class ViewAdminUploadedJobDetails extends AppCompatActivity {
             refToStorF.getFile(locFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(ViewAdminUploadedJobDetails.this, "Downloading....", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(ViewAdminUploadedJobDetails.this, "Downloading....", Toast.LENGTH_LONG).show();
                 }
             });
             refToStorF.getFile(locFile).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(ViewAdminUploadedJobDetails.this, "Somethimg wrong, Please contact to the database administrator", Toast.LENGTH_LONG).show();
+                  //  Toast.makeText(ViewAdminUploadedJobDetails.this, "Somethimg wrong, Please contact to the database administrator", Toast.LENGTH_LONG).show();
                     return;
                 }
             });
