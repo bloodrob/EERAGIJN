@@ -20,6 +20,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 
@@ -157,6 +158,11 @@ public class AdminMainActivity extends AppCompatActivity
         } else if (id == R.id.nav_searchNewUser) {
             Intent intent = new Intent(AdminMainActivity.this, SearchNewUserByDistrict.class);
             startActivity(intent);
+
+        } else if (id == R.id.nav_resPass) {
+            Toast.makeText(AdminMainActivity.this, "Under Proccess", Toast.LENGTH_LONG).show();
+          //  Intent intent = new Intent(AdminMainActivity.this, AdminPassWordReset.class);
+           // startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
