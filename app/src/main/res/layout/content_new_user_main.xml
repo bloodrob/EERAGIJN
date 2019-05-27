@@ -14,14 +14,23 @@
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/logo_3" />
+        android:src="@drawable/userhomelogo" />
+    <TextView
+        android:id="@+id/Text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:text="WELCOME"/>
     <LinearLayout
         android:id="@+id/layoutOne"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/image"
+        android:layout_below="@+id/Text_1"
         android:layout_marginTop="10dp">
         <TextView
             android:layout_width="wrap_content"
@@ -55,17 +64,6 @@
             android:layout_centerHorizontal="true"
             />
     </LinearLayout>
-    <TextView
-        android:id="@+id/Text_1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/layoutTwo"
-        android:layout_marginTop="10dp"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:text="WELCOME"/>
     <LinearLayout
         android:id="@+id/layoutThree"
         android:layout_width="match_parent"
@@ -73,7 +71,7 @@
         android:orientation="horizontal"
         android:layout_below="@+id/layoutTwo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="30dp">
         <TextView
             android:id="@+id/userText_1"
             android:layout_width="match_parent"
