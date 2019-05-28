@@ -20,7 +20,7 @@
             android:title="Search New User" />
         <item
             android:id="@+id/nav_resPass"
-            android:icon="@drawable/ic_search"
+            android:icon="@drawable/ic_lock"
             android:title="Reset PassWord" />
         <item
             android:id="@+id/nav_aboutUs"

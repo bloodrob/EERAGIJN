@@ -27,8 +27,8 @@ public class NewUserMainActivity extends AppCompatActivity
     private TextView setMarqueeContent;
     private TextView userText_1;
     private  TextView text;
-    private ImageView adminLogo;
-    private Animation blink;
+    private ImageView image;
+    private Animation blink , smalltobig;
     //for rotate image
     private ImageView rotateImage12;
     private int[] imageArray12;
@@ -52,6 +52,11 @@ public class NewUserMainActivity extends AppCompatActivity
         Typeface mmedium = Typeface.createFromAsset(getAssets(), "fonts/MontserratMedium.ttf");//font style
 
         userText_1.setTypeface(mmedium);
+
+        smalltobig = AnimationUtils.loadAnimation(this , R.anim.smalltobig);
+        image = (ImageView) findViewById(R.id.image);
+        image.startAnimation(smalltobig);
+
 
 
 
