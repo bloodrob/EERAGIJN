@@ -148,7 +148,9 @@ public class NewUserMainActivity extends AppCompatActivity
             Intent intent = new Intent(NewUserMainActivity.this, UserSearchAllJob.class);
             startActivity(intent);
         }else if (id == R.id.nav_chat) {
-            Toast.makeText(NewUserMainActivity.this, "This Feature Will be Comming Soon", Toast.LENGTH_LONG).show();
+           // Toast.makeText(NewUserMainActivity.this, "This Feature Will be Comming Soon", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(NewUserMainActivity.this, UserChatting.class);
+            startActivity(intent);
         }
         else if (id == R.id.nav_aboutUs) {
             Intent intent = new Intent(NewUserMainActivity.this, AboutUs.class);

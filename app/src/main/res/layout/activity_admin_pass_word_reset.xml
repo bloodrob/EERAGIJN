@@ -66,24 +66,24 @@
         android:id="@+id/textView57"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView"
-       android:layout_alignBaseline="@+id/editText3"
         android:textColor="#000000"
-        android:text="PassWord" />
+        android:text="New Password"
+        android:layout_alignBaseline="@+id/pass_word"
+        android:layout_alignBottom="@+id/pass_word"
+        android:layout_alignStart="@+id/textView58" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/pass_word"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_alignEnd="@+id/UserName"
-        android:layout_below="@+id/UserName"
         android:background="@drawable/text_1"
-        android:layout_marginTop="37dp"
         android:textCursorDrawable="@drawable/color_cursor"
         android:textAlignment="center"
         android:textColor="#000000"
         android:inputType="textPersonName"
-         />
+        android:layout_above="@+id/con_pass_word"
+        android:layout_alignStart="@+id/current_pass"
+        android:layout_marginBottom="19dp" />
 
     <TextView
         android:id="@+id/textView58"
@@ -92,33 +92,51 @@
         android:text="Con. Password"
         android:textColor="#000000"
         android:layout_marginLeft="10dp"
-        android:layout_alignBaseline="@+id/editText4"
-        android:layout_alignBottom="@+id/editText4"
+        android:layout_alignBaseline="@+id/con_pass_word"
+        android:layout_alignBottom="@+id/con_pass_word"
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/con_pass_word"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_alignEnd="@+id/editText3"
-        android:layout_below="@+id/editText3"
-        android:layout_marginTop="37dp"
         android:textCursorDrawable="@drawable/color_cursor"
         android:textColor="#000000"
         android:textAlignment="center"
         android:background="@drawable/text_1"
         android:inputType="textPersonName"
-         />
+        android:layout_above="@+id/admin_reset_pass"
+        android:layout_alignStart="@+id/pass_word"
+        android:layout_marginBottom="38dp" />
 
     <Button
         android:id="@+id/admin_reset_pass"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/editText4"
-        android:layout_marginTop="50dp"
         android:background="@drawable/btn_4"
         android:textColor="#ffffff"
         android:textStyle="bold"
-        android:layout_toEndOf="@+id/textView58"
-        android:text="Reset Your Password" />
+        android:text="Reset Your Password"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/con_pass_word"
+        android:layout_marginBottom="42dp" />
+
+    <TextView
+        android:id="@+id/cur_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cur password"
+        android:layout_alignBaseline="@+id/current_pass"
+        android:layout_alignBottom="@+id/current_pass"
+        android:layout_alignStart="@+id/textView56" />
+
+    <EditText
+        android:id="@+id/current_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/UserName"
+        android:layout_alignStart="@+id/UserName" />
 </RelativeLayout>

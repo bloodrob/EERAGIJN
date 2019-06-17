@@ -54,7 +54,8 @@
         <activity android:name=".AboutUs" />
         <activity android:name=".ContactUs" />
         <activity android:name=".PopUpTermsAndCondition" />
-        <activity android:name=".AdminPassWordReset"></activity>
+        <activity android:name=".AdminPassWordReset" />
+        <activity android:name=".UserChatting"></activity>
     </application>
 
 </manifest>

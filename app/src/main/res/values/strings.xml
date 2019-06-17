@@ -11,7 +11,7 @@
     <string name="title_activity_admin_main">AdminMainActivity</string>
     <string name="title_activity_new_user_main">NewUserMainActivity</string>
     <string name="admin_marquee_text">Dear Administraors of the app, You need to update all the job Update as soon as possible. \n\n
-        Make sure that you checked for the new applicant so that you can go throgh the varification process and and further process. \n\n
+        Make sure that you checked for the new applicant so that you can go through the varification and further process. \n\n
         Also check weather the app is working efficintly or not, if found any error then contact to the database administrators.
     </string>
     <string name="user_marquee_text">Regularly check the app to get updated job deatils. \n\n
