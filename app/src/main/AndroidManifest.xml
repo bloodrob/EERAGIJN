@@ -56,7 +56,8 @@
         <activity android:name=".PopUpTermsAndCondition" />
         <activity android:name=".AdminPassWordReset" />
         <activity android:name=".UserChatting" />
-        <activity android:name=".UserSearchCustomJob"></activity>
+        <activity android:name=".UserSearchCustomJob" />
+        <activity android:name=".UserSearchCustomJobDetails"></activity>
     </application>
 
 </manifest>

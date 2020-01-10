@@ -10,41 +10,46 @@
         android:id="@+id/textView59"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="114dp"
         android:textColor="#000000"
-        android:layout_marginTop="71dp"
-        android:text="search job that you prefer" />
+        android:layout_marginTop="18dp"
+        android:text="search job that you prefer"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/textView60"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView59"
-        android:layout_below="@+id/textView59"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="17dp"
         android:textColor="#000000"
-        android:text="Check the category" />
+        android:text="Check the category"
+        android:layout_below="@+id/textView59"
+        android:layout_centerHorizontal="true" />
 
     <Spinner
         android:id="@+id/category_search"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/textView60"
+        android:layout_marginTop="12dp"
         android:textColor="#000000"
+        android:layout_below="@+id/textView60"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/custom_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView60"
-        android:layout_below="@+id/category_search"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="13dp"
         android:textColor="#000000"
-        android:text="Search" />
+        android:text="Search"
+        android:layout_below="@+id/category_search"
+        android:layout_centerHorizontal="true" />
+
+    <ListView
+        android:id="@+id/list_of_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/custom_search"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
 </RelativeLayout>
