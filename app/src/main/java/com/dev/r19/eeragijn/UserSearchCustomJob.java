@@ -134,7 +134,7 @@ public class UserSearchCustomJob extends AppCompatActivity {
                            @Override
                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                Intent intent = new Intent(UserSearchCustomJob.this, UserSearchCustomJobDetails.class);
-                               UserSearchCustomJobDetails.selectedcategory = parent.getItemAtPosition(position).toString().trim();
+                               UserSearchCustomJobDetails.selectedNane = parent.getItemAtPosition(position).toString().trim();
                                startActivity(intent);
 
                            }
