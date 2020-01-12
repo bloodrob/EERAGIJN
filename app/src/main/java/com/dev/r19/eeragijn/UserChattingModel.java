@@ -7,41 +7,16 @@ import java.util.Date;
  */
 
 public class UserChattingModel {
-    public String chatText, chatUser;
-    public long chatTime;
-    public UserChattingModel(String chatUser, String chatText) {
+    public String ChatText, ChatUser;
+    public long ChatTime;
+    public UserChattingModel(String ChatUser, String ChatText) {
 
     }
 
-    public String getChatText() {
-        return chatText;
-    }
-
-    public void setChatText(String chatText) {
-        this.chatText = chatText;
-    }
-
-    public String getChatUser() {
-        return chatUser;
-    }
-
-    public void setChatUser(String chatUser) {
-        this.chatUser = chatUser;
-    }
-
-    public long getChatTime() {
-        return chatTime;
-    }
-
-    public void setChatTime(long chatTime) {
-        this.chatTime = chatTime;
-    }
-
-    public UserChattingModel(String chatText, String chatUser, long chatTime) {
-        this.chatText = chatText;
-        this.chatUser = chatUser;
-        // initializing the current time
-        this.chatTime = new Date().getTime();
+    public UserChattingModel(String ChatText, String ChatUser, long ChatTime) {
+        this.ChatText = ChatText;
+        this.ChatUser = ChatUser;
+        this.ChatTime = ChatTime;
     }
 }
 
