@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static android.telecom.DisconnectCause.LOCAL;
-import static com.dev.r19.eeragijn.SearchNewUserByDistrict.District;
+
 
 public class UserPersionalInfoInsert extends AppCompatActivity {
 

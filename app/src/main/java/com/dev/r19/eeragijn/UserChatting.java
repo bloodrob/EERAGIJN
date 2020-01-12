@@ -77,8 +77,8 @@ public class UserChatting extends AppCompatActivity {
 
                 if (dataSnapshot.hasChildren()) {
                     for (DataSnapshot myData : dataSnapshot.getChildren()) {
-                        AdminPushDataModel myMod = myData.getValue(AdminPushDataModel.class);
-                        ChatUser = myMod.Ex_name.toString().trim();
+                        //AdminPushDataModel myMod = myData.getValue(AdminPushDataModel.class);
+                      //  ChatUser = myMod.Ex_name.toString().trim();
                     }
                 }
                 else {

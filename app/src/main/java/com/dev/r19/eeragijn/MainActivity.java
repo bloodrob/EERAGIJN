@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         ivBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent ax = new Intent(MainActivity.this , HomeToSelect.class);
+                Intent ax = new Intent(MainActivity.this , UserHome.class);
                 startActivity(ax);
                 overridePendingTransition(R.anim.fleft, R.anim.fhelper);
             }

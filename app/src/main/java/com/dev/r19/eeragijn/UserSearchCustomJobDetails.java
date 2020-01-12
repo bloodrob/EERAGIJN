@@ -16,9 +16,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
-import static com.dev.r19.eeragijn.AdminUploadJobDetailsPdf.JobDetails;
-import static com.dev.r19.eeragijn.AdminUploadJobDetailsPdf.JobName;
-import static com.dev.r19.eeragijn.AdminUploadJobDetailsPdf.JobSubject;
 
 public class UserSearchCustomJobDetails extends AppCompatActivity {
 

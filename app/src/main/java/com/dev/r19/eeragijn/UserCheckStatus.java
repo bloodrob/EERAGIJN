@@ -80,11 +80,11 @@ public class UserCheckStatus extends AppCompatActivity {
                 if (dataSnapshot.hasChildren()) {
                     for (DataSnapshot child123 : dataSnapshot.getChildren()) {
                         // taking database snapshot with respect to model class data
-                        AdminPushDataModel exData = child123.getValue(AdminPushDataModel.class);
+                     //   AdminPushDataModel exData = child123.getValue(AdminPushDataModel.class);
                         pb1.dismiss();
-                        addExistUserData.add("Your Active Id  : "+exData.activeId +"\n\n Your Name  : "+exData.Ex_name +"\n\n Your Emp exchange id  :"+exData.Ex_EmpId +"\n\n Your DOB  : "+exData.Ex_dob +"\n\n Your Cast  : "+exData.Ex_caste);
-                        getAddExistUserdata = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, addExistUserData);
-                        showExistUserData.setAdapter(getAddExistUserdata);
+                     //   addExistUserData.add("Your Active Id  : "+exData.activeId +"\n\n Your Name  : "+exData.Ex_name +"\n\n Your Emp exchange id  :"+exData.Ex_EmpId +"\n\n Your DOB  : "+exData.Ex_dob +"\n\n Your Cast  : "+exData.Ex_caste);
+                     //   getAddExistUserdata = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, addExistUserData);
+                     //   showExistUserData.setAdapter(getAddExistUserdata);
                     }
                 }
                 else {

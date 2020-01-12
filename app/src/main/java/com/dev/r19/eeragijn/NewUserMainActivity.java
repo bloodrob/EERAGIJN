@@ -147,15 +147,14 @@ public class NewUserMainActivity extends AppCompatActivity
         } else if (id == R.id.nav_searchJob) {
             Intent intent = new Intent(NewUserMainActivity.this, UserSearchAllJob.class);
             startActivity(intent);
+        } else if (id == R.id.nav_jobYouPrefer) {
+            Intent intent = new Intent(NewUserMainActivity.this, UserSearchCustomJob.class);
+            startActivity(intent);
         }else if (id == R.id.nav_chat) {
            // Toast.makeText(NewUserMainActivity.this, "This Feature Will be Comming Soon", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(NewUserMainActivity.this, UserChatting.class);
             startActivity(intent);
-        }
-        else if (id == R.id.nav_aboutUs) {
-            Intent intent = new Intent(NewUserMainActivity.this, AboutUs.class);
-            startActivity(intent);
-        }else if (id == R.id.nav_contactUs) {
+        }else if (id == R.id.nav_ourInfo) {
             Intent intent = new Intent(NewUserMainActivity.this, ContactUs.class);
             startActivity(intent);
         }else if (id == R.id.nav_signOut) {
