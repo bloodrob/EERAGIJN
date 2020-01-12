@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,13 +35,13 @@ public class UserSearchCustomJob extends AppCompatActivity {
     // static variable for Listitem
     static String categoryItem;
     //arraylist for category
-    List<String> cusSerachCategoryList;
+    private List<String> cusSerachCategoryList;
     //arrayadaptor of the list
-    ArrayAdapter<String> getCusSearchCategoryList;
+   // ArrayAdapter<String> getCusSearchCategoryList;
     //array for search datalist
     static List<String> catSearchList;
     //arrayadaptor for search list
-    ArrayAdapter<String> getCatSearchList;
+    static ArrayAdapter<String> getCatSearchList;
     // for mobile network
     private ConnectivityManager cman;
     private NetworkInfo nInfo;
@@ -75,14 +76,16 @@ public class UserSearchCustomJob extends AppCompatActivity {
         cusSerachCategoryList.add("General Recruitment");
         cusSerachCategoryList.add("Insurance");
         //get the item into arrayadaptor
-        getCusSearchCategoryList = new ArrayAdapter<String>(UserSearchCustomJob.this, android.R.layout.simple_spinner_item,cusSerachCategoryList);
+        final ArrayAdapter<String> getCusSearchCategoryList = new ArrayAdapter<String>(UserSearchCustomJob.this, android.R.layout.simple_spinner_item,cusSerachCategoryList);
         getCusSearchCategoryList.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         searchByCategory.setAdapter(getCusSearchCategoryList);
         //get the selected item
         searchByCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 categoryItem = parent.getItemAtPosition(position).toString().trim();
+                Toast.makeText(UserSearchCustomJob.this, "Selected item is :"+categoryItem, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -94,52 +97,53 @@ public class UserSearchCustomJob extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("UploadedJobDetails");
 
-        //init of arraylist for the searched item
-        catSearchList = new ArrayList<String>();
-
         //butto submit method
         submitCusSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //submit search method declare
-                submitSearch();
                 //checking network connectivity
                 isOnline();
+                //submit search method declare
+                submitSearch();
+
             }
         });
     }
     //submit method define
     private void submitSearch() {
         pd1 = new ProgressDialog(this);
-        pd1.setCanceledOnTouchOutside(false);
+        pd1.setCanceledOnTouchOutside(true);
         pd1 = ProgressDialog.show(this, "searching.." ,"please wait");
         pd1.show();
+        //init of arraylist for the searched item
+        catSearchList = new ArrayList<String>();
+
         //query to search data
         final Query query = ref.orderByChild("JobSubject").equalTo(categoryItem);
-        query.addValueEventListener(new ValueEventListener() {
+        query.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if (dataSnapshot.hasChildren()) {
-                    for (DataSnapshot child : dataSnapshot.getChildren()) {
-                        UserSeachCustomJobModel res = child.getValue(UserSeachCustomJobModel.class);
-                        // dismissing the pd
-                        pd1.dismiss();
-                        //into the list
-                        catSearchList.add("job name :" + res.JobName +"\n" + "Last Date :" +res.LastDate +"\n\n\n");
-                        getCatSearchList = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, catSearchList);
-                        listOfItem.setAdapter(getCatSearchList);
+                    UserSeachCustomJobModel res12 = dataSnapshot.getValue(UserSeachCustomJobModel.class);
+                    // dismissing the pd
+                      pd1.dismiss();
+                    //into the list
+                    catSearchList.add(res12.JobName + "\n" + "Last Date :" + res12.LastDate + "\n\n\n");
+                    getCatSearchList = new ArrayAdapter<String>(UserSearchCustomJob.this, android.R.layout.simple_list_item_1, catSearchList);
+                    listOfItem.setAdapter(getCatSearchList);
+                    //select item to details view
+                    listOfItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent = new Intent(UserSearchCustomJob.this, UserSearchCustomJobDetails.class);
+                            String myString = parent.getItemAtPosition(position).toString().trim();
+                            String[] splitString = myString.split("\n");
+                            UserSearchCustomJobDetails.selectedNane = splitString[0];
+                            startActivity(intent);
 
-                        //select item to details view
-                       listOfItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                           @Override
-                           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                               Intent intent = new Intent(UserSearchCustomJob.this, UserSearchCustomJobDetails.class);
-                               UserSearchCustomJobDetails.selectedNane = parent.getItemAtPosition(position).toString().trim();
-                               startActivity(intent);
+                        }
+                    });
 
-                           }
-                       });
-                    }
                 }
                 else {
                     // for cancel pd
@@ -159,10 +163,26 @@ public class UserSearchCustomJob extends AppCompatActivity {
             }
 
             @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
+
 
     }
     //isOnline method declare

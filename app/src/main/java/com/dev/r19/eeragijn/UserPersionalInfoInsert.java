@@ -195,7 +195,7 @@ public class UserPersionalInfoInsert extends AppCompatActivity {
                         }
                         Log.e(TAG, "Data is Successfully inserted to the database");
                         Toast.makeText(UserPersionalInfoInsert.this, "Data is Successfully Inserted", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(UserPersionalInfoInsert.this, UserEducationQualificationInsert.class);
+                        Intent intent = new Intent(UserPersionalInfoInsert.this, NewUserMainActivity.class);
                         startActivity(intent);
                     }
 

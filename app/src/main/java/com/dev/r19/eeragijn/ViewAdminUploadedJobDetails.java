@@ -54,13 +54,13 @@ public class ViewAdminUploadedJobDetails extends AppCompatActivity {
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                JobUploadDetailsModel jobMod = dataSnapshot.getValue(JobUploadDetailsModel.class);
-                if (nameOfJob.equals(jobMod.Jobname)) {
-                    jobTitle.setText(jobMod.Jobname);
+                UserSeachCustomJobModel jobMod = dataSnapshot.getValue(UserSeachCustomJobModel.class);
+                if (nameOfJob.equals(jobMod.JobName)) {
+                    jobTitle.setText(jobMod.JobName);
                     subjectOfJob.setText(jobMod.JobSubject);
                     detailsOfjob.setText(jobMod.JobDetails);
                     myUrlToFile = jobMod.MyFileUrl.toString().trim();
-                    MyFileName = jobMod.Jobname.toString().trim();
+                    MyFileName = jobMod.JobName.toString().trim();
                 }
             }
 

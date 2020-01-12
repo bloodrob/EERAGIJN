@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +37,7 @@ public class UserSearchAllJob extends AppCompatActivity {
     //firebase storage
     private FirebaseStorage strMyFile;
     private StorageReference refTostrMyFile;
+    private FirebaseApp myApp;
     //button
     private ListView listOfAllSearchJob;
     //list to add the data
@@ -44,10 +46,6 @@ public class UserSearchAllJob extends AppCompatActivity {
     private ArrayAdapter<String> getAddListOfAllJob;
     // Progress Dialog to show the progress
     private ProgressDialog pd11;
-    //static string to take the selected item list
-    static String nameOfJob;
-    // string to take the url
-    private String takeMyUrl12, takeMyUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +53,8 @@ public class UserSearchAllJob extends AppCompatActivity {
         //button initialization
         listOfAllSearchJob = (ListView) findViewById(R.id.list_off_all_search_job);
         //firebase database get instance and ref to the instance
+     //   FirebaseApp.initializeApp(this);
+       // myApp = FirebaseApp.getInstance("[DEFAULT]");
         dataB = FirebaseDatabase.getInstance();
         refDataB = dataB.getReference("UploadedJobDetails");
         //initialize and set up progressdialog
@@ -67,28 +67,29 @@ public class UserSearchAllJob extends AppCompatActivity {
     }
     private void searchAllJob() {
         //start progress dialog
-        pd11.show();
+       // pd11.show();
         refDataB.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                JobUploadDetailsModel JobMod = dataSnapshot.getValue(JobUploadDetailsModel.class);
+                UserSeachCustomJobModel JobMod = dataSnapshot.getValue(UserSeachCustomJobModel.class);
                 // dissmissing the progress dialog
-                pd11.dismiss();
-                addListOfAllJob.add(JobMod.Jobname+"\n"+"\nJob Subject  : "+JobMod.JobSubject +"\n\nJob Details  : "+JobMod.JobDetails +"\n\n Click here to check the full job details advertisedment."+"\n\n\n\n");
+             //   pd11.dismiss();
+                addListOfAllJob.add(JobMod.JobName+"\n"+"\nLast Date : "+JobMod.LastDate+"\n\n\n");
                 getAddListOfAllJob = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, addListOfAllJob);
                 listOfAllSearchJob.setAdapter(getAddListOfAllJob);
                 //action after choosing a list item
                 listOfAllSearchJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //Intent the data to another java file
+                        Intent intent = new Intent(UserSearchAllJob.this, UserSearchCustomJobDetails.class);
                         //take the selected string
                         String myString = parent.getItemAtPosition(position).toString().trim();
                         //spli the string to get the required substring and strore in a string variable
                         String[] splitString = myString.split("\n");
-                        nameOfJob = splitString[0];
-                        Toast.makeText(UserSearchAllJob.this, "You select :"+nameOfJob, Toast.LENGTH_LONG).show();
-                        // method to get the url
-                        getTheSelectFileUrl();
+                        UserSearchCustomJobDetails.selectedNane = splitString[0];
+                        Toast.makeText(UserSearchAllJob.this, "You select :"+UserSearchCustomJobDetails.selectedNane, Toast.LENGTH_LONG).show();
+                        startActivity(intent);
                     }
                 });
             }
@@ -114,84 +115,5 @@ public class UserSearchAllJob extends AppCompatActivity {
                 return;
             }
         });
-    }
-    // function to get the url
-    private void getTheSelectFileUrl() {
-        DatabaseReference ref11 = FirebaseDatabase.getInstance().getReference("UploadedJobDetails");
-        ref11.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-             JobUploadDetailsModel findUrl2 = dataSnapshot.getValue(JobUploadDetailsModel.class);
-                if (nameOfJob.equals(findUrl2.Jobname)) {
-                    // url string to open pdf file in any pdf reader
-                    takeMyUrl12 = findUrl2.MyFileUrl.toString().trim();
-                    // split the url string and take the required url string to downoad the file
-                    String[] takeMyUrl123 = takeMyUrl12.split("\\?");
-                    takeMyUrl = takeMyUrl123[0];
-                   // Toast.makeText(UserSearchAllJob.this, "Downloading......", Toast.LENGTH_LONG).show();
-                    Toast.makeText(UserSearchAllJob.this, "Url is :"+takeMyUrl, Toast.LENGTH_LONG).show();
-                    // method to retrive the pdf file
-                    getMyPdfFile();
-                }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-    // retrive the pdf file function
-    private void getMyPdfFile() {
-        strMyFile = FirebaseStorage.getInstance();
-        refTostrMyFile = strMyFile.getReference().child("Uploaded Job Pdf").child(nameOfJob);
-        // handling the i/o file exception
-        try {
-            //file object to create temp file with the filename
-            File locFile = File.createTempFile("documents","pdf");
-            refTostrMyFile.getFile(locFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                //    Toast.makeText(UserSearchAllJob.this, "Downloading.....", Toast.LENGTH_LONG).show();
-                }
-            });
-            refTostrMyFile.getFile(locFile).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-               //     Toast.makeText(UserSearchAllJob.this, "Downloading failed.....", Toast.LENGTH_LONG).show();
-                }
-            });
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        // work for download the pdf file by url and open it on a pdf reader
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.parse(takeMyUrl12), "application/pdf");
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        // intent for ceate chooser
-        Intent myIntent = Intent.createChooser(intent, "Open File");
-        try {
-            startActivity(myIntent);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(UserSearchAllJob.this, "You need to install a pdf reader", Toast.LENGTH_LONG).show();
-        }
     }
 }

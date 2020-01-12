@@ -12,14 +12,13 @@ import android.widget.TextView;
 
 public class HomeToSelect extends AppCompatActivity {
 
-    TextView home;
-    Animation blink;
-    Button admin, emp;
+    private TextView home;
+    private Animation blink;
+    private Button emp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_to_select);
-        admin = (Button)findViewById(R.id.AsAdmin);
         emp = (Button)findViewById(R.id.AsEmp);
 
         Typeface mmedium = Typeface.createFromAsset(getAssets(), "fonts/MontserratMedium.ttf");//font style
@@ -29,15 +28,6 @@ public class HomeToSelect extends AppCompatActivity {
         home.startAnimation(blink);
 
         home.setTypeface(mmedium);//text style
-
-        // on click listener for admin
-        admin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeToSelect.this, AdminLogin.class);
-                startActivity(intent);
-            }
-        });
         // link to user home
         emp.setOnClickListener(new View.OnClickListener() {
             @Override

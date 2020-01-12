@@ -3,8 +3,11 @@ package com.dev.r19.eeragijn;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +26,8 @@ public class UserSearchCustomJobDetails extends AppCompatActivity {
     private EditText nameJob, categoryJob, lastDateJob, stipenSalaryJob, experienceJob, detailJob, checkAd;
     //to take the string from other page
     static String selectedNane;
+    // to take the url of the selected file
+    static String selectUrl;
     // progress dialogue
     private ProgressDialog pd1;
 
@@ -51,36 +56,63 @@ public class UserSearchCustomJobDetails extends AppCompatActivity {
         pd1.setCanceledOnTouchOutside(false);
         pd1 = ProgressDialog.show(this, "Searching...", "Please Wait");
 
+        Toast.makeText(UserSearchCustomJobDetails.this, "name is :"+selectedNane, Toast.LENGTH_LONG).show();
         //method of data retrive
         searchJobDetailData();
-        // method for getting the pdf url
-        getTheJobPdf();
+        //button func for pdf retrieve
+        checkAd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // method for getting the pdf url
+                getTheJobPdf();
+            }
+        });
+
     }
     // mathod for retrieve data
     private void searchJobDetailData() {
         pd1.show();
-        //query to match data
-        final Query query1 =ref.orderByChild("JobName").equalTo(selectedNane);
-        query1.addValueEventListener(new ValueEventListener() {
+        //search data
+        ref.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChildren()) {
-                    for (DataSnapshot child : dataSnapshot.getChildren()) {
-                        UserSeachCustomJobModel res1 = child.getValue(UserSeachCustomJobModel.class);
-                    }
-                }
-                else {
-
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                //pd dismiss
+                pd1.dismiss();
+                UserSeachCustomJobModel res1 = dataSnapshot.getValue(UserSeachCustomJobModel.class);
+                if (res1.JobName.equals(selectedNane)) {
+                    nameJob.setText(res1.JobName);
+                    categoryJob.setText(res1.JobSubject);
+                    lastDateJob.setText(res1.LastDate);
+                    stipenSalaryJob.setText(res1.StiepndSalary);
+                    experienceJob.setText(res1.JobExperience);
+                    detailJob.setText(res1.JobDetails);
+                    selectUrl = res1.MyFileUrl.toString().trim();
                 }
             }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
+
     }
+    // method for get the pdf file using url
     private void getTheJobPdf() {
 
     }
