@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,7 +21,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class UserChatting extends AppCompatActivity {
 
@@ -34,13 +38,23 @@ public class UserChatting extends AppCompatActivity {
     private FirebaseDatabase databs, database1;
     private DatabaseReference refToDatabs, getRefToDatabs1;
     // firebase for store chatting
-    DatabaseReference refToStrChat;
+    private DatabaseReference refToStrChat;
+    //arraylist for list of message
+    private List<String> chatMesList;
+    // arrayAdaptor for list of message
+    private ArrayAdapter<String> getChatmesList;
     // variable for get the email of the current user
     private String curUserMail;
     // to store the name of the chat user and the chat text
     private String ChatUser;
     private String ChatText;
     private Long ChatTime;
+    //variable for Id generator
+    static final String alphaNum = "ABCDEFGHIJKLMONPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+    static SecureRandom random = new SecureRandom();
+    static final int len = 10;
+    static StringBuilder strngbldr;
+    private String ChatId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +70,9 @@ public class UserChatting extends AppCompatActivity {
         // firebase work for get the current user
         auth = FirebaseAuth.getInstance();
         curUserMail = auth.getCurrentUser().getEmail().toString().trim();
+        // firebase work for entry and retrieve data
+        database1 = FirebaseDatabase.getInstance();
+        getRefToDatabs1 = database1.getReference("UserChat");
         //Toast.makeText(UserChatting.this, "email is :"+curUserMail, Toast.LENGTH_LONG).show();
         //firebase init
         databs = FirebaseDatabase.getInstance();
@@ -73,6 +90,8 @@ public class UserChatting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ChatText = typedChat.getText().toString().trim();
+                //method declare for random id generator
+                genRandomString(len);
                 ChatTime = 7000000000000L;
                 // method for store cur user chat text
                 updateCurUserChatText(ChatText, ChatUser, ChatTime);
@@ -121,23 +140,25 @@ public class UserChatting extends AppCompatActivity {
     } // end of getCurUserName method
     //start updateCurUserChatText
     private void updateCurUserChatText(String ChatText, String ChatUser, long ChatTime) {
-        // firebase work
-        database1 = FirebaseDatabase.getInstance();
-        getRefToDatabs1 = database1.getReference("UserChat");
         UserChattingModel mod1 = new UserChattingModel(ChatText, ChatUser, ChatTime);
-        getRefToDatabs1.child(ChatUser).setValue(mod1);
+        mod1.NewChatid = strngbldr.toString().trim();
+        ChatId = mod1.NewChatid;
+        getRefToDatabs1.child(ChatId).setValue(mod1);
         updateChat();
         // clear the editText
         typedChat.setText("");
     }
     //upodate chat
     private void updateChat() {
-        getRefToDatabs1.child(ChatUser).addListenerForSingleValueEvent(new ValueEventListener() {
+        getRefToDatabs1.child("id").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserChattingModel mod2 = dataSnapshot.getValue(UserChattingModel.class);
                 if (mod2 == null) {
                     Toast.makeText(UserChatting.this, "Error", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    getTheChatData();
                 }
             }
 
@@ -150,7 +171,48 @@ public class UserChatting extends AppCompatActivity {
 
     // get the chat list
     private void getTheChatData() {
+        // init the arraylist for the message list to add
+        chatMesList = new ArrayList<String>();
+        getRefToDatabs1.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                UserChattingModel useMod = dataSnapshot.getValue(UserChattingModel.class);
+                if (dataSnapshot.hasChildren()) {
+                    chatMesList.add(useMod.ChatUser +"\n"+"Mes :"+useMod.ChatText+"\n "+useMod.ChatTime +"\n\n");
+                    getChatmesList = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,chatMesList);
+                    listOfChatMessage.setAdapter(getChatmesList);
+                }
+            }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        }) ;
+
+    }
+    // method defining for random id generator
+    public String genRandomString(int len) {
+        strngbldr = new StringBuilder(len);
+        for (int i =0; i<len; i++) {
+            strngbldr.append(alphaNum.charAt(random.nextInt(alphaNum.length())));
+        }
+        return strngbldr.toString().trim();
     }
 }
 

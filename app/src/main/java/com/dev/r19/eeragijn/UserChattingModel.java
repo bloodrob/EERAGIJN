@@ -7,9 +7,10 @@ import java.util.Date;
  */
 
 public class UserChattingModel {
+    public String NewChatid;
     public String ChatText, ChatUser;
     public long ChatTime;
-    public UserChattingModel(String ChatUser, String ChatText) {
+    public UserChattingModel() {
 
     }
 
