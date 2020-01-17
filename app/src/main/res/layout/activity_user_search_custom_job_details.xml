@@ -12,15 +12,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/frame1">
         <TextView
-            android:layout_width="190dp"
+            android:layout_width="350dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="100dp"
-            android:text="Available Job"
+            android:layout_marginLeft="15dp"
+            android:text="@string/sel_job_info"
             android:textColor="#ffffff"
             android:textSize="15dp"
+            android:textAlignment="center"
             android:textStyle="bold"/>
     </FrameLayout>
     <ScrollView
+        android:id="@+id/scroll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/frame1">
@@ -30,13 +32,14 @@
             android:id="@+id/relative1">
             <TextView
                 android:id="@+id/nameView"
-                android:layout_width="70dp"
+                android:layout_width="90dp"
                 android:layout_height="20dp"
                 android:layout_alignBaseline="@+id/name_job"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:textSize="15dp"
+                android:textStyle="bold"
                 android:textColor="#000000"
-                android:text="Job Name"/>
+                android:text="Job Name :"/>
             <EditText
                 android:id="@+id/name_job"
                 android:layout_width="250dp"
@@ -44,18 +47,20 @@
                 android:layout_marginTop="10dp"
                 android:layout_alignLeft="@+id/nameView"
                 android:layout_marginLeft="99dp"
-                android:textColor="#000000"
-                android:textAlignment="center"
-                android:background="@drawable/text_1"/>
+                android:textColor="#ffffff"
+                android:textSize="12dp"
+                android:gravity="left|top"
+                android:background="#00000000"/>
             <TextView
                 android:layout_width="95dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/name_job"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="26dp"
                 android:textSize="15dp"
+                android:textStyle="bold"
                 android:textColor="#000000"
-                android:text="Job Category" />
+                android:text="Category:" />
             <EditText
                 android:id="@+id/category_job"
                 android:layout_width="250dp"
@@ -64,17 +69,21 @@
                 android:layout_alignLeft="@+id/nameView"
                 android:layout_marginLeft="99dp"
                 android:layout_marginTop="26dp"
+                android:textColor="#ffffff"
+                android:textSize="14dp"
+                android:gravity="top"
                 android:textAlignment="center"
-                android:background="@drawable/text_1" />
+                android:background="#00000000" />
             <TextView
                 android:layout_width="95dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/category_job"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="28dp"
                 android:textSize="15dp"
+                android:textStyle="bold"
                 android:textColor="#000000"
-                android:text="Last Date"
+                android:text="Last Date :"
                 />
             <EditText
                 android:id="@+id/last_date_job"
@@ -84,18 +93,22 @@
                 android:layout_alignLeft="@+id/nameView"
                 android:layout_marginLeft="99dp"
                 android:layout_marginTop="28dp"
+                android:textSize="14dp"
+                android:textColor="#ffffff"
+                android:gravity="top"
                 android:textAlignment="center"
-                android:background="@drawable/text_1"
+                android:background="#00000000"
                 />
             <TextView
-                android:layout_width="95dp"
+                android:layout_width="98dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/last_date_job"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="30dp"
                 android:textSize="15dp"
+                android:textStyle="bold"
                 android:textColor="#000000"
-                android:text="Stipen/Salary"
+                android:text="Stipen/Salary:"
                 />
             <EditText
                 android:id="@+id/stipen_salary_job"
@@ -105,18 +118,21 @@
                 android:layout_alignLeft="@+id/nameView"
                 android:layout_marginLeft="99dp"
                 android:layout_marginTop="30dp"
-                android:textAlignment="center"
-                android:background="@drawable/text_1"
+                android:gravity="top|left"
+                android:textColor="#ffffff"
+                android:textSize="12dp"
+                android:background="#00000000"
                 />
             <TextView
                 android:layout_width="95dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/stipen_salary_job"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="32dp"
                 android:textSize="15dp"
+                android:textStyle="bold"
                 android:textColor="#000000"
-                android:text="Experience" />
+                android:text="Experience :" />
             <EditText
                 android:id="@+id/experience_job"
                 android:layout_width="250dp"
@@ -125,17 +141,20 @@
                 android:layout_alignLeft="@+id/nameView"
                 android:layout_marginLeft="99dp"
                 android:layout_marginTop="32dp"
-                android:textAlignment="viewStart"
-                android:background="@drawable/text_1" />
+                android:textColor="#ffffff"
+                android:textSize="12dp"
+                android:gravity="top|left"
+                android:background="#00000000" />
             <TextView
                 android:layout_width="95dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/experience_job"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="34dp"
                 android:textSize="15dp"
+                android:textStyle="bold"
                 android:textColor="#000000"
-                android:text="Job Details"  />
+                android:text="Job Details :"  />
             <EditText
                 android:id="@+id/detail_job"
                 android:layout_width="250dp"
@@ -144,21 +163,33 @@
                 android:layout_alignLeft="@+id/nameView"
                 android:layout_marginLeft="99dp"
                 android:layout_marginTop="34dp"
-                android:textAlignment="textStart"
-                android:background="@drawable/text_1"
+                android:textColor="#ffffff"
+                android:textSize="12dp"
+                android:gravity="top|left"
+                android:background="#00000000"
                 />
-            <EditText
+            <Button
                 android:id="@+id/check_ad"
                 android:layout_width="450dp"
                 android:layout_height="30dp"
                 android:layout_below="@+id/detail_job"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="34dp"
-                android:textAlignment="center"
+                android:textSize="12dp"
                 android:text="click here to check the advertisement"
-                android:textColor="#000000"
-                android:background="@drawable/text_1"/>
+                android:textColor="#ffffff"
+                android:background="#00000000"/>
         </RelativeLayout>
     </ScrollView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scroll1">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:background="#00000000"/>
+    </FrameLayout>
 
 </RelativeLayout>

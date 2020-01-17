@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,7 +21,8 @@ import com.google.firebase.storage.FirebaseStorage;
 public class UserSearchCustomJobDetails extends AppCompatActivity {
 
     // button variable declare
-    private EditText nameJob, categoryJob, lastDateJob, stipenSalaryJob, experienceJob, detailJob, checkAd;
+    private EditText nameJob, categoryJob, lastDateJob, stipenSalaryJob, experienceJob, detailJob;
+    private Button checkAd;
     //to take the string from other page
     static String selectedNane;
     // to take the url of the selected file
@@ -43,7 +45,7 @@ public class UserSearchCustomJobDetails extends AppCompatActivity {
         stipenSalaryJob = (EditText)findViewById(R.id.stipen_salary_job);
         experienceJob = (EditText)findViewById(R.id.experience_job);
         detailJob = (EditText)findViewById(R.id.detail_job);
-        checkAd = (EditText)findViewById(R.id.check_ad);
+        checkAd = (Button) findViewById(R.id.check_ad);
 
         // init of firebase variable
         database = FirebaseDatabase.getInstance();

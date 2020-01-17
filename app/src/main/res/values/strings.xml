@@ -15,13 +15,13 @@
         Also check weather the app is working efficintly or not, if found any error then contact to the database administrators.
     </string>
     <string name="user_marquee_text">Regularly check the app to get updated job deatils. \n\n
-        If you are new to this app , then update your profile by today. \n\n
+        If you are new to this app , then update your profile by today, So that can give priority that you prefer. \n\n
         If you are an existing user then you can search for job. \n\n
         We provide you all updated job details as much as we can. \n\n
     </string>
-    <string name="user_text_show">The 1st Ever Getting Job Notification App Of Assam. \n\n
+    <string name="user_text_show">It is a Job Notification App Of Assam. \n\n
         It Is One Of Our Forward Step Towards Making Digital Assam. \n\n
-        And Making Available Option To Job Details Notified By Us.
+        Notified you about job vacancy just by receiving a notification send by us.
     </string>
     <string name="terms_ref"><b><u>Read Terms and Condition Carefully</u></b></string>
     <string name="terms_string"><b><u>TERMS AND CONDITIONS</u></b></string>
@@ -37,9 +37,13 @@
         4. By Accepting Terms and Condition, You are giving your consent to show your Information to app users.\n\n
         5. Developer of this app are not responsible for any misuse and spam on your mobile number and Email.
     </string>
-    <string name="about_us">National Inforamation Centre \n\n
-        Tinsukia, Near Tinsukia District Court
-
-    </string>
+   <string name="about_us">
+       Developed By : -  \n
+       InfoExc Techonology  \n\n
+       visit us at - www.infoExc.org.in \n
+       E-mail - InfoExc.tech@gmail.com
+   </string>
+    <string name="about_us_head">One initiative towards make assam digitize</string>
+    <string name="sel_job_info"> Information of Selected Job</string>
 
 </resources>
