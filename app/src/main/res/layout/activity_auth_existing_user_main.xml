@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_2"
-    tools:context="com.dev.r19.eeragijn.AuthExistingUserMainActivity">
+    tools:context="com.dev.r19.SakoriSarothiClient.AuthExistingUserMainActivity">
 
 
     <TextView

@@ -1,6 +1,6 @@
-package com.dev.r19.eeragijn;
+package com.dev.r19.SakoriSarothiClient;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class ContactUs extends AppCompatActivity {

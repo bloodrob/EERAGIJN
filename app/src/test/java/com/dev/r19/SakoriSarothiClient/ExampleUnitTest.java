@@ -1,4 +1,4 @@
-package com.dev.r19.eeragijn;
+package com.dev.r19.SakoriSarothiClient;
 
 import org.junit.Test;
 

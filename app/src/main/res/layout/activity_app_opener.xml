@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/openar"
-    tools:context="com.dev.r19.eeragijn.AppOpener">
+    tools:context="com.dev.r19.SakoriSarothiClient.AppOpener">
 
 
     <FrameLayout

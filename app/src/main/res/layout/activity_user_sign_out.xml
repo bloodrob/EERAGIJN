@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_3"
-    tools:context="com.dev.r19.eeragijn.UserSignOut">
+    tools:context="com.dev.r19.SakoriSarothiClient.UserSignOut">
 
 </RelativeLayout>

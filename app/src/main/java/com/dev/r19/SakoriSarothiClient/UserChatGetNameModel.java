@@ -1,4 +1,4 @@
-package com.dev.r19.eeragijn;
+package com.dev.r19.SakoriSarothiClient;
 
 /**
  * Created by R19 on 1/12/2020.

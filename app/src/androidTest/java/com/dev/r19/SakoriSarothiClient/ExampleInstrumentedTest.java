@@ -1,4 +1,4 @@
-package com.dev.r19.eeragijn;
+package com.dev.r19.SakoriSarothiClient;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dev.r19.eeragijn">
+    package="com.dev.r19.SakoriSarothiClient">
 
-    <user-permission android:name="anddroid.permission.READ_EXTERNAL_STROGARE/" />
-    <user-permission android:name="android.permission.READ_INTERNAL_STORAGE/" />
-    <user-permission android:name="android.permission.WRITE_INTERNAL_STORAGE/" />
-    <user-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE/" />
-    <user-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="anddroid.permission.READ_EXTERNAL_STROGARE/" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE/" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE/" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE/" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,29 +15,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AppOpener">
+        <activity android:name="com.dev.r19.SakoriSarothiClient.AppOpener">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".UserHome" />
-        <activity android:name=".UserRegistration" />
-        <activity android:name=".UserLogin" />
-        <activity android:name=".NewUserMainActivity" />
-        <activity android:name=".UserPersionalInfoInsert" />
-        <activity android:name=".HomeToSelect" />
-        <activity android:name=".ResetPassword" />
-        <activity android:name=".UserSignOut" />
-        <activity android:name=".UserSearchAllJob" />
-        <activity android:name=".UserCheckStatus" />
-        <activity android:name=".ContactUs" />
-        <activity android:name=".PopUpTermsAndCondition" />
-        <activity android:name=".UserChatting" />
-        <activity android:name=".UserSearchCustomJob" />
-        <activity android:name=".UserSearchCustomJobDetails"></activity>
+        <activity android:name="com.dev.r19.SakoriSarothiClient.MainActivity" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.UserHome" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.UserRegistration" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.UserLogin" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.NewUserMainActivity" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.UserPersionalInfoInsert" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.HomeToSelect" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.ResetPassword" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.UserSignOut" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.UserSearchAllJob" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.UserCheckStatus" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.ContactUs" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.PopUpTermsAndCondition" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.UserChatting" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.UserSearchCustomJob" />
+        <activity android:name="com.dev.r19.SakoriSarothiClient.UserSearchCustomJobDetails"></activity>
     </application>
 
 </manifest>
