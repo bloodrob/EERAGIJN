@@ -10,9 +10,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".UserFeedback"></activity>
@@ -29,7 +29,6 @@
         <activity android:name=".UserLogin" />
         <activity android:name=".NewUserMainActivity" />
         <activity android:name=".UserProfileUpdate" />
-        <activity android:name=".HomeToSelect" />
         <activity android:name=".ResetPassword" />
         <activity android:name=".UserSignOut" />
         <activity android:name=".UserSearchAllJob" />
