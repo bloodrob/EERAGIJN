@@ -15,29 +15,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.dev.r19.SakoriSarothiClient.AppOpener">
+        <activity android:name=".UserFeedback"></activity>
+        <activity android:name=".AppOpener">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.dev.r19.SakoriSarothiClient.MainActivity" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.UserHome" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.UserRegistration" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.UserLogin" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.NewUserMainActivity" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.UserPersionalInfoInsert" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.HomeToSelect" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.ResetPassword" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.UserSignOut" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.UserSearchAllJob" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.UserCheckStatus" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.ContactUs" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.PopUpTermsAndCondition" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.UserChatting" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.UserSearchCustomJob" />
-        <activity android:name="com.dev.r19.SakoriSarothiClient.UserSearchCustomJobDetails"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".UserHome" />
+        <activity android:name=".UserRegistration" />
+        <activity android:name=".UserLogin" />
+        <activity android:name=".NewUserMainActivity" />
+        <activity android:name=".UserProfileUpdate" />
+        <activity android:name=".HomeToSelect" />
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".UserSignOut" />
+        <activity android:name=".UserSearchAllJob" />
+        <activity android:name=".UserCheckStatus" />
+        <activity android:name=".ContactUs" />
+        <activity android:name=".PopUpTermsAndCondition" />
+        <activity android:name=".UserChatting" />
+        <activity android:name=".UserSearchCustomJob" />
+        <activity android:name=".UserSearchCustomJobDetails" />
     </application>
 
 </manifest>

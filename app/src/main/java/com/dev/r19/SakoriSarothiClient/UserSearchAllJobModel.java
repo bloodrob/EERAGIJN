@@ -1,17 +1,13 @@
 package com.dev.r19.SakoriSarothiClient;
 
-/**
- * Created by R19 on 1/10/2020.
- */
-
-public class UserSeachCustomJobModel {
+public class UserSearchAllJobModel {
     private String JobName;
     private String LastDate;
 
-    public UserSeachCustomJobModel() {
+    public UserSearchAllJobModel() {
 
     }
-    public UserSeachCustomJobModel(String JobName, String LastDate) {
+    public UserSearchAllJobModel(String JobName, String LastDate) {
         this.JobName = JobName;
         this.LastDate = LastDate;
     }
@@ -24,7 +20,6 @@ public class UserSeachCustomJobModel {
     public String getLastDate() {
         return LastDate;
     }
-
     public void setLastDate(String LastDate) {
         this.LastDate = LastDate;
     }
