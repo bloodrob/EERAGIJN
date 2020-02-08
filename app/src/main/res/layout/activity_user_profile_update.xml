@@ -8,20 +8,30 @@
     tools:context="com.dev.r19.SakoriSarothiClient.UserProfileUpdate">
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:id="@+id/frame1">
         <TextView
             android:layout_width="190dp"
             android:layout_height="40dp"
             android:layout_marginLeft="100dp"
+            android:layout_marginTop="20dp"
             android:text="PERSONAL INFORMATION"
             android:textColor="#ffffff"
             android:textSize="15dp"
             android:textStyle="bold"/>
     </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/frame1">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_below="@+id/frame1">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -65,47 +75,10 @@
                 android:layout_below="@+id/user_name"
                 android:background="@drawable/text_1"/>
             <TextView
-                android:id="@+id/preferView"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
-                android:layout_below="@+id/emailView"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="15dp"
-                android:textColor="#000000"
-                android:text="Preferences"/>
-            <Spinner
-                android:id="@+id/preferences"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_below="@+id/email"
-                android:layout_marginTop="10dp"
-                android:layout_alignStart="@+id/user_name"></Spinner>
-            <TextView
-                android:id="@+id/choiceView"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_below="@+id/preferView"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="15dp"
-                android:textColor="#000000"
-                android:text="Few About the Choice"/>
-            <EditText
-                android:id="@+id/aboutChoice"
-                android:layout_width="250dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="10dp"
-                android:layout_alignStart="@+id/user_name"
-                android:layout_below="@+id/preferences"
-                android:textColor="#000000"
-                android:textAlignment="center"
-                android:background="@drawable/text_1"/>
-            <TextView
                 android:id="@+id/lastQualiView"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/choiceView"
+                android:layout_below="@+id/emailView"
                 android:layout_marginTop="35dp"
                 android:layout_marginLeft="20dp"
                 android:textSize="15dp"
@@ -117,7 +90,7 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="35dp"
                 android:layout_alignStart="@+id/user_name"
-                android:layout_below="@+id/aboutChoice"
+                android:layout_below="@+id/email"
                 android:textColor="#000000"
 
                 ></Spinner>
@@ -149,12 +122,13 @@
                 android:layout_below="@+id/mobile"
                 android:layout_marginTop="100dp"
                 android:layout_alignStart="@+id/mobile"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="65dp"
                 android:text="SUBMMIT"
                 android:textStyle="bold"
                 android:textColor="#000000"/>
         </RelativeLayout>
     </ScrollView>
+    </FrameLayout>
 
 
 </RelativeLayout>

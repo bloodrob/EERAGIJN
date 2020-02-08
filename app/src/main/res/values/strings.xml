@@ -21,7 +21,8 @@
     </string>
     <string name="user_text_show">It is a Job Notification App Of Assam. \n\n
         It Is One Of Our Forward Step Towards Making Digital Assam. \n\n
-        Notified you about job vacancy just by receiving a notification send by us.
+        You will get notification just after few moment of declaring the vacancy \n\n
+        of the job by corresponding department.
     </string>
     <string name="terms_ref"><b><u>Read Terms and Condition Carefully</u></b></string>
     <string name="terms_string"><b><u>TERMS AND CONDITIONS</u></b></string>
@@ -45,5 +46,12 @@
    </string>
     <string name="about_us_head">One initiative towards make assam digitize</string>
     <string name="sel_job_info"> Information of Selected Job</string>
+    <string name="un_sign_user">We bring you list of all available job advertisedment.\n Help Your self by aceiving one.\n
+        All the best.
 
+    </string>
+    <string name="user_homeText">Please Register To The App For Make Available The Latest Feature</string>
+    <string name="search_all_job_name"> Here is the list of all available job. Chech for yourself</string>
+    <string name="custom_search_job_name">Here you go with you the job you prefer. Click the job for further information.</string>
+    <string name="subscribe_text">Subscribe To A Topic To Get The Instant Notification About The Job Of The Desired topic </string>
 </resources>

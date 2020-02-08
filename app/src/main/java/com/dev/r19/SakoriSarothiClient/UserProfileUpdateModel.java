@@ -5,23 +5,55 @@ package com.dev.r19.SakoriSarothiClient;
  */
 
 public class UserProfileUpdateModel {
-    public String activeId;
-    public String Preference;
-    public String LatestQualification;
-    public String AboutChoice;
-    public String Email;
-    public String Mobile;
-    public String Name;
+    private String ActiveId;
+    private String LatestQualification;
+    private String Email;
+    private String Mobile;
+    private String Name;
 
     public UserProfileUpdateModel() {
 
     }
-    public UserProfileUpdateModel(String Name, String Email, String Preference, String LatestQualification, String AbouChoice, String Mobile) {
+    public UserProfileUpdateModel(String ActiveId, String Name, String Email, String LatestQualification, String Mobile) {
+        this.ActiveId = ActiveId;
         this.Name = Name;
         this.Email = Email;
-        this.Preference = Preference;
-        this.AboutChoice = AbouChoice;
         this.LatestQualification = LatestQualification;
         this.Mobile = Mobile;
+    }
+
+    public String getActiveId() {
+        return ActiveId;
+    }
+    public void setActiveId(String ActiveId) {
+        this.ActiveId = ActiveId;
+    }
+
+    public String getLatestQualification() {
+        return LatestQualification;
+    }
+    public void setLatestQualification(String LatestQualification) {
+        this.LatestQualification = LatestQualification;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+    public void setEmail(String Email){
+        this.Email = Email;
+    }
+
+    public String getMobile() {
+        return Mobile;
+    }
+    public void setMobile(String Mobile) {
+        this.Mobile = Mobile;
+    }
+
+    public String getName() {
+        return Name;
+    }
+    public void setName(String Name){
+        this.Name = Name;
     }
 }
