@@ -43,8 +43,6 @@ public class UnSignUserMainActivity extends AppCompatActivity {
         databaseReference = database.getReference("UploadedJobDetails");
         //init arraylist
         myJobList = new ArrayList<>();
-        //check current user status
-        checkCurrentUserStatus();
         //search job
         searchJobList();
     }
@@ -89,13 +87,10 @@ public class UnSignUserMainActivity extends AppCompatActivity {
     }
 
     private void checkCurrentUserStatus() {
+        //check current user status
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             Intent intent = new Intent(UnSignUserMainActivity.this, UserHome.class);
-            startActivity(intent);
-        }
-        if (user != null) {
-            Intent intent = new Intent(UnSignUserMainActivity.this, NewUserMainActivity.class);
             startActivity(intent);
         }
     }

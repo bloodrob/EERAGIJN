@@ -26,7 +26,7 @@ import java.util.Map;
 public class NotificationMsgService extends FirebaseMessagingService {
     private FirebaseUser user;
     // private Notification myNotification;
-    public static final String NOTIFICATION_CHANNEL_ID = "my_channel_id2";
+    public static final String NOTIFICATION_CHANNEL_ID = "my_channel_id3";
     public static final String TAG = "FireBase_Message";
     private Intent intent;
     private String myJobName;
@@ -52,7 +52,8 @@ public class NotificationMsgService extends FirebaseMessagingService {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Toast.makeText(this, "successful", Toast.LENGTH_LONG).show();
-            intent = new Intent(this, NewUserMainActivity.class);
+            intent = new Intent(this, UserSearchCustomJobDetails.class);
+            intent.putExtra("id", "notiSerJob");
             intent.putExtra("title", myJobName);
         }
         int notificationId = (int)System.currentTimeMillis();
