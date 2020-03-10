@@ -1,22 +1,42 @@
 package com.dev.r19.SakoriSarothiClient;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    TextView ivLogo ,ivSubtitle ,ivBtn;
-    ImageView ivSplash , ivIcon;
-    Animation smalltobig , lefttoright , fleft , fhelper;
+    private TextView ivLogo;
+    private TextView ivSubtitle;
+    private TextView ivBtn;
+    private ImageView ivSplash;
+    private Animation smalltobig;
+    public Animation lefttoright;
+    public Animation fleft;
+    public Animation fhelper;
+    private NetworkInfo nInfo;
+    private ConnectivityManager cman;
+    private Intent notiIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +58,12 @@ public class MainActivity extends AppCompatActivity {
         ivSubtitle = (TextView) findViewById(R.id.ivSubtitle);
         ivBtn = (TextView) findViewById(R.id.ivBtn);
         ivSplash = (ImageView) findViewById(R.id.ivSplash);
-        ivIcon = (ImageView) findViewById(R.id.ivIcon);
 
         ivLogo.setTypeface(logoX);
         ivSubtitle.setTypeface(mlight);
         ivBtn.setTypeface(mmedium);
 
 
-        ivIcon.startAnimation(smalltobig);
         ivSplash.startAnimation(smalltobig);
         ivLogo.setTranslationX(400);
         ivSubtitle.setTranslationX(400);
@@ -55,9 +73,20 @@ public class MainActivity extends AppCompatActivity {
         ivSubtitle.animate().translationX(0).setDuration(800).setStartDelay(700).start();
         ivBtn.animate().translationX(0).setDuration(800).setStartDelay(900).start();
 
+        //check the notification intent value
+        notiIntent = getIntent();
+        if (notiIntent.hasExtra("id")) {
+            // get and put intent to the other page
+            getAndTransferNotification();
+        }
+
+        // check network connectivity
+        isMOnline();
+
         ivBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                isMOnline();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null)
                 {
@@ -71,5 +100,27 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fleft, R.anim.fhelper);
             }
         });
+    }
+    private void isMOnline(){
+        cman = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        nInfo = cman.getActiveNetworkInfo();
+        if (nInfo != null && nInfo.isConnected()) {
+            Toast.makeText(this, "You Online", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "No Internet Connection, Please Check Your Network Connection", Toast.LENGTH_SHORT).show();
+            // intent to Device Network setting
+            Intent intent = new Intent(Settings.ACTION_SETTINGS);
+            //intent.sett
+            // intent.setClassName("com.android.phone","com.android.phone.NetworkSetting");
+            startActivity(intent);
+            return;
+        }
+    }
+    private void getAndTransferNotification() {
+        Intent sendIntent = new Intent(MainActivity.this, UserSearchCustomJobDetails.class);
+        sendIntent.putExtra("id", notiIntent.getStringExtra("id"));
+        sendIntent.putExtra("title", notiIntent.getStringExtra("title"));
+        startActivity(sendIntent);
     }
 }

@@ -3,22 +3,22 @@ package com.dev.r19.SakoriSarothiClient;
 import android.widget.EditText;
 
 public class UserFeedbackModel {
-    private String FeedbackType;
+    private String FeedbackCategory;
     private String MessageFeedback;
     private String FeedbackPerson;
 
     public UserFeedbackModel(){
     }
-    public UserFeedbackModel(String FeedbackType, String MessageFeedback, String FeedbackPerson) {
-        this.FeedbackType = FeedbackType;
+    public UserFeedbackModel(String FeedbackCategory, String MessageFeedback, String FeedbackPerson) {
+        this.FeedbackCategory = FeedbackCategory;
         this.MessageFeedback  = MessageFeedback;
         this.FeedbackPerson = FeedbackPerson;
     }
-    public String getFeedbackType() {
-        return FeedbackType;
+    public String getFeedbackCategory() {
+        return FeedbackCategory;
     }
-    public void setFeedbackType(String FeedbackType) {
-        this.FeedbackType = FeedbackType;
+    public void setFeedbackCategory(String FeedbackCategory) {
+        this.FeedbackCategory = FeedbackCategory;
     }
     public String getMessageFeedback() {
         return MessageFeedback;

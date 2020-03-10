@@ -23,11 +23,18 @@
             android:textAlignment="center"
             android:textStyle="bold"/>
     </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/frame1"
+        android:id="@+id/frame32">
     <ScrollView
         android:id="@+id/scroll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/frame1">
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@+id/frame32">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,6 +58,7 @@
                 android:layout_marginLeft="99dp"
                 android:textColor="#ffffff"
                 android:textSize="12dp"
+                android:focusable="false"
                 android:gravity="left|top"
                 android:background="#00000000"/>
             <TextView
@@ -98,6 +106,7 @@
                 android:textSize="14dp"
                 android:textColor="#ffffff"
                 android:gravity="top"
+                android:focusable="false"
                 android:textAlignment="center"
                 android:background="#00000000"
                 />
@@ -123,6 +132,7 @@
                 android:gravity="top|left"
                 android:textColor="#ffffff"
                 android:textSize="12dp"
+                android:focusable="false"
                 android:background="#00000000"
                 />
             <TextView
@@ -146,6 +156,7 @@
                 android:textColor="#ffffff"
                 android:textSize="12dp"
                 android:gravity="top|left"
+                android:focusable="false"
                 android:background="#00000000" />
             <TextView
                 android:layout_width="95dp"
@@ -168,6 +179,7 @@
                 android:textColor="#ffffff"
                 android:textSize="12dp"
                 android:gravity="top|left"
+                android:focusable="false"
                 android:background="#00000000"
                 />
             <Button
@@ -183,15 +195,16 @@
                 android:background="#00000000"/>
         </RelativeLayout>
     </ScrollView>
+    </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_below="@+id/scroll1">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/frame32">
 
         <TextView
             android:layout_width="200dp"
             android:layout_height="80dp"
+            android:layout_marginBottom="70dp"
             android:background="#00000000"/>
     </FrameLayout>
 

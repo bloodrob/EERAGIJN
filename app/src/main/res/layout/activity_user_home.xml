@@ -6,54 +6,105 @@
     android:layout_height="match_parent"
     android:background="@drawable/back_3"
     tools:context="com.dev.r19.SakoriSarothiClient.UserHome">
-
-    <TextView
-        android:id="@+id/userHome"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="51dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="#000000"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        android:text="User Homepage"/>
-    <TextView
-        android:id="@+id/user_home_text"
-        android:layout_width="280dp"
-        android:layout_height="28dp"
-        android:layout_marginLeft="70dp"
-        android:text="@string/user_homeText"
-        android:layout_marginTop="100dp"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:scrollHorizontally="true"
-        android:singleLine="true"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:freezesText="true"
-        android:textSize="20dp"
-        />
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        android:layout_marginTop="49dp"
+        android:id="@+id/homeFrame1">
+        <TextView
+            android:id="@+id/userHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="51dp"
+            android:layout_marginLeft="280px"
+            android:textColor="#000000"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:text="User Homepage"/>
+        <TextView
+            android:id="@+id/user_home_text"
+            android:layout_width="280dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="70dp"
+            android:text="@string/user_homeText"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="10dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:freezesText="true"
+            android:textSize="20dp"
+            />
 
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        android:layout_below="@+id/homeFrame1"
+        android:id="@+id/homeFrame2"
+        android:layout_marginTop="20dp">
     <Button
         android:id="@+id/toUserLogin"
         android:layout_width="170dp"
         android:layout_height="40dp"
         android:background="@drawable/btn_5"
-        android:layout_below="@+id/userHome"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"
         android:text="User Login" />
-
     <Button
         android:id="@+id/toUserReg"
         android:layout_width="170dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/toUserLogin"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/btn_5"
         android:text="User Registration" />
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        android:layout_below="@id/homeFrame2"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:text="Or Sign In Using"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="100dp"/>
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginBottom="30dp" />
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginLeft="235dp"
+            android:src="@drawable/google_icon"
+            android:layout_marginRight="55dp"
+            android:layout_marginBottom="20dp"/>
+
+    </FrameLayout>
 </RelativeLayout>

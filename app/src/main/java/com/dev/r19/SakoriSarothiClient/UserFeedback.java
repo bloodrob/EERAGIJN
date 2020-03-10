@@ -141,9 +141,10 @@ public class UserFeedback extends AppCompatActivity {
         // for data store
         database123 = FirebaseDatabase.getInstance();
         dbRef123 = database123.getReference("UserFeedback");
+        feedMod.setFeedbackCategory(feedType);
         feedMod.setFeedbackPerson(FeedbackUserName);
         feedMod.setMessageFeedback(feedMes);
-        dbRef123.push().child(feedType).setValue(feedMod);
+        dbRef123.push().setValue(feedMod);
         Toast.makeText(UserFeedback.this, "Thanks, For Your Valuable feedback", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(UserFeedback.this, NewUserMainActivity.class);
         startActivity(intent);

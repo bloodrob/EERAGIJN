@@ -27,8 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/topicFram1"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="4dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
         android:background="#dcdcdc"
@@ -37,7 +37,7 @@
             android:id="@+id/topicScrol1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="45dp"
             android:layout_marginTop="10dp">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                      android:id="@+id/topic_one_sub"
                      android:layout_width="105dp"
                      android:layout_height="40dp"
-                     android:layout_marginLeft="200dp"
+                     android:layout_marginLeft="180dp"
                      android:layout_marginTop="10dp"
                      android:background="@drawable/back_2"
                      android:text="Subscribe"/>
@@ -63,7 +63,7 @@
                      android:layout_width="80dp"
                      android:layout_height="40dp"
                      android:layout_marginTop="10dp"
-                     android:layout_marginLeft="310dp"
+                     android:layout_marginLeft="290dp"
                      android:background="@drawable/back_2"
                      android:text="UnSub"/>
 
@@ -79,7 +79,7 @@
                     android:id="@+id/topic_two_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="80dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
@@ -88,7 +88,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="80dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
 
@@ -104,7 +104,7 @@
                     android:id="@+id/topic_three_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="150dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
@@ -113,7 +113,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="150dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
 
@@ -129,7 +129,7 @@
                     android:id="@+id/topic_four_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="220dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
@@ -138,7 +138,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="220dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
 
@@ -154,7 +154,7 @@
                     android:id="@+id/topic_five_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="290dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
@@ -163,7 +163,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="290dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
 
@@ -179,7 +179,7 @@
                     android:id="@+id/topic_six_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="360dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
@@ -188,7 +188,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="360dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
 
@@ -204,7 +204,7 @@
                     android:id="@+id/topic_seven_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="420dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
@@ -213,7 +213,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="420dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
                 <TextView
@@ -228,7 +228,7 @@
                     android:id="@+id/topic_eight_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="490dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
@@ -237,7 +237,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="490dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
 
@@ -253,7 +253,7 @@
                     android:id="@+id/topic_nine_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="560dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
@@ -262,7 +262,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="560dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
 
@@ -278,7 +278,7 @@
                     android:id="@+id/topic_ten_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="620dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
@@ -287,7 +287,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="620dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
 
@@ -303,7 +303,7 @@
                     android:id="@+id/topic_eleven_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="690dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
@@ -312,7 +312,7 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="690dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
 
@@ -328,8 +328,8 @@
                     android:id="@+id/topic_twelve_sub"
                     android:layout_width="105dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="200dp"
                     android:layout_marginTop="760dp"
+                    android:layout_marginLeft="180dp"
                     android:background="@drawable/back_2"
                     android:text="Subscribe"/>
                 <Button
@@ -337,10 +337,9 @@
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="760dp"
-                    android:layout_marginLeft="310dp"
+                    android:layout_marginLeft="290dp"
                     android:background="@drawable/back_2"
                     android:text="UnSub"/>
-
             </RelativeLayout>
         </ScrollView>
     </FrameLayout>

@@ -21,6 +21,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class SubscribeToAChannel extends AppCompatActivity {
 
     private Button topicOnesub;
@@ -69,8 +74,8 @@ public class SubscribeToAChannel extends AppCompatActivity {
     private FirebaseDatabase getSubDatabase;
     private DatabaseReference refSubDatabase;
     private DatabaseReference refGetSubDatabase;
-   // private Query query;
 
+    private HashMap<String, Object> subTopicList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +83,7 @@ public class SubscribeToAChannel extends AppCompatActivity {
         setContentView(R.layout.activity_subscribe_to_achannel);
         // init utility var
         initUtilityVar();
+        unSubsButDefault();
         //fireabse work
         subDatabase = FirebaseDatabase.getInstance();
         refSubDatabase = subDatabase.getReference("SubscriptionTopic");
@@ -90,13 +96,21 @@ public class SubscribeToAChannel extends AppCompatActivity {
 
         //check subscription of topic
         searchSubscriptionToTopic();
-        //button work
+
+        //map datapost
+        subTopicList = new HashMap<String, Object>();
+
+        //sub work start
         topicOnesub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("Bank");
                 topOne = "Bank";
-                saveSubscriptionToATopic();
+                topicOneUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicOne", topOne);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -105,7 +119,11 @@ public class SubscribeToAChannel extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("State_Govt");
                 topTwo = "State_Govt";
-                saveSubscriptionToATopic();
+                topicTwoUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicTwo", topTwo);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -114,7 +132,11 @@ public class SubscribeToAChannel extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("Central_Govt");
                 topThree = "Central_Govt";
-                saveSubscriptionToATopic();
+                topicThreeUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicThree", topThree);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -123,7 +145,11 @@ public class SubscribeToAChannel extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("Railway");
                 topFour = "Railway";
-                saveSubscriptionToATopic();
+                topicFourUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicFour", topFour);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -132,7 +158,11 @@ public class SubscribeToAChannel extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("Oil");
                 topFive = "Oil";
-                saveSubscriptionToATopic();
+                topicFiveUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicFive", topFive);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -141,7 +171,11 @@ public class SubscribeToAChannel extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("Ongc");
                 topSix = "Ongc";
-                saveSubscriptionToATopic();
+                topicSixUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicSix", topSix);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -150,7 +184,11 @@ public class SubscribeToAChannel extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("Educational_Institute");
                 topSeven = "Educational_Institute";
-                saveSubscriptionToATopic();
+                topicSevenUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicSeven", topSeven);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -159,7 +197,11 @@ public class SubscribeToAChannel extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("Research");
                 topEight = "Research";
-                saveSubscriptionToATopic();
+                topicEightUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicEight", topEight);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -167,8 +209,12 @@ public class SubscribeToAChannel extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("It_Company");
-                topNine = "It_company";
-                saveSubscriptionToATopic();
+                topNine = "It_Company";
+                topicNineUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicNine", topNine);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -177,7 +223,11 @@ public class SubscribeToAChannel extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("Private_Company");
                 topTen = "Private_Company";
-                saveSubscriptionToATopic();
+                topicTenUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicTen", topTen);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -186,7 +236,11 @@ public class SubscribeToAChannel extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("General_Recruitment");
                 topEleven = "General_Recruitment";
-                saveSubscriptionToATopic();
+                topicElevenUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicEleven", topEleven);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
             }
         });
 
@@ -195,70 +249,211 @@ public class SubscribeToAChannel extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseMessaging.getInstance().subscribeToTopic("Insurance");
                 topTwelve = "Insurance";
-                saveSubscriptionToATopic();
+                topicTwelveUnsub.setEnabled(true);
+                subTopicList.put("userId", myId);
+                subTopicList.put("topicTwelve", topTwelve);
+                refSubDatabase.child(myId).updateChildren(subTopicList);
+                searchSubscriptionToTopic();
+            }
+        });// end sub work
+
+        // unsub work start
+        topicOneUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("Bank");
+                refSubDatabase.child(myId).child("topicOne").removeValue();
+                topicOneUnsub.setEnabled(false);
+                topicOnesub.setEnabled(true);
+                topicOnesub.setText("Subscribe");
+            }
+        });
+        topicTwoUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("State_Govt");
+                refSubDatabase.child(myId).child("topicTwo").removeValue();
+                topicTwoUnsub.setEnabled(false);
+                topicTwoSub.setEnabled(true);
+                topicTwoSub.setText("Subscribe");
+            }
+        });
+        topicThreeUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("Central_Govt");
+                refSubDatabase.child(myId).child("topicThree").removeValue();
+                topicThreeUnsub.setEnabled(false);
+                topicThreeSub.setEnabled(true);
+                topicThreeSub.setText("subscribe");
+            }
+        });
+        topicFourUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("Railway");
+                refSubDatabase.child(myId).child("topicFour").removeValue();
+                topicFourUnsub.setEnabled(false);
+                topicFourSub.setEnabled(true);
+                topicFourSub.setText("Subscribe");
+            }
+        });
+        topicFiveUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("Oil");
+                refSubDatabase.child(myId).child("topicFive").removeValue();
+                topicFiveUnsub.setEnabled(false);
+                topicFiveSub.setEnabled(true);
+                topicFiveSub.setText("Subscribe");
+            }
+        });
+        topicSixUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("Ongc");
+                refSubDatabase.child(myId).child("topicSix").removeValue();
+                topicSixUnsub.setEnabled(false);
+                topicSixSub.setEnabled(true);
+                topicSixSub.setText("Subscribe");
+            }
+        });
+        topicSevenUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("Educational_Institute");
+                refSubDatabase.child(myId).child("topicSeven").removeValue();
+                topicSevenUnsub.setEnabled(false);
+                topicSevenSub.setEnabled(true);
+                topicSevenSub.setText("Subscribe");
+            }
+        });
+        topicEightUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("Research");
+                refSubDatabase.child(myId).child("topicEight").removeValue();
+                topicEightUnsub.setEnabled(false);
+                topicEightSub.setEnabled(true);
+                topicEightSub.setText("Subscribe");
+            }
+        });
+        topicNineUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("It_Company");
+                refSubDatabase.child(myId).child("topicNine").removeValue();
+                topicNineUnsub.setEnabled(false);
+                topicNineSub.setEnabled(true);
+                topicNineSub.setText("Subscribe");
+            }
+        });
+        topicTenUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("Private_Company");
+                refSubDatabase.child(myId).child("topicTen").removeValue();
+                topicTenUnsub.setEnabled(false);
+                topicTenSub.setEnabled(true);
+                topicTenSub.setText("Subscribe");
+            }
+        });
+        topicElevenUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("General_Recruitment");
+                refSubDatabase.child(myId).child("topicEleven").removeValue();
+                topicElevenUnsub.setEnabled(false);
+                topicElevenSub.setEnabled(true);
+                topicElevenSub.setText("Subscribe");
+            }
+        });
+        topicTwelveUnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("Insurance");
+                refSubDatabase.child(myId).child("topicTwelve").removeValue();
+                topicTwelveUnsub.setEnabled(false);
+                topicTwelveSub.setEnabled(true);
+                topicTwelveSub.setText("Subscribe");
             }
         });
 
-        //store subscription topic in firebase
-        //saveSubscriptionToATopic();
     }
 
     public void searchSubscriptionToTopic() {
-        final Query query = refGetSubDatabase.orderByChild("userId").equalTo(myId);
-        query.addChildEventListener(new ChildEventListener() {
+        //final Query query = refGetSubDatabase.orderByChild("userId").equalTo(myId);
+        refGetSubDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                if (dataSnapshot.hasChildren()){
-                SubscribeToaChannelModel serSubMod = dataSnapshot.getValue(SubscribeToaChannelModel.class);
-
-                    Toast.makeText(SubscribeToAChannel.this, "You Are", Toast.LENGTH_LONG).show();
-                    if ("Bank".equals(serSubMod.getTopicOne())) {
-                        topicOnesub.setEnabled(false);
-                        topicOnesub.setText("Subscribed");
-                    }
-                    if ("State_Govt".equals(serSubMod.getTopicTwo())){
-                        topicTwoSub.setEnabled(false);
-                        topicTwoSub.setText("Subscribed");
-                    }
-                    if ("Central_Govt".equals(serSubMod.getTopicThree())) {
-                        topicThreeSub.setEnabled(false);
-                        topicThreeSub.setText("Subscribed");
-                    }
-                    if ("Railway".equals(serSubMod.getTopicFour())) {
-                        topicFourSub.setEnabled(false);
-                        topicFourSub.setText("Subscribed");
-                    }
-                    if ("Oil".equals(serSubMod.getTopicFive())) {
-                        topicFiveSub.setEnabled(false);
-                        topicFiveSub.setText("Subscribed");
-                    }
-                    if ("Ongc".equals(serSubMod.getTopicSix())) {
-                        topicSixSub.setEnabled(false);
-                        topicSixSub.setText("Subscribed");
-                    }
-                    if ("Educational_Institute".equals(serSubMod.getTopicSeven())) {
-                        topicSevenSub.setEnabled(false);
-                        topicSevenSub.setText("Subscribed");
-                    }
-                    if ("Research".equals(serSubMod.getTopicEight())) {
-                        topicEightSub.setEnabled(false);
-                        topicEightSub.setText("Subscribed");
-                    }
-                    if ("Tt_Company".equals(serSubMod.getTopicNine())) {
-                        topicNineSub.setEnabled(false);
-                        topicNineSub.setText("Subscribed");
-                    }
-                    if ("Private_Company".equals(serSubMod.getTopicTen())) {
-                        topicTenSub.setEnabled(false);
-                        topicTenSub.setText("Subscribed");
-                    }
-                    if ("General_Recruitment".equals(serSubMod.getTopicEleven())) {
-                        topicElevenSub.setEnabled(false);
-                        topicElevenSub.setText("Subscribed");
-                    }
-                    if ("Insurance".equals(serSubMod.getTopicTwelve())) {
-                        topicTwelveSub.setEnabled(false);
-                        topicTwelveSub.setText("Subscribed");
+                if (dataSnapshot.hasChildren()) {
+                    SubscribeToaChannelModel serSubMod = dataSnapshot.getValue(SubscribeToaChannelModel.class);
+                    if (myId.equals(serSubMod.getUserId())) {
+                        List<SubscribeToaChannelModel> myListSub = new ArrayList<>();
+                        myListSub.add(serSubMod);
+                        Toast.makeText(SubscribeToAChannel.this, "gscgjsg", Toast.LENGTH_SHORT).show();
+                        for (SubscribeToaChannelModel temp : myListSub) {
+                            if ("Bank".equals(temp.getTopicOne())) {
+                                topicOnesub.setEnabled(false);
+                                topicOnesub.setText("Subscribed");
+                                topicOneUnsub.setEnabled(true);
+                            }
+                            if ("State_Govt".equals(temp.getTopicTwo())) {
+                                topicTwoSub.setEnabled(false);
+                                topicTwoSub.setText("Subscribed");
+                                topicTwoUnsub.setEnabled(true);
+                            }
+                            if ("Central_Govt".equals(temp.getTopicThree())) {
+                                topicThreeSub.setEnabled(false);
+                                topicThreeSub.setText("Subscribed");
+                                topicThreeUnsub.setEnabled(true);
+                            }
+                            if ("Railway".equals(temp.getTopicFour())) {
+                                topicFourSub.setEnabled(false);
+                                topicFourSub.setText("Subscribed");
+                                topicFourUnsub.setEnabled(true);
+                            }
+                            if ("Oil".equals(temp.getTopicFive())) {
+                                topicFiveSub.setEnabled(false);
+                                topicFiveSub.setText("Subscribed");
+                                topicFiveUnsub.setEnabled(true);
+                            }
+                            if ("Ongc".equals(temp.getTopicSix())) {
+                                topicSixSub.setEnabled(false);
+                                topicSixSub.setText("Subscribed");
+                                topicSixUnsub.setEnabled(true);
+                            }
+                            if ("Educational_Institute".equals(temp.getTopicSeven())) {
+                                topicSevenSub.setEnabled(false);
+                                topicSevenSub.setText("Subscribed");
+                                topicSevenUnsub.setEnabled(true);
+                            }
+                            if ("Research".equals(temp.getTopicEight())) {
+                                topicEightSub.setEnabled(false);
+                                topicEightSub.setText("Subscribed");
+                                topicEightUnsub.setEnabled(true);
+                            }
+                            if ("It_Company".equals(temp.getTopicNine())) {
+                                topicNineSub.setEnabled(false);
+                                topicNineSub.setText("Subscribed");
+                                topicNineUnsub.setEnabled(true);
+                            }
+                            if ("Private_Company".equals(temp.getTopicTen())) {
+                                topicTenSub.setEnabled(false);
+                                topicTenSub.setText("Subscribed");
+                                topicTenUnsub.setEnabled(true);
+                            }
+                            if ("General_Recruitment".equals(temp.getTopicEleven())) {
+                                topicElevenSub.setEnabled(false);
+                                topicElevenSub.setText("Subscribed");
+                                topicElevenUnsub.setEnabled(true);
+                            }
+                            if ("Insurance".equals(temp.getTopicTwelve())) {
+                                topicTwelveSub.setEnabled(false);
+                                topicTwelveSub.setText("Subscribed");
+                                topicTwelveUnsub.setEnabled(true);
+                            }
+                        }
                     }
                 }
             }
@@ -283,47 +478,22 @@ public class SubscribeToAChannel extends AppCompatActivity {
 
             }
         });
+
+
     }
-
-    public void saveSubscriptionToATopic() {
-        SubscribeToaChannelModel subMod = new SubscribeToaChannelModel();
-        subMod.setUserId(myId);
-        subMod.setTopicOne(topOne);
-        subMod.setTopicTwo(topTwo);
-        subMod.setTopicThree(topThree);
-        subMod.setTopicFour(topFour);
-        subMod.setTopicFive(topFive);
-        subMod.setTopicSix(topSix);
-        subMod.setTopicSeven(topSeven);
-        subMod.setTopicEight(topEight);
-        subMod.setTopicNine(topNine);
-        subMod.setTopicTen(topTen);
-        subMod.setTopicEleven(topEleven);
-        subMod.setTopicTwelve(topTwelve);
-
-        refSubDatabase.child(myId).setValue(subMod);
-        updateSaveSubscriptionToATopic();
-        searchSubscriptionToTopic();
-    }
-
-    public void updateSaveSubscriptionToATopic() {
-
-        refSubDatabase.child(myId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                SubscribeToaChannelModel subMod1 = dataSnapshot.getValue(SubscribeToaChannelModel.class);
-                    if (subMod1 == null) {
-                        Log.e(TAG, "Data is null");
-                        return;
-                    }
-                Toast.makeText(SubscribeToAChannel.this, "Subscribed", Toast.LENGTH_LONG);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+    private void unSubsButDefault() {
+        topicOneUnsub.setEnabled(false);
+        topicTwoUnsub.setEnabled(false);
+        topicThreeUnsub.setEnabled(false);
+        topicFourUnsub.setEnabled(false);
+        topicFiveUnsub.setEnabled(false);
+        topicSixUnsub.setEnabled(false);
+        topicSevenUnsub.setEnabled(false);
+        topicEightUnsub.setEnabled(false);
+        topicNineUnsub.setEnabled(false);
+        topicTenUnsub.setEnabled(false);
+        topicElevenUnsub.setEnabled(false);;
+        topicTwelveUnsub.setEnabled(false);
     }
 
     public void initUtilityVar() {
@@ -350,7 +520,6 @@ public class SubscribeToAChannel extends AppCompatActivity {
         topicElevenSub = (Button)findViewById(R.id.topic_eleven_sub);
         topicElevenUnsub = (Button)findViewById(R.id.topic_eleven_unSub);
         topicTwelveSub = (Button)findViewById(R.id.topic_twelve_sub);
-        topicTwelveUnsub = (Button)findViewById(R.id.topic_two_unSub);
-
+        topicTwelveUnsub = (Button)findViewById(R.id.topic_twelve_unSub);
     }
 }

@@ -27,28 +27,37 @@ public class NotificationMsgService extends FirebaseMessagingService {
     private FirebaseUser user;
     // private Notification myNotification;
     public static final String NOTIFICATION_CHANNEL_ID = "my_channel_id3";
-    public static final String TAG = "FireBase_Message";
+    public static final String TAG = "Notification_Message";
     private Intent intent;
     private String myJobName;
+    private String myJobDate;
     @Override
-    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+    public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        Log.d(TAG, remoteMessage.toString());
+       // Log.d(TAG, remoteMessage.toString());
+
+        Log.d(TAG, "From" +remoteMessage.getFrom());
 
         //check if message contaon data payload
-        if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message Data PlayLoad" + remoteMessage.getData());
+       if (remoteMessage.getData().size() > 0) {
+            Log.d(TAG, "Data PlayLoad" + remoteMessage.getData());
             Map<String, String> payLoad = remoteMessage.getData();
-            showNotificatrion(payLoad.get("title"), payLoad.get("jobDate"));
-            myJobName = payLoad.get("title").toString().trim();
+            myJobName = payLoad.get("nameOfTheJob").trim();
+            myJobDate = remoteMessage.getNotification().getBody();
+           // showNotification(myJobName, myJobDate);
+
         }
 
         // check is message conatain notification payload
         if (remoteMessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body" +remoteMessage.getNotification().getBody());
+            Log.d(TAG, "Notification Body" +remoteMessage.getNotification().getBody());
+         /*   myJobName = remoteMessage.getNotification().getTitle();
+            myJobDate = remoteMessage.getNotification().getBody();
+            showNotification(myJobName, myJobDate); */
         }
+        showNotification(myJobName, myJobDate);
     }
-    public void showNotificatrion(String title, String jobDate) {
+    public void showNotification(String myJobName, String myJobDate) {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Toast.makeText(this, "successful", Toast.LENGTH_LONG).show();
@@ -56,19 +65,23 @@ public class NotificationMsgService extends FirebaseMessagingService {
             intent.putExtra("id", "notiSerJob");
             intent.putExtra("title", myJobName);
         }
+        else {
+            intent = new Intent(this, UserLogin.class);
+        }
         int notificationId = (int)System.currentTimeMillis();
+        int reqstTime = (int)System.currentTimeMillis() * 2;
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent penIntent = PendingIntent.getActivity(this, notificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        // Notification.Builder notiBulid = new Notification.Builder(this.getApplicationContext());
-        NotificationCompat.Builder notiBulid = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent penIntent = PendingIntent.getActivity(this, reqstTime, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification.Builder notiBulid = new Notification.Builder(this.getApplicationContext());
+       // NotificationCompat.Builder notiBulid = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         notiBulid.setAutoCancel(true).
                 setDefaults(Notification.DEFAULT_ALL).
                 setWhen(System.currentTimeMillis()).
-                setSmallIcon(R.drawable.homelogo).
-                setContentTitle("Job Name:" +title).
-                setContentText(jobDate);
-
+                setSmallIcon(R.drawable.userhomelogo).
+                setContentTitle("Job Name:" +myJobName).
+                setContentText(myJobDate);
+        notiBulid.setContentIntent(penIntent);
         //  myNotification = notiBulid.build();
         NotificationManager notiMan = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
      /*   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -85,7 +98,7 @@ public class NotificationMsgService extends FirebaseMessagingService {
             notiBulid.setChannelId(NOTIFICATION_CHANNEL_ID).
                     setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE);
             notiMan.createNotificationChannel(notiChan);
-            notiMan.notify(notificationId, notiBulid.build());
+            //notiMan.notify(notificationId, notiBulid.build());
         }
         Log.d("channel Id :", " " + NOTIFICATION_CHANNEL_ID);
         // myNotification = notiBulid.build();
