@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardElevation="5dp"
+    card_view:cardMaxElevation="5dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:contentPadding="10dp"
+    card_view:cardBackgroundColor="#c5dbe4">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/job_card_view">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Last Date"
+            android:textColor="#000000"
+            android:textSize="16dp"/>
+        <TextView
+            android:id="@+id/custom_jobdate_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="150dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#000000"
+            android:textSize="16dp"/>
+        <TextView
+            android:id="@+id/custom_jobname_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -3,6 +3,8 @@ package com.dev.r19.SakoriSarothiClient;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,12 +29,13 @@ import java.util.List;
 
 public class UnSignUserMainActivity extends AppCompatActivity {
 
-    private ListView listOfJob;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private FirebaseUser user;
-    private List<String> myJobList;
-    private ArrayAdapter<String> myJobListAdaptor;
+
+    private RecyclerView recyclerView1;
+    private List<UnSignUserMainActivityModel> myJobList = new ArrayList<>();
+    private RecyclerView.Adapter myJobListAdaptor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +45,6 @@ public class UnSignUserMainActivity extends AppCompatActivity {
         // firebase
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("UploadedJobDetails");
-        //init arraylist
-        myJobList = new ArrayList<>();
         //search job
         searchJobList();
     }
@@ -50,18 +52,20 @@ public class UnSignUserMainActivity extends AppCompatActivity {
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                UnSignUserMainActivityModel unSignMod = dataSnapshot.getValue(UnSignUserMainActivityModel.class);
-                myJobList.add(unSignMod.getJobName() +"\n"+"\n Last Date :" +unSignMod.getLastDate()+"\n\n\n");
-                myJobListAdaptor = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, myJobList);
-                listOfJob.setAdapter(myJobListAdaptor);
+              //  for (DataSnapshot dSnapshot : dataSnapshot.getChildren()) {
+                    UnSignUserMainActivityModel unSignMod = dataSnapshot.getValue(UnSignUserMainActivityModel.class);
+                    myJobList.add(unSignMod);
+             //   }
 
-                listOfJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                myJobListAdaptor = new UnsignUserActivityAdapterView(UnSignUserMainActivity.this, (ArrayList<UnSignUserMainActivityModel>) myJobList);
+                recyclerView1.setAdapter(myJobListAdaptor);
+               /* listOfJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         //check current user status
                         checkCurrentUserStatus();
                     }
-                });
+                });*/
             }
 
             @Override
@@ -81,7 +85,7 @@ public class UnSignUserMainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(UnSignUserMainActivity.this, "Database Error, Please re-Istall the app", Toast.LENGTH_LONG).show();
+                Toast.makeText(UnSignUserMainActivity.this, "Database Error, Please re-Install the app", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -96,6 +100,13 @@ public class UnSignUserMainActivity extends AppCompatActivity {
     }
 
     private void initActivityVar() {
-        listOfJob =(ListView)findViewById(R.id.list_of_job);
+        ;recyclerView1 = (RecyclerView)findViewById(R.id.unsign_user_recycler);
+        recyclerView1.setHasFixedSize(true);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(UnSignUserMainActivity.this));
+    }
+
+    public void onBackPressed(){
+        Intent intent = new Intent(UnSignUserMainActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

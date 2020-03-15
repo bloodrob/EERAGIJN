@@ -73,7 +73,6 @@ public class UserHome extends AppCompatActivity {
         rotate = AnimationUtils.loadAnimation(this , R.anim.rotate_1);
         userHome = (TextView) findViewById(R.id.userHome);
         userHome.startAnimation(rotate);
-
         // for facebook login
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         // start link page user login

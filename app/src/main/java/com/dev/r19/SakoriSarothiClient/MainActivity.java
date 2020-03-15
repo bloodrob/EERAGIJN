@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private NetworkInfo nInfo;
     private ConnectivityManager cman;
     private Intent notiIntent;
+
+    private GoogleSignInAccount mySignInAccount;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         ivSubtitle.animate().translationX(0).setDuration(800).setStartDelay(700).start();
         ivBtn.animate().translationX(0).setDuration(800).setStartDelay(900).start();
 
+        mySignInAccount = GoogleSignIn.getLastSignedInAccount(this);
+        user = FirebaseAuth.getInstance().getCurrentUser();
         //check the notification intent value
         notiIntent = getIntent();
         if (notiIntent.hasExtra("id")) {
@@ -87,13 +94,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 isMOnline();
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null)
-                {
+                if (mySignInAccount != null){
+                    Intent gIntent = new Intent(MainActivity.this, NewUserMainActivity.class);
+                    startActivity(gIntent);
+                }
+
+                if (user != null) {
                     Intent ax = new Intent(MainActivity.this , NewUserMainActivity.class);
                     startActivity(ax);
                 }
-                if (user == null) {
+                else {
                     Intent intent = new Intent(MainActivity.this, UnSignUserMainActivity.class);
                     startActivity(intent);
                 }
@@ -122,5 +132,12 @@ public class MainActivity extends AppCompatActivity {
         sendIntent.putExtra("id", notiIntent.getStringExtra("id"));
         sendIntent.putExtra("title", notiIntent.getStringExtra("title"));
         startActivity(sendIntent);
+    }
+
+    public void onBackPressed(){
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
