@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MobileSIgnIn"></activity>
+        <activity android:name=".MyChat"></activity>
+        <activity android:name=".MobileSIgnIn" />
         <activity android:name=".GoogleSignInWithFirebase" />
         <activity android:name=".SubscribeToAChannel" />
 

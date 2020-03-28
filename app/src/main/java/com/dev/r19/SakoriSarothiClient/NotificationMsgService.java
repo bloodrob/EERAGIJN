@@ -26,14 +26,16 @@ import java.util.Map;
 public class NotificationMsgService extends FirebaseMessagingService {
     private FirebaseUser user;
     // private Notification myNotification;
-    public static final String NOTIFICATION_CHANNEL_ID = "my_channel_id3";
-    public static final String TAG = "Notification_Message";
+    private static final String NOTIFICATION_CHANNEL_ID = "my_channel_id3";
+    private static final String TAG = "Notification_Message";
     private Intent intent;
     private String myJobName;
     private String myJobDate;
+
+    private NotificationManager notiMan;
+    private Context mContext;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
        // Log.d(TAG, remoteMessage.toString());
 
         Log.d(TAG, "From" +remoteMessage.getFrom());
@@ -42,26 +44,25 @@ public class NotificationMsgService extends FirebaseMessagingService {
        if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Data PlayLoad" + remoteMessage.getData());
             Map<String, String> payLoad = remoteMessage.getData();
-            myJobName = payLoad.get("nameOfTheJob").trim();
-            myJobDate = remoteMessage.getNotification().getBody();
-           // showNotification(myJobName, myJobDate);
+            myJobName = remoteMessage.getData().get("title");
+            myJobDate = remoteMessage.getData().get("body");
+            showNotification(myJobName, myJobDate);
 
         }
 
         // check is message conatain notification payload
-        if (remoteMessage.getNotification() != null) {
+       /* if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Notification Body" +remoteMessage.getNotification().getBody());
-         /*   myJobName = remoteMessage.getNotification().getTitle();
-            myJobDate = remoteMessage.getNotification().getBody();
-            showNotification(myJobName, myJobDate); */
-        }
-        showNotification(myJobName, myJobDate);
+        } */
+
+        //showNotification(myJobName, myJobDate);
+        super.onMessageReceived(remoteMessage);
     }
     public void showNotification(String myJobName, String myJobDate) {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Toast.makeText(this, "successful", Toast.LENGTH_LONG).show();
-            intent = new Intent(this, UserSearchCustomJobDetails.class);
+            intent = new Intent(mContext.getApplicationContext(), UserSearchCustomJobDetails.class);
             intent.putExtra("id", "notiSerJob");
             intent.putExtra("title", myJobName);
         }
@@ -72,9 +73,9 @@ public class NotificationMsgService extends FirebaseMessagingService {
         int reqstTime = (int)System.currentTimeMillis() * 2;
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent penIntent = PendingIntent.getActivity(this, reqstTime, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        Notification.Builder notiBulid = new Notification.Builder(this.getApplicationContext());
-       // NotificationCompat.Builder notiBulid = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        PendingIntent penIntent = PendingIntent.getActivity(mContext, reqstTime, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //NotificationCompat.Builder notiBulid = new NotificationCompat().Builder(this.getApplicationContext());
+        NotificationCompat.Builder notiBulid = new NotificationCompat.Builder(mContext.getApplicationContext(), "notify_1993");
         notiBulid.setAutoCancel(true).
                 setDefaults(Notification.DEFAULT_ALL).
                 setWhen(System.currentTimeMillis()).
@@ -83,7 +84,7 @@ public class NotificationMsgService extends FirebaseMessagingService {
                 setContentText(myJobDate);
         notiBulid.setContentIntent(penIntent);
         //  myNotification = notiBulid.build();
-        NotificationManager notiMan = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        notiMan = (NotificationManager)mContext.getSystemService(Context.NOTIFICATION_SERVICE);
      /*   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             notiBulid.setColor(Color.parseColor("#1d099e"));
         } */

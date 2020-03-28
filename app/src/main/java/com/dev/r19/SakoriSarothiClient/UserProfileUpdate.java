@@ -116,7 +116,7 @@ public class UserProfileUpdate extends AppCompatActivity {
                         }
                         Log.e(TAG, "Data is Successfully inserted to the database");
                         Toast.makeText(UserProfileUpdate.this, "Data is Successfully Inserted", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(UserProfileUpdate.this, SubscribeToAChannel.class);
+                        Intent intent = new Intent(UserProfileUpdate.this, NewUserMainActivity.class);
                         startActivity(intent);
                     }
 

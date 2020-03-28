@@ -1,12 +1,19 @@
 package com.dev.r19.SakoriSarothiClient;
 
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,22 +43,17 @@ import java.util.Map;
 public class UserChatting extends AppCompatActivity {
 
     private EditText typedChat;
-    private ListView listOfChatMessage;
-    private TextView myChatText, myChatUser, myChatTime;
-    // firebase list adaptor to populate the list item
-    //private FirebaseListAdaptor<UserChattingModel> chattedList;
-    //firebase for create instance and get reference
+    private Button submitChat;
+
     private FirebaseAuth auth;
     private FirebaseDatabase databs, database1;
     private DatabaseReference refToDatabs;
     private DatabaseReference getRefToDatabs1;
     private DatabaseReference getRefToChatMes;
+    private ValueEventListener listener;
+    private ValueEventListener chatListener;
     // firebase for store chatting
     private DatabaseReference refToStrChat;
-    //arraylist for list of message
-    private List<String> chatMesList;
-    // arrayAdaptor for list of message
-    private ArrayAdapter<String> getChatmesList;
     // variable for get the email of the current user
     private String curUserMail;
     // to store the name of the chat user and the chat text
@@ -60,43 +62,41 @@ public class UserChatting extends AppCompatActivity {
    // private String ChatTimeMes;
     private Map ChatTimeMes;
     //variable for Id generator
-    static final String alphaNum = "ABCDEFGHIJKLMONPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
-    static SecureRandom random = new SecureRandom();
-    static final int len = 10;
-    static StringBuilder strngbldr;
+    private final String alphaNum = "ABCDEFGHIJKLMONPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+    private SecureRandom random = new SecureRandom();
+    private final int len = 10;
+    private StringBuilder strngbldr;
+
+    private RecyclerView chatRecycler;
+    private RecyclerView myCHatRecycler;
+    private List<UserChattingModel> chatMesList = new ArrayList<>();
+    private List<UserChattingModel> myChatMesList = new ArrayList<>();
+    private RecyclerView.Adapter getChatmesList;
+    private RecyclerView.Adapter getMyChatMesList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_chatting);
-        // initialisation of the button
-        typedChat = (EditText)findViewById(R.id.chat_message);
-        listOfChatMessage = (ListView)findViewById(R.id.list_of_chat_message);
-        myChatText = (TextView)findViewById(R.id.chat_text);
-        myChatUser = (TextView)findViewById(R.id.chat_user);
-        myChatTime = (TextView)findViewById(R.id.chat_time);
-        //end of initialization  of button
+        // initialisation of the utility var
+        initUtilityVar();
 
         // firebase work for get the current user
         auth = FirebaseAuth.getInstance();
-        curUserMail = auth.getCurrentUser().getEmail().toString().trim();
-        // firebase work for entry and retrieve data
+        curUserMail = auth.getCurrentUser().getUid();
         database1 = FirebaseDatabase.getInstance();
         getRefToDatabs1 = database1.getReference("UserChat");
         getRefToChatMes = database1.getReference("UserChat/");
-        //Toast.makeText(UserChatting.this, "email is :"+curUserMail, Toast.LENGTH_LONG).show();
-        //firebase init
         databs = FirebaseDatabase.getInstance();
-        refToDatabs = databs.getReference("NewUserPersionalInfo");
+        refToDatabs = databs.getReference("UserProfile");
+
         // for get the name of the user
         getTheCurUserName();
         //geeting the chat data
         getTheChatData();
 
-        //end
-        // floatingActionButton initiaization
-        FloatingActionButton flobar = (FloatingActionButton)findViewById(R.id.below_list);
         // start work of the floating bar
-        flobar.setOnClickListener(new View.OnClickListener() {
+        submitChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ChatTextMes = typedChat.getText().toString().trim();
@@ -110,54 +110,45 @@ public class UserChatting extends AppCompatActivity {
         });
     }
     //work on getting the name of the current user
-    public void getTheCurUserName() {
-        final Query query = refToDatabs.orderByChild("Email").equalTo(curUserMail);
-        query.addChildEventListener(new ChildEventListener() {
+    private void getTheCurUserName() {
+        final Query query = refToDatabs.orderByChild("activeId").equalTo(curUserMail);
+        listener = new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if (dataSnapshot.hasChildren()) {
-                    UserGetNameModel myMod1 = dataSnapshot.getValue(UserGetNameModel.class);
-                    ChatUserName = myMod1.getName().toString().trim();
-                    Toast.makeText(UserChatting.this, "name is :"+ChatUserName, Toast.LENGTH_LONG).show();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        UserProfileUpdateModel userProfileUpdateModel = snapshot.getValue(UserProfileUpdateModel.class);
+                        ChatUserName = userProfileUpdateModel.getName();
+                        Toast.makeText(UserChatting.this, "Name is2"+ChatUserName, Toast.LENGTH_SHORT).show();
+
+                    }
                 }
                 else {
-                    Toast.makeText(UserChatting.this, "Data not found", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(UserChatting.this, NewUserMainActivity.class);
-                    startActivity(intent);
+                    ChatUserName = "user1";
+                    Toast.makeText(UserChatting.this, "Name is1"+ChatUserName, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(UserChatting.this, "Database Error, Contact to the administrators", Toast.LENGTH_LONG).show();
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(UserChatting.this, "error, Contact developer", Toast.LENGTH_LONG).show();
                 return;
             }
-        });
+        };
+        query.addValueEventListener(listener);
     } // end of getCurUserName method
     //start updateCurUserChatText
     private void updateCurUserChatText() {
         UserChattingModel mod1 = new UserChattingModel();
+        Toast.makeText(UserChatting.this, "Name is"+ChatUserName, Toast.LENGTH_SHORT).show();
         mod1.setChatUser(ChatUserName);
         mod1.setChatText(ChatTextMes);
         //mod1.setChatTime(ChatTimeMes);
-        getRefToDatabs1.push().child(strngbldr.toString()).setValue(mod1);
+        getRefToDatabs1.push().setValue(mod1);
       //  getRefToDatabs1.child(strngbldr.toString()).updateChildren(ChatTimeMes);
         // get chat data
+        chatMesList.clear();
+        myChatMesList.clear();
         getTheChatData();
         // clear the editText
         typedChat.setText("");
@@ -165,40 +156,49 @@ public class UserChatting extends AppCompatActivity {
     }
     // get the chat list
     private void getTheChatData() {
+        chatMesList.clear();
         // init the arraylist for the message list to add
-        chatMesList = new ArrayList<String>();
         getRefToChatMes.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                UserChattingModel useMod = dataSnapshot.getValue(UserChattingModel.class);
-                if (dataSnapshot.hasChildren()) {
-                    chatMesList.add(useMod.getChatUser() +"\n"+"Mes :"+useMod.getChatText()+"\n " +"\n\n");
-                    getChatmesList = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,chatMesList);
-                    listOfChatMessage.setAdapter(getChatmesList);
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if (dataSnapshot.exists()){
+                  //  for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        UserChattingModel userChatMod1 = dataSnapshot.getValue(UserChattingModel.class);
+                        if ("Robin".equals(userChatMod1.getChatUser())){
+                            chatMesList.add(userChatMod1);
+
+                            getChatmesList = new UserChatAdaptorView(UserChatting.this, (ArrayList<UserChattingModel>) chatMesList);
+                            chatRecycler.setAdapter(getChatmesList);
+                        }
+                        else {
+                            myChatMesList.add(userChatMod1);
+                            getMyChatMesList = new UserChatAdaptorView(UserChatting.this, (ArrayList<UserChattingModel>) myChatMesList);
+                            myCHatRecycler.setAdapter(getMyChatMesList);
+                        }
+                 //   }
                 }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        }) ;
-
+        });
     }
     // method defining for random id generator
     public String genRandomString(int len) {
@@ -221,6 +221,19 @@ public class UserChatting extends AppCompatActivity {
       //  ChatTimeMes = new HashMap();
         //ChatTimeMes.put("ChatTime", ServerValue.TIMESTAMP);
 
+    }
+
+    private void initUtilityVar(){
+        typedChat = (EditText)findViewById(R.id.chat_message);
+        submitChat = (Button)findViewById(R.id.below_list);
+
+        chatRecycler = (RecyclerView)findViewById(R.id.chat_recycle);
+        chatRecycler.setHasFixedSize(true);
+        chatRecycler.setLayoutManager(new LinearLayoutManager(UserChatting.this));
+
+        myCHatRecycler = (RecyclerView)findViewById(R.id.my_chat_recycler);
+        myCHatRecycler.setHasFixedSize(true);
+        myCHatRecycler.setLayoutManager(new LinearLayoutManager(UserChatting.this));
     }
 }
 

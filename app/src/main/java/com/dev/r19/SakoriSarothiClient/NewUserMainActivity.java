@@ -149,7 +149,7 @@ public class NewUserMainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // as you specify a parent activity in AndroidManifest.networkxml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -187,9 +187,9 @@ public class NewUserMainActivity extends AppCompatActivity
             Intent intent = new Intent(NewUserMainActivity.this, UserSearchCustomJob.class);
             startActivity(intent);
         }else if (id == R.id.nav_chat) {
-            Toast.makeText(NewUserMainActivity.this, "This Feature Will be Comming Soon", Toast.LENGTH_LONG).show();
-           // Intent intent = new Intent(NewUserMainActivity.this, UserChatting.class);
-           // startActivity(intent);
+          //  Toast.makeText(NewUserMainActivity.this, "This Feature Will be Comming Soon", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(NewUserMainActivity.this, MyChat.class);
+            startActivity(intent);
         }else if (id == R.id.nav_ourInfo) {
             Intent intent = new Intent(NewUserMainActivity.this, ContactUs.class);
             startActivity(intent);

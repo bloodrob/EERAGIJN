@@ -10,15 +10,15 @@ public class UserChattingModel {
     private String ChatText;
     private String ChatUser;
    // private String ChatTime;
-    private Map<String, String> ChatTime;
+   // private String ChatTime;
     UserChattingModel() {
 
     }
 
-    public UserChattingModel(String ChatText, String ChatUser, Map<String, String> ChatTime) {
+    public UserChattingModel(String ChatText, String ChatUser) {
         this.ChatText = ChatText;
         this.ChatUser = ChatUser;
-        this.ChatTime = ChatTime;
+       // this.ChatTime = ChatTime;
     }
     public String getChatUser() {
         return ChatUser;
@@ -32,11 +32,11 @@ public class UserChattingModel {
     public void setChatText(String ChatText) {
         this.ChatText = ChatText;
     }
-    public Map<String, String> getChatTime(){
-        return ChatTime;
+    /*public String getChatTime(){
+        return (ChatTime);
     }
-    public void setChatTime(Map<String, String> ChatTime) {
+    public void setChatTime(String ChatTime) {
         this.ChatTime = ChatTime;
-    }
+    } */
 }
 
